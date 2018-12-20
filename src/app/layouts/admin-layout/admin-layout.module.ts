@@ -50,9 +50,10 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { CompanydetailsComponent } from 'app/companydetails/companydetails.component';
-import { ProjectsComponent, DialogOverviewExampleDialog } from 'app/projects/projects.component';
+ import { ProjectsComponent } from 'app/projects/projects.component';
 import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.component';
-//import { AddProjectComponent } from 'app/add-project/add-project.component';
+import { ProjectDetailsComponent } from "app/project-details/project-details.component";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -96,7 +97,7 @@ import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.componen
   NgMaterialMultilevelMenuModule,
   RouterModule.forChild(AdminLayoutRoutes),
   ], 
-  entryComponents: [ProjectsComponent, AddnewprojectComponent],
+  entryComponents: [ProjectsComponent, AddnewprojectComponent,ProjectDetailsComponent],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
@@ -108,10 +109,10 @@ import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.componen
     UpgradeComponent,
     CompanydetailsComponent,
     ProjectsComponent,
-    DialogOverviewExampleDialog,
-    AddnewprojectComponent
+    AddnewprojectComponent,
+    ProjectDetailsComponent
   ],
-  //bootstrap: [ProjectsComponent],
+  
 })
 
 export class AdminLayoutModule {}

@@ -1,102 +1,130 @@
 <div class="main-content">
   <div class="container-fluid">
-        <div class="card">
-                <div class="card-body">
-    
-                    <div class="row">
-                            <div class="col-md-4">
-                            <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Project Heading (disabled)" disabled>
-                                  </mat-form-field>
-                                  </div>
-                                  <div class="col-md-2">
-                                  <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Value (disabled)" disabled>
-                                      </mat-form-field>
-                                    </div>
-                                    <div class="col-md-4">
-                                      <mat-form-field class="example-full-width">
-                                            <input matInput placeholder="Completion Date (disabled)" disabled>
-                                          </mat-form-field>
-                      </div>
-                        <div class="col-sm-1">
-                                <a mat-stroked-button routerLink=".">Show More..</a>
-                            </div>
-                    </div>
-    
-                    <div class="row">
-                            <div class="col-sm-1">
-                                    <button mat-raised-button (click)="openDialog()" color="primary">BOM</button>
-                                </div>
-                        <div class="col-sm-1">
-                                <button mat-raised-button (click)="openDialog()" color="primary">STAFF</button>
-                        </div>
-                    
-                    </div>
-                 
-                    <div class="row">
-                    <div class="col-md-2" ><h4><b>Piling </b></h4> </div>
-                    <div class="col-md-4"><mat-radio-group>
-                            <mat-radio-button value="1">Yes</mat-radio-button>
-                            <mat-radio-button value="2">No</mat-radio-button>
-                            <mat-radio-button value="3">Others</mat-radio-button>
-                          </mat-radio-group> </div>
-                        </div>
-                    <div class="row" id="others">
-                            <div col-sm-2><mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Item No." type="number">
-                                  </mat-form-field></div>
-                            <div col-sm-2>
-                                <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Description" type="text">
-                                  </mat-form-field>
-                                </div>
-                            <div col-sm-2>  <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Quantity" type="number">
-                                  </mat-form-field></div>
-                            <div col-sm-2><mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Unit" type="number">
-                                  </mat-form-field></div>
-                            <div col-sm-2><mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Rate" type="number">
-                                  </mat-form-field></div>
-                            <div col-sm-2><mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Amount" type="number">
-                                  </mat-form-field></div>
-                            <div col-sm-2><mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Status" type="text">
-                                  </mat-form-field></div>
-                           
-        
-                        </div>
+    <div class="card">
+      <div class="card-body">
 
-                        <div class="row" id="bom">
-                                <div col-sm-4><mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Item No." type="number">
-                                      </mat-form-field></div>
-                                <div col-sm-4>
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Description" type="text">
-                                      </mat-form-field>
-                                    </div>
-                                <div col-sm-4>  <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Quantity" type="number">
-                                      </mat-form-field></div>
-                                <div col-sm-4><mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Unit" type="number">
-                                      </mat-form-field></div>
-                                <div col-sm-4><mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Rate" type="number">
-                                      </mat-form-field></div>
-                                <div col-sm-4><mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Amount" type="number">
-                                      </mat-form-field></div>
-                                <div col-sm-4><mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Status" type="text">
-                                      </mat-form-field></div>
-                                
-                            </div>
-                </div>
-            </div>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Project Heading (disabled)" disabled>
+            </mat-form-field>
+          </div>
+          <div class="col-md-2">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Value (disabled)" disabled>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Completion Date (disabled)" disabled>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-1">
+            <a mat-stroked-button routerLink=".">Show More..</a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-1">
+            <button mat-raised-button (click)="openDialog()" color="primary">BOM</button>
+          </div>
+          <div class="col-sm-1">
+            <button mat-raised-button (click)="openDialog()" color="primary">STAFF</button>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <h4><b>Piling </b></h4>
+          </div>
+          <div class="col-md-4">
+            <mat-radio-group>
+              <mat-radio-button value="1">Yes</mat-radio-button>
+              <mat-radio-button value="2">No</mat-radio-button>
+              <mat-radio-button value="3">Others</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="row" id="others">
+          <div col-sm-2>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Item No." type="number">
+            </mat-form-field>
+          </div>
+          <div col-sm-2>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Description" type="text">
+            </mat-form-field>
+          </div>
+          <div col-sm-2>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Quantity" type="number">
+            </mat-form-field>
+          </div>
+          <div col-sm-2>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Unit" type="number">
+            </mat-form-field>
+          </div>
+          <div col-sm-2>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Rate" type="number">
+            </mat-form-field>
+          </div>
+          <div col-sm-2>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Amount" type="number">
+            </mat-form-field>
+          </div>
+          <div col-sm-2>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Status" type="text">
+            </mat-form-field>
+          </div>
+
+
+        </div>
+
+        <div class="row" id="bom">
+          <div col-sm-4>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Item No." type="number">
+            </mat-form-field>
+          </div>
+          <div col-sm-4>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Description" type="text">
+            </mat-form-field>
+          </div>
+          <div col-sm-4>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Quantity" type="number">
+            </mat-form-field>
+          </div>
+          <div col-sm-4>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Unit" type="number">
+            </mat-form-field>
+          </div>
+          <div col-sm-4>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Rate" type="number">
+            </mat-form-field>
+          </div>
+          <div col-sm-4>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Amount" type="number">
+            </mat-form-field>
+          </div>
+          <div col-sm-4>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Status" type="text">
+            </mat-form-field>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
 </div>

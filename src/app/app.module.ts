@@ -26,6 +26,7 @@ import { CompanydetailsComponent } from './companydetails/companydetails.compone
 import { ProjectsComponent } from './projects/projects.component';
 import { AddnewprojectComponent } from './addnewproject/addnewproject.component';
 import { HttpClientModule } from "@angular/common/http";
+import { ProjectDetailsComponent } from './project-details/project-details.component';
 
 //import { AddProjectComponent } from './add-project/add-project.component';
 
@@ -46,6 +47,7 @@ import { HttpClientModule } from "@angular/common/http";
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+   // ProjectDetailsComponent,
    // AddnewprojectComponent,
    // AddProjectComponent,
     //ProjectsComponent,

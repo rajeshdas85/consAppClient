@@ -5,74 +5,79 @@
             <div class="col-md-2"> <button mat-raised-button (click)="openDialog()" color="primary">Add New Project +</button></div>
         </div>
         <div class="row">
-                <div class="col-md-4">
-                    <div class="card card-chart">
-                        <div class="card-header card-header-success">
-                            <div class="ct-chart" id="dailySalesChart"></div>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Projects Name</h4>
-                            <p class="card-category">Project Value</p>
-                            <p class="card-category">Commencement Date</p>
-                            <p class="card-category">Completion Date</p>
-                            <p class="card-category">Clients</p>
-                            <p class="card-category">Location</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">access_time</i> updated 4 minutes ago
-                            </div>
-                        </div>
-                        <button mat-button  (click)="changePage()">Click</button> 
-
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <div class="ct-chart" id="dailySalesChart"></div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-chart">
-                        <div class="card-header card-header-success">
-                            <div class="ct-chart" id="dailySalesChart"></div>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Projects Name</h4>
-                            <p class="card-category">Project Value</p>
-                            <p class="card-category">Commencement Date</p>
-                            <p class="card-category">Completion Date</p>
-                            <p class="card-category">Clients</p>
-                            <p class="card-category">Location</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">access_time</i> updated 4 minutes ago
-                            </div>
-                        </div>
-                        <button mat-button  (click)="changePage()">Click</button> 
-
+                    <div class="card-body">
+                        <h4 class="card-title">India Bulls Project</h4>
+                        <p class="card-category">$4500.65</p>
+                        <p class="card-category">12/Mar/2018</p>
+                        <p class="card-category">16/Aug/2018</p>
+                        <p class="card-category">India Bulls</p>
+                        <p class="card-category">Vizag</p>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-chart">
-                        <div class="card-header card-header-success">
-                            <div class="ct-chart" id="dailySalesChart"></div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> updated 5 minutes ago
                         </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Projects Name</h4>
-                            <p class="card-category">Project Value</p>
-                            <p class="card-category">Commencement Date</p>
-                            <p class="card-category">Completion Date</p>
-                            <p class="card-category">Clients</p>
-                            <p class="card-category">Location</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">access_time</i> updated 4 minutes ago
-                            </div>
-                        </div>
-                        <button mat-button  (click)="changePage()">Click</button> 
-
                     </div>
+
+                    <button mat-button matTooltip="Add More" (click)="changePage()">
+                                 <mat-icon>add_box</mat-icon>
+                                    </button>
                 </div>
             </div>
-        <div class="card">
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <div class="ct-chart" id="dailySalesChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">RR Project</h4>
+                        <p class="card-category">$50000.65</p>
+                        <p class="card-category">12/Apr/2018</p>
+                        <p class="card-category">16/Nov/2018</p>
+                        <p class="card-category">RR Project</p>
+                        <p class="card-category">Hydrabad</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> updated 10 minutes ago
+                        </div>
+                    </div>
+                    <button mat-button matTooltip="Add More" (click)="changePage()">
+                                 <mat-icon>add_box</mat-icon>
+                                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <div class="ct-chart" id="dailySalesChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">McD Project</h4>
+                        <p class="card-category">$50000.65</p>
+                        <p class="card-category">12/Apr/2018</p>
+                        <p class="card-category">16/Nov/2018</p>
+                        <p class="card-category">McD Project</p>
+                        <p class="card-category">Delhi</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> updated 14 minutes ago
+                        </div>
+                    </div>
+                    <button mat-button matTooltip="Add More" (click)="changePage()">
+                                 <mat-icon>add_box</mat-icon>
+                                    </button>
+
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card">
             <div class="card-body">
                 <div class="row">
                         <div class="col-sm-1">
@@ -84,10 +89,213 @@
                  
                 </div>
             </div>
-        </div>
+        </div> -->
+
+
+        <mat-tab-group class="card" *ngIf="isDisplayBOM" animationDuration="5000">
+            <mat-tab label="BOM">
+                <div>
+                    <div class="card-body">
+
+                        <div class="row">
+                            <!-- <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Project Heading (disabled)" disabled>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Value (disabled)" disabled>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Completion Date (disabled)" disabled>
+                                </mat-form-field>
+                            </div> -->
+                            <!-- <div class="col-sm-1">
+                                <a mat-stroked-button routerLink=".">Show More..</a>
+                            </div> -->
+                        </div>
+
+                        <div class="row">
+                            <!-- <div class="col-sm-1">
+                                <button mat-raised-button color="primary">BOM</button>
+                            </div> -->
+                            <div class="col-sm-1">
+                                <a mat-stroked-button matTooltip="Show more About Project" routerLink="." (click)="showMoreCompDtlsDialog()">Show More Project Details..</a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4><b>Piling </b></h4>
+                            </div>
+                            <div class="col-md-4">
+                                <!-- <mat-radio-group>
+                             <mat-radio-button value="1">Yes</mat-radio-button>
+                            <mat-radio-button value="2">No</mat-radio-button> 
+                        </mat-radio-group> -->
+                                <mat-radio-group [(ngModel)]="selectedRadioBtn">
+                                    <mat-radio-button *ngFor="let a of arrayRadioBtn" [value]="a.name" (change)="radioChange($event)">
+                                        {{a.name}}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+
+                        <div class="row" id="bom" *ngIf="isSelectedRadioBtnYes">
+
+                            <div col-sm-4>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Item No." type="number">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-4>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Description" type="text">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-4>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Quantity" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-4>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Unit" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-4>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Rate" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-4>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Amount" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-4>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Status" type="text">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-4>
+                                <button mat-button matTooltip="save">
+                                 <mat-icon>save</mat-icon>
+                                 
+                                    </button>
+                            </div>
+                            <div col-sm-4>
+                                <button mat-button matTooltip="Add More pilling" (click)="addMorePilling()">
+                                 <mat-icon>add_box</mat-icon>
+                                    </button>
+                            </div>
+
+                            <div class="row" *ngIf="isAddMorePilling">
+                                <div col-sm-4>
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Item No." type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div col-sm-4>
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Description" type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div col-sm-4>
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Quantity" type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div col-sm-4>
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Unit" type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div col-sm-4>
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Rate" type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div col-sm-4>
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Amount" type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div col-sm-4>
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Status" type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div col-sm-4>
+                                    <button mat-button matTooltip="save">
+                                 <mat-icon >save</mat-icon>
+                                    </button>
+                                </div>
+                                <div col-sm-4>
+                                    <button mat-button matTooltip="Remove" (click)="removePilling()">
+                                 <mat-icon>clear</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4><b>Others </b></h4>
+                            </div>
+                        </div>
+                        <div class="row" id="others">
+                            <div col-sm-2>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Item No." type="number">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-2>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Description" type="text">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-2>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Quantity" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-2>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Unit" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-2>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Rate" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-2>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Amount" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div col-sm-2>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Status" type="text">
+                                </mat-form-field>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </mat-tab>
+            <mat-tab label="STAFF">
+                <h1>Some more tab content</h1>
+                <p>...</p>
+            </mat-tab>
+        </mat-tab-group>
 
 
 
-
-        
     </div>

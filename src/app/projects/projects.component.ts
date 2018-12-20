@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatRadioChange } from '@angular/material';
 import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.component';
 
 import { Router } from '@angular/router';
@@ -7,10 +7,8 @@ import { first } from 'rxjs/operators';
 import { Project, PillingInfoByProjectID, OtherInfoByProjectID, PileEntry, ProjectRecording, ProjectHistory } from "app/_model/project";
 import { ProjectService } from "app/_service/project.service";
 import * as moment from 'moment/moment';
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import { ProjectDetailsComponent } from "app/project-details/project-details.component";
+
 
 @Component({
   selector: 'app-projects',
@@ -18,9 +16,7 @@ export interface DialogData {
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
-
-  animal: string;
-  name: string;
+  isDisplayBOM: boolean = false;
   loading: boolean;
   private project: Project = new Project();
   private pillingInfoByProjectID: PillingInfoByProjectID = new PillingInfoByProjectID();
@@ -34,60 +30,71 @@ export class ProjectsComponent implements OnInit {
   chkUpdate: any;
   lastProduct: any;
   firstProductEntry: any;
+  //arrayRadioBtn = ['Yes', 'No'];
+
+  arrayRadioBtn = [
+    { "name": "Yes", ID: "D1", "checked": false},
+    { "name": "No",  ID: "D2", "checked": true}
+]
+
+
+  selectedRadioBtn: string;
+  isSelectedRadioBtnYes:boolean=false;
+  isAddMorePilling:boolean=false;
   constructor(public dialog: MatDialog, public router: Router,
     private projectService: ProjectService) { }
-    ngOnInit() {
+  ngOnInit() {
+    this.selectedRadioBtn = this.arrayRadioBtn[1].name;
+    this.projectHistory.projId = "5c18cc7043d443319c9c00d9";
+    this.projectHistory.pileNo = this.projectHistory.projId + "-" + "P1P1";
+    this.projectHistory.dateOfStarting = new Date();
+    this.projectHistory.dateOfEnding = new Date();
+    this.projectHistory.pillingRigDetails = "Rajesh Testing";
+    this.projectHistory.diaOfPile = 250.60;
+    this.projectHistory.casingToplevel = 45.60;
+    this.projectHistory.existingToplevel = 6.60;
+    this.projectHistory.pillingCutOfflevel = 65.60;
+    this.projectHistory.foundinglevel = 9898.65;
+    this.projectHistory.emptyBoreDepth = 9879.65;
+    this.projectHistory.beforeDepthFromCTL = 665.65;
+    this.projectHistory.beforeDepthFromEGL = 989.65;
+    this.projectHistory.beforeDepthFromCOL = 616.65;
+    this.projectHistory.concreteQtyTheorotical = 546.65;
+    this.projectHistory.concreteQtyActual = 99.65;
+    this.projectHistory.boringStartTime = "25:65";
+    this.projectHistory.boringEndTime = "15:65";
+    this.projectHistory.totalBoringTime = "66:65";
+    this.projectHistory.cageLoweringStartTime = "69:65";
+    this.projectHistory.cageLoweringEndTime = "65:65";
+    this.projectHistory.totalTimeForCageLowering = "65:65";
+    this.projectHistory.noOfTrimePiecesRequired = 99.65;
+    this.projectHistory.noOfTrimePiecesUsed = 99.65;
+    this.projectHistory.nameOfSiteEngg = "Rajesh Enter";
+    this.projectHistory.siteEnggId = "Rajesh Enter again Data";
 
-      this.projectHistory.projId="5c18cc7043d443319c9c00d9";
-      this.projectHistory.pileNo=this.projectHistory.projId + "-" + "P1P1";
-      this.projectHistory.dateOfStarting= new Date();
-      this.projectHistory.dateOfEnding= new Date();
-      this.projectHistory.pillingRigDetails="Rajesh Testing";
-      this.projectHistory.diaOfPile=250.60;
-      this.projectHistory.casingToplevel=45.60;
-      this.projectHistory.existingToplevel=6.60;
-      this.projectHistory.pillingCutOfflevel=65.60;
-      this.projectHistory.foundinglevel=9898.65;
-      this.projectHistory.emptyBoreDepth=9879.65;
-      this.projectHistory.beforeDepthFromCTL=665.65;
-      this.projectHistory.beforeDepthFromEGL=989.65;
-      this.projectHistory.beforeDepthFromCOL=616.65;
-      this.projectHistory.concreteQtyTheorotical=546.65;
-      this.projectHistory.concreteQtyActual=99.65;
-      this.projectHistory.boringStartTime="25:65";
-      this.projectHistory.boringEndTime="15:65";
-      this.projectHistory.totalBoringTime="66:65";
-      this.projectHistory.cageLoweringStartTime="69:65";
-      this.projectHistory.cageLoweringEndTime="65:65";
-      this.projectHistory.totalTimeForCageLowering="65:65";
-      this.projectHistory.noOfTrimePiecesRequired=99.65;
-      this.projectHistory.noOfTrimePiecesUsed=99.65;
-      this.projectHistory.nameOfSiteEngg="Rajesh Enter";
-      this.projectHistory.siteEnggId="Rajesh Enter again Data";
+    // this.projectService.addProjectHistory(this.projectHistory)
+    //     .pipe(first())
+    //     .subscribe(
+    //     data => {
+    //       console.log("Ok");
+    //     },
+    //     error => {
+    //       this.loading = false;
+    //     });
 
-      // this.projectService.addProjectHistory(this.projectHistory)
-      //     .pipe(first())
-      //     .subscribe(
-      //     data => {
-      //       console.log("Ok");
-      //     },
-      //     error => {
-      //       this.loading = false;
-      //     });
-      
-       
-        // this.projectService.getAllProjectHistory().pipe(first()).subscribe(productEntry => {
-        //   console.log("First");
-        //   this.firstProductEntry = productEntry;
-        //   console.log(this.firstProductEntry);
-        // });
-  
+
+    // this.projectService.getAllProjectHistory().pipe(first()).subscribe(productEntry => {
+    //   console.log("First");
+    //   this.firstProductEntry = productEntry;
+    //   console.log(this.firstProductEntry);
+    // });
+
     // this.projectService.updateProjectHistory(this.projectHistory).pipe(first()).subscribe(projct => {
     //     this.chkUpdate = projct;
     //     console.log(this.chkUpdate);
     //   }); 
 
-    }
+  }
   // ngOnInit() {
 
   //   //http://localhost:8080/projects/pileNo/5c18cc7043d443319c9c00d9-P1P1
@@ -226,41 +233,52 @@ export class ProjectsComponent implements OnInit {
   //     // }); 
 
   // }
-
+addMorePilling() {
+   // this.containers.push(this.containers.length);
+   this.isAddMorePilling=true;
+  }
+  removePilling() {
+   // this.containers.push(this.containers.length);
+   this.isAddMorePilling=false;
+  }
+  
   openDialog(): void {
     const dialogRef = this.dialog.open(AddnewprojectComponent, {
       width: '1000px',
-      height: '500px',
-      data: { name: this.name, animal: this.animal }
+      height: '500px'
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
     });
   }
+
+   showMoreCompDtlsDialog(): void {
+    const dialogRef = this.dialog.open(ProjectDetailsComponent, {
+      width: '1000px',
+      height: '500px'
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
   changePage(): void {
-    this.router.navigateByUrl('/table-list');
+    this.isDisplayBOM = true;
+    //this.router.navigateByUrl('/table-list');
+  }
+   radioChange(event: MatRadioChange) {
+   // console.log(event);
+    console.log(event.value);
+    if(event.value=="Yes"){
+      this.isSelectedRadioBtnYes=true;
+    }
+    else{
+      this.isSelectedRadioBtnYes=false;
+    }
+   
   }
 }
-
-@Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog-overview-example-dialog.html',
-})
-export class DialogOverviewExampleDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<AddnewprojectComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-}
-
-
-/**  Copyright 2018 Google Inc. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license */
