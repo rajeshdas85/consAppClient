@@ -27,7 +27,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { AddnewprojectComponent } from './addnewproject/addnewproject.component';
 import { HttpClientModule } from "@angular/common/http";
 import { ProjectDetailsComponent } from './project-details/project-details.component';
-
+import {MatSnackBarModule} from "@angular/material";
 //import { AddProjectComponent } from './add-project/add-project.component';
 
 @NgModule({
@@ -39,7 +39,7 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    
+    MatSnackBarModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })

@@ -1,12 +1,12 @@
 export class Project {
-    id:string;
+    id: string;
     projName: string;
     projDesc: string;
     projManagerId: string;
     pillingInfoByProjectID: PillingInfoByProjectID[];
     otherInfoByProjectID: OtherInfoByProjectID[];
-    updateDate:string;
-    DateTest:Date;
+    updateDate: string;
+    DateTest: Date;
 
 }
 export class PillingInfoByProjectID {
@@ -18,7 +18,7 @@ export class PillingInfoByProjectID {
     financialStatus: number;
 }
 export class OtherInfoByProjectID {
-    
+
     desc: string;
     qty: number;
     rate: number;
@@ -26,38 +26,38 @@ export class OtherInfoByProjectID {
     physicalStatus: number;
     financialStatus: number;
 }
-export class ProjectRecording{
+export class ProjectRecording {
     projId: string;
     pileNo: string; //projId - pileNo
-    startDate:Date;
-    fromTimeOfBoring:string;
-    toTimeOfBoring:string;
-    depthOfBoreFrom:number;
-    depthOfBoreTo:number;
-    finalDepthOfBore:number;
-    descriptionOfSoil:string;
-    RLOfThePileFrom:number;
-    RLOfThePileTo:number;
-    siteEnggId:string;
-    remarks:string;
+    startDate: Date;
+    fromTimeOfBoring: string;
+    toTimeOfBoring: string;
+    depthOfBoreFrom: number;
+    depthOfBoreTo: number;
+    finalDepthOfBore: number;
+    descriptionOfSoil: string;
+    RLOfThePileFrom: number;
+    RLOfThePileTo: number;
+    siteEnggId: string;
+    remarks: string;
 }
 export class PileEntry {
     projId: string;
     pileNo: string; //projId - pileNo
-    description:string;
+    description: string;
     nameOfCompany: string;
     pilingRigDetails: string;
     casingToplevel: number;
-    existingToplevel:number;
-    pillingCutOfflevel:number;
-    cageLengthRequired:number;
-    cageloweringStartTime:string;
-    cageloweringEndTime:string;
-    noOfTrimePiecesRequired:number;
-    noOfTrimePiecesUsed	:number;
-    nameOfSiteEngg:string;
-    siteEnggId:string;
-    concretePouring:Date;
+    existingToplevel: number;
+    pillingCutOfflevel: number;
+    cageLengthRequired: number;
+    cageloweringStartTime: string;
+    cageloweringEndTime: string;
+    noOfTrimePiecesRequired: number;
+    noOfTrimePiecesUsed: number;
+    nameOfSiteEngg: string;
+    siteEnggId: string;
+    concretePouring: Date;
 }
 
 export class ProjectHistory {
@@ -88,4 +88,10 @@ export class ProjectHistory {
     noOfTrimePiecesUsed: number;
     nameOfSiteEngg: string;
     siteEnggId: string;
+}
+export enum MessageType {
+    Success = 0,
+    Error = 1,
+    Warn = 2,
+    Info = 3,
 }

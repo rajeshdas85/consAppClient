@@ -4,10 +4,11 @@ import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.componen
 
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { Project, PillingInfoByProjectID, OtherInfoByProjectID, PileEntry, ProjectRecording, ProjectHistory } from "app/_model/project";
+import { Project, PillingInfoByProjectID, OtherInfoByProjectID, PileEntry, ProjectRecording, ProjectHistory,MessageType } from "app/_model/project";
 import { ProjectService } from "app/_service/project.service";
 import * as moment from 'moment/moment';
 import { ProjectDetailsComponent } from "app/project-details/project-details.component";
+import { MessageService } from "app/_service/message.service";
 
 
 @Component({
@@ -41,9 +42,13 @@ export class ProjectsComponent implements OnInit {
   selectedRadioBtn: string;
   isSelectedRadioBtnYes:boolean=false;
   isAddMorePilling:boolean=false;
-  constructor(public dialog: MatDialog, public router: Router,
+  panelOpenState = false;
+  constructor(public dialog: MatDialog, 
+    public router: Router,
+    private messageService: MessageService,
     private projectService: ProjectService) { }
   ngOnInit() {
+    
     this.selectedRadioBtn = this.arrayRadioBtn[1].name;
     this.projectHistory.projId = "5c18cc7043d443319c9c00d9";
     this.projectHistory.pileNo = this.projectHistory.projId + "-" + "P1P1";
@@ -267,6 +272,8 @@ addMorePilling() {
   }
 
   changePage(): void {
+    
+    this.messageService.show("Error Occor",MessageType.Error);
     this.isDisplayBOM = true;
     //this.router.navigateByUrl('/table-list');
   }
