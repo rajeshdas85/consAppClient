@@ -31,10 +31,10 @@ export class MessageService {
         break;
     }
 
-    config.duration = 3000  ;
+    config.duration = 3000;
     config.horizontalPosition = 'center';
-    config.verticalPosition = 'bottom';
-    this.snackBar.open(message, 'Done', config);
+    config.verticalPosition = 'top';
+    this.snackBar.open(message, null, config);
   }
  
 

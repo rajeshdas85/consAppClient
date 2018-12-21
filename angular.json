@@ -138,7 +138,7 @@
       }
     }
   },
-  "defaultProject": "material-dashboard-angular",
+  "defaultProject": "RKC",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

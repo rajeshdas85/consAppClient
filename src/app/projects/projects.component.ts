@@ -273,10 +273,11 @@ addMorePilling() {
 
   changePage(): void {
     
-    this.messageService.show("Error Occor",MessageType.Error);
+    this.messageService.show("Add BOM Below",MessageType.Info);
     this.isDisplayBOM = true;
     //this.router.navigateByUrl('/table-list');
   }
+  
    radioChange(event: MatRadioChange) {
    // console.log(event);
     console.log(event.value);
