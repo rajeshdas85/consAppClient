@@ -11,7 +11,7 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
-  import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
+
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -94,7 +94,7 @@ import { ProjectDetailsComponent } from "app/project-details/project-details.com
   MatTooltipModule,
   MatTreeModule,
   FormsModule,
-  NgMaterialMultilevelMenuModule,
+  
   RouterModule.forChild(AdminLayoutRoutes),
   ], 
   entryComponents: [ProjectsComponent, AddnewprojectComponent,ProjectDetailsComponent],

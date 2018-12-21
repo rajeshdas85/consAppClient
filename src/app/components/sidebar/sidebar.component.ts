@@ -29,9 +29,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/Companydetails', title: 'Company',  icon:'description', class: '' },
     { path: '/icons', title: 'Task Manager',  icon:'bubble_chart', class: '' },
     { path: '/maps', title: 'Hierarchy Controller',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-   
-   
+    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' }
 
 ];
 

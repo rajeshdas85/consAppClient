@@ -1,5 +1,223 @@
- <mat-dialog-actions align="end">
-            <button mat-button mat-dialog-close mat-button matTooltip="Close">
-                 <mat-icon>close</mat-icon>
-            </button>
-          </mat-dialog-actions>
+<div class="main-content">
+     <div class="container-flex">
+          <div class="row">
+               <div class="col-md-12">
+                    <div class="card card-chart">
+                         <div class="card-header card-header-success">
+                              <div class="ct-chart" id="dailySalesChart"></div>
+                         </div>
+                         <div class="card-body">
+                              <h4 class="card-title">India Bulls Project</h4>
+                              <p class="card-category">$4500.65</p>
+                         </div>
+                         <!-- <div class="card-footer">
+                         <div class="stats">
+                             <i class="material-icons">access_time</i> updated 5 minutes ago
+                         </div>
+                     </div> -->
+                         <mat-accordion>
+                              <mat-expansion-panel>
+                                   <mat-expansion-panel-header matTooltip="Show More">
+                                        <!-- <mat-panel-title>
+                                    <mat-icon>expand_more</mat-icon>
+                                 </mat-panel-title> -->
+                                        <mat-panel-description>
+                                             show More ....
+                                        </mat-panel-description>
+                                   </mat-expansion-panel-header>
+
+                                   <!-- <mat-form-field>
+                                 <input matInput placeholder="First name">
+                             </mat-form-field> -->
+                                   <p> $50000.65<br /> 12/Apr/2018<br /> 16/Nov/2018<br /> McD Project<br /> Delhi<br />
+                                        <i class="material-icons">access_time</i> updated 5 minutes ago
+                                   </p>
+                              </mat-expansion-panel>
+                         </mat-accordion>
+                         <mat-tab-group class="card" animationDuration="5000">
+                              <mat-tab label="BOM">
+                                   <div>
+                                        <div class="card-body" style="padding: 2em">
+
+                                             <div class="row">
+                                                  <div class="col-md-2">
+                                                       <h4><b>Piling </b></h4>
+                                                  </div>
+                                                  <div class="col-md-4">
+                                                       <mat-radio-group [(ngModel)]="selectedRadioBtn">
+                                                            <mat-radio-button *ngFor="let a of arrayRadioBtn" [value]="a.name"
+                                                                 (change)="radioChange($event)">
+                                                                 {{a.name}}
+                                                            </mat-radio-button>
+                                                       </mat-radio-group>
+                                                  </div>
+                                             </div>
+
+                                             <div class="row" id="bom" *ngIf="isSelectedRadioBtnYes">
+
+                                                  <div col-sm-4>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Item No." type="number">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-4>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Description" type="text">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-4>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Quantity" type="number">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-4>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Unit" type="number">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-4>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Rate" type="number">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-4>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Amount" type="number">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-4>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Status" type="text">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-4>
+                                                       <button mat-button matTooltip="save">
+                                                            <mat-icon>save</mat-icon>
+
+                                                       </button>
+                                                  </div>
+                                                  <div col-sm-4>
+                                                       <button mat-button matTooltip="Add More pilling" (click)="addMorePilling()">
+                                                            <mat-icon>add_box</mat-icon>
+                                                       </button>
+                                                  </div>
+
+                                                  <div class="row" *ngIf="isAddMorePilling">
+                                                       <div col-sm-4>
+                                                            <mat-form-field class="example-full-width">
+                                                                 <input matInput placeholder="Item No." type="number">
+                                                            </mat-form-field>
+                                                       </div>
+                                                       <div col-sm-4>
+                                                            <mat-form-field class="example-full-width">
+                                                                 <input matInput placeholder="Description" type="text">
+                                                            </mat-form-field>
+                                                       </div>
+                                                       <div col-sm-4>
+                                                            <mat-form-field class="example-full-width">
+                                                                 <input matInput placeholder="Quantity" type="number">
+                                                            </mat-form-field>
+                                                       </div>
+                                                       <div col-sm-4>
+                                                            <mat-form-field class="example-full-width">
+                                                                 <input matInput placeholder="Unit" type="number">
+                                                            </mat-form-field>
+                                                       </div>
+                                                       <div col-sm-4>
+                                                            <mat-form-field class="example-full-width">
+                                                                 <input matInput placeholder="Rate" type="number">
+                                                            </mat-form-field>
+                                                       </div>
+                                                       <div col-sm-4>
+                                                            <mat-form-field class="example-full-width">
+                                                                 <input matInput placeholder="Amount" type="number">
+                                                            </mat-form-field>
+                                                       </div>
+                                                       <div col-sm-4>
+                                                            <mat-form-field class="example-full-width">
+                                                                 <input matInput placeholder="Status" type="text">
+                                                            </mat-form-field>
+                                                       </div>
+                                                       <div col-sm-4>
+                                                            <button mat-button matTooltip="save">
+                                                                 <mat-icon>save</mat-icon>
+                                                            </button>
+                                                       </div>
+                                                       <div col-sm-4>
+                                                            <button mat-button matTooltip="Remove" (click)="removePilling()">
+                                                                 <mat-icon>clear</mat-icon>
+                                                            </button>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div class="row">
+                                                  <div class="col-md-2">
+                                                       <h4><b>Others </b></h4>
+                                                  </div>
+                                             </div>
+                                             <div class="row" id="others">
+                                                  <div col-sm-2>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Item No." type="number">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-2>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Description" type="text">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-2>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Quantity" type="number">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-2>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Unit" type="number">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-2>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Rate" type="number">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-2>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Amount" type="number">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-2>
+                                                       <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Status" type="text">
+                                                       </mat-form-field>
+                                                  </div>
+                                                  <div col-sm-2>
+                                                       <button mat-button matTooltip="save">
+                                                            <mat-icon>save</mat-icon>
+                                                            
+                                                               </button>
+                                                   </div>
+
+                                             </div>
+
+                                        </div>
+                                   </div>
+
+                              </mat-tab>
+                              <mat-tab label="STAFF">
+                                   <h1>Some more tab content</h1>
+                                   <p>...</p>
+                              </mat-tab>
+                         </mat-tab-group>
+                    </div>
+               </div>
+
+          </div>
+
+
+
+
+
+
+     </div>
+</div>

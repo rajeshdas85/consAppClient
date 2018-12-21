@@ -273,9 +273,9 @@ addMorePilling() {
 
   changePage(): void {
     
-    this.messageService.show("Add BOM Below",MessageType.Info);
-    this.isDisplayBOM = true;
-    //this.router.navigateByUrl('/table-list');
+   // this.messageService.show("Add BOM Below",MessageType.Info);
+   // this.isDisplayBOM = true;
+    this.router.navigateByUrl('/projectdetails');
   }
   
    radioChange(event: MatRadioChange) {
