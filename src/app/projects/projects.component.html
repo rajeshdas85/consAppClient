@@ -5,24 +5,27 @@
             <div class="col-md-2"> <button mat-raised-button (click)="openDialog()" color="primary">Add New Project +</button></div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="card card-chart">
+            <div class="col-md-10"></div>
+            <div class="col-md-2"> <button mat-raised-button (click)="showPMDialog()" color="primary">Add New Project Manager+</button></div>
+        </div>
+        <div class="row" >
+            <div class="col-md-4" *ngFor="let item of lstProduct; let i = index">
+                <div class="card card-chart" >
                     <div class="card-header card-header-success">
                         <div class="ct-chart" id="dailySalesChart"></div>
                     </div>
+                 
                     <div class="card-body">
-                        <h4 class="card-title">India Bulls Project</h4>
-                        <p class="card-category">$4500.65</p>
-                        <p class="card-category">12/Mar/2018</p>
-                        <p class="card-category">16/Aug/2018</p>
+                        <h3 class="card-title">{{item.projName}}</h3>
+                        <p class="card-category">{{item.projDesc}}</p>
+                        <p class="card-category">₹ {{item.projval}}</p>
                     </div>
-                   
-                    <button mat-button matTooltip="Add More" (click)="changePage()">
+                    <button mat-button matTooltip="Add More" (click)="changePage(item)">
                                  <mat-icon>add_box</mat-icon>
                                     </button>
                 </div>
             </div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
                 <div class="card card-chart">
                     <div class="card-header card-header-success">
                         <div class="ct-chart" id="dailySalesChart"></div>
@@ -56,7 +59,7 @@
                                     </button>
 
                 </div>
-            </div>
+            </div> -->
         </div>
         <mat-accordion *ngIf="isDisplayBOM">
             <mat-expansion-panel>

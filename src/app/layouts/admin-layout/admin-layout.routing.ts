@@ -11,6 +11,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { CompanydetailsComponent } from 'app/companydetails/companydetails.component';
 import { ProjectsComponent } from 'app/projects/projects.component';
 import { ProjectDetailsComponent } from 'app/project-details/project-details.component';
+import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
 //import { AddProjectComponent } from 'app/add-project/add-project.component';
 
 export const AdminLayoutRoutes: Routes = [
@@ -67,6 +68,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'Companydetails',                 component: CompanydetailsComponent },
     { path: 'Projects',                       component: ProjectsComponent },
     { path: 'projectdetails',                 component: ProjectDetailsComponent },
+    { path: 'projectmanager',                 component: ProjectmanagerComponent },
     
   //  { path: 'addProjct',                       component: AddProjectComponent },
     

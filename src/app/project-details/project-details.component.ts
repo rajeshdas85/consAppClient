@@ -10,7 +10,7 @@ export class ProjectDetailsComponent implements OnInit {
   // constructor(public dialogRef: MatDialogRef<ProjectDetailsComponent>) { 
      
   // }
-  
+  lstSelectedProject =[];
   arrayRadioBtn = [
     { "name": "Yes", ID: "D1", "checked": false},
     { "name": "No",  ID: "D2", "checked": true}
@@ -25,7 +25,13 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    debugger;
     this.selectedRadioBtn = this.arrayRadioBtn[1].name;
+    if(localStorage.getItem("selectedProject")){
+      this.lstSelectedProject.push(JSON.parse(localStorage.getItem("selectedProject")));
+      console.log(this.lstSelectedProject);
+    }
+  
   }
   addMorePilling() {
     // this.containers.push(this.containers.length);

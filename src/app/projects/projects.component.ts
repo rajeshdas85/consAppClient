@@ -1,14 +1,15 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatRadioChange } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatRadioChange } from '@angular/material';
 import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.component';
 
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { Project, PillingInfoByProjectID, OtherInfoByProjectID, PileEntry, ProjectRecording, ProjectHistory,MessageType } from "app/_model/project";
+import { Project, PillingInfoByProjectID, OtherInfoByProjectID, PileEntry, ProjectRecording, ProjectHistory, MessageType } from "app/_model/project";
 import { ProjectService } from "app/_service/project.service";
 import * as moment from 'moment/moment';
 import { ProjectDetailsComponent } from "app/project-details/project-details.component";
 import { MessageService } from "app/_service/message.service";
+import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
 
 
 @Component({
@@ -31,24 +32,30 @@ export class ProjectsComponent implements OnInit {
   chkUpdate: any;
   lastProduct: any;
   firstProductEntry: any;
+  lstArrProject = [];
   //arrayRadioBtn = ['Yes', 'No'];
 
   arrayRadioBtn = [
-    { "name": "Yes", ID: "D1", "checked": false},
-    { "name": "No",  ID: "D2", "checked": true}
-]
+    { "name": "Yes", ID: "D1", "checked": false },
+    { "name": "No", ID: "D2", "checked": true }
+  ]
 
 
   selectedRadioBtn: string;
-  isSelectedRadioBtnYes:boolean=false;
-  isAddMorePilling:boolean=false;
+  isSelectedRadioBtnYes: boolean = false;
+  isAddMorePilling: boolean = false;
   panelOpenState = false;
-  constructor(public dialog: MatDialog, 
+  lstProduct: any;
+  constructor(public dialog: MatDialog,
     public router: Router,
     private messageService: MessageService,
     private projectService: ProjectService) { }
   ngOnInit() {
-    
+  
+    this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
+      this.lstProduct = product;
+    });
+
     this.selectedRadioBtn = this.arrayRadioBtn[1].name;
     this.projectHistory.projId = "5c18cc7043d443319c9c00d9";
     this.projectHistory.pileNo = this.projectHistory.projId + "-" + "P1P1";
@@ -238,19 +245,34 @@ export class ProjectsComponent implements OnInit {
   //     // }); 
 
   // }
-addMorePilling() {
-   // this.containers.push(this.containers.length);
-   this.isAddMorePilling=true;
+  addMorePilling() {
+    // this.containers.push(this.containers.length);
+    this.isAddMorePilling = true;
   }
   removePilling() {
-   // this.containers.push(this.containers.length);
-   this.isAddMorePilling=false;
+    // this.containers.push(this.containers.length);
+    this.isAddMorePilling = false;
   }
-  
+
   openDialog(): void {
     const dialogRef = this.dialog.open(AddnewprojectComponent, {
-      width: '1000px',
-      height: '500px'
+      width: '1000px'
+      // ,
+      // height: '500px'
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed texted');
+      location.reload();
+    });
+  }
+
+  showPMDialog(): void {
+    const dialogRef = this.dialog.open(ProjectmanagerComponent, {
+      width: '1000px'
+      // ,
+      // height: '450px'
 
     });
 
@@ -259,34 +281,22 @@ addMorePilling() {
     });
   }
 
-   showMoreCompDtlsDialog(): void {
-    const dialogRef = this.dialog.open(ProjectDetailsComponent, {
-      width: '1000px',
-      height: '500px'
-
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
-  changePage(): void {
-    
-   // this.messageService.show("Add BOM Below",MessageType.Info);
-   // this.isDisplayBOM = true;
+  changePage(arrSelectedProject): void {
+    localStorage.setItem("selectedProject", JSON.stringify(arrSelectedProject));
+    // this.messageService.show("Add BOM Below",MessageType.Info);
+    // this.isDisplayBOM = true;
     this.router.navigateByUrl('/projectdetails');
   }
-  
-   radioChange(event: MatRadioChange) {
-   // console.log(event);
+
+  radioChange(event: MatRadioChange) {
+    // console.log(event);
     console.log(event.value);
-    if(event.value=="Yes"){
-      this.isSelectedRadioBtnYes=true;
+    if (event.value == "Yes") {
+      this.isSelectedRadioBtnYes = true;
     }
-    else{
-      this.isSelectedRadioBtnYes=false;
+    else {
+      this.isSelectedRadioBtnYes = false;
     }
-   
+
   }
 }

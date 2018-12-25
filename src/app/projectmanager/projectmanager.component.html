@@ -1,0 +1,102 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title">Add new Project Manager</h4>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="PMRegistrationForm" novalidate>
+                    <div class="row">
+                        <h4><b>Project Manager Entry</b></h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <input matInput placeholder="First Name" type="text" formControlName="firstName">
+                                <mat-error>
+                                    {{errors.firstName}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <input matInput placeholder="Last Name" type="text" formControlName="lastName">
+                                <mat-error>
+                                    {{errors.lastName}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row" formGroupName="emailGroup">
+
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <input matInput placeholder="Email address" type="email" formControlName="email">
+                                <mat-error>
+                                    {{errors.email}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <input matInput placeholder="Confirm email address" type="email" formControlName="confirmEmail"
+                                    [errorStateMatcher]="confirmValidParentMatcher">
+                                <mat-error>
+                                    {{errors.confirmEmail}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <div class="row" formGroupName="passwordGroup">
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <input matInput placeholder="Password" type="password" formControlName="password">
+                                <mat-error>
+                                    {{errors.password}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword"
+                                    [errorStateMatcher]="confirmValidParentMatcher">
+                                <mat-error>
+                                    {{errors.confirmPassword}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <input matInput placeholder="photo" type="text" formControlName="photo">
+                                <mat-error>
+                                    {{errors.photo}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <input matInput placeholder="ID Proof" type="text" formControlName="idProof">
+                                <mat-error>
+                                    {{errors.idProof}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row" class="pull-right">
+                        <mat-dialog-actions align="right">
+                            <button mat-stroked-button  class="pull-right btn btn-danger" [disabled]="PMRegistrationForm.invalid"
+                                (click)="register()">Register</button>
+                            <button mat-stroked-button  mat-dialog-close>Cancel</button>
+                        </mat-dialog-actions>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

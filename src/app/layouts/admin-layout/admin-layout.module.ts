@@ -53,6 +53,7 @@ import { CompanydetailsComponent } from 'app/companydetails/companydetails.compo
  import { ProjectsComponent } from 'app/projects/projects.component';
 import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.component';
 import { ProjectDetailsComponent } from "app/project-details/project-details.component";
+import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
 
 @NgModule({
   imports: [
@@ -94,10 +95,11 @@ import { ProjectDetailsComponent } from "app/project-details/project-details.com
   MatTooltipModule,
   MatTreeModule,
   FormsModule,
+  ReactiveFormsModule,
   
   RouterModule.forChild(AdminLayoutRoutes),
   ], 
-  entryComponents: [ProjectsComponent, AddnewprojectComponent,ProjectDetailsComponent],
+  entryComponents: [ AddnewprojectComponent,ProjectmanagerComponent],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
@@ -110,7 +112,9 @@ import { ProjectDetailsComponent } from "app/project-details/project-details.com
     CompanydetailsComponent,
     ProjectsComponent,
     AddnewprojectComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    ProjectmanagerComponent
+
   ],
   
 })

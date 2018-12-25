@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
@@ -28,12 +28,15 @@ import { AddnewprojectComponent } from './addnewproject/addnewproject.component'
 import { HttpClientModule } from "@angular/common/http";
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import {MatSnackBarModule} from "@angular/material";
+
+//import { ProjectmanagerComponent } from './projectmanager/projectmanager.component';
 //import { AddProjectComponent } from './add-project/add-project.component';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     ComponentsModule,
     RouterModule,
@@ -47,6 +50,8 @@ import {MatSnackBarModule} from "@angular/material";
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+  
+   // ProjectmanagerComponent,
    // ProjectDetailsComponent,
    // AddnewprojectComponent,
    // AddProjectComponent,

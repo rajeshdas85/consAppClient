@@ -3,10 +3,15 @@ export class Project {
     projName: string;
     projDesc: string;
     projManagerId: string;
+    projval:number;
+    commenceDate:Date;
+    completionDate:Date;
+    client:string;
+    location:string;
     pillingInfoByProjectID: PillingInfoByProjectID[];
     otherInfoByProjectID: OtherInfoByProjectID[];
     updateDate: string;
-    DateTest: Date;
+  //  DateTest: Date;
 
 }
 export class PillingInfoByProjectID {
