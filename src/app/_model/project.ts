@@ -8,13 +8,22 @@ export class Project {
     completionDate:Date;
     client:string;
     location:string;
-    pillingInfoByProjectID: PillingInfoByProjectID[];
+    pillingInfoByProjectID1: PillingInfoByProjectID1[];
+    pillingInfoByProjectID2: PillingInfoByProjectID2[];
     otherInfoByProjectID: OtherInfoByProjectID[];
     updateDate: string;
   //  DateTest: Date;
 
 }
-export class PillingInfoByProjectID {
+export class PillingInfoByProjectID1 {
+    desc: string;
+    qty: number;
+    rate: number;
+    amount: number;
+    physicalStatus: number;
+    financialStatus: number;
+}
+export class PillingInfoByProjectID2 {
     desc: string;
     qty: number;
     rate: number;

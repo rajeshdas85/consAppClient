@@ -4,7 +4,7 @@ import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.componen
 
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { Project, PillingInfoByProjectID, OtherInfoByProjectID, PileEntry, ProjectRecording, ProjectHistory, MessageType } from "app/_model/project";
+import { Project,  OtherInfoByProjectID, PileEntry, ProjectRecording, ProjectHistory, MessageType } from "app/_model/project";
 import { ProjectService } from "app/_service/project.service";
 import * as moment from 'moment/moment';
 import { ProjectDetailsComponent } from "app/project-details/project-details.component";
@@ -21,7 +21,7 @@ export class ProjectsComponent implements OnInit {
   isDisplayBOM: boolean = false;
   loading: boolean;
   private project: Project = new Project();
-  private pillingInfoByProjectID: PillingInfoByProjectID = new PillingInfoByProjectID();
+  //private pillingInfoByProjectID: PillingInfoByProjectID = new PillingInfoByProjectID();
   private otherInfoByProjectID: OtherInfoByProjectID = new OtherInfoByProjectID();
   private pileEntry: PileEntry = new PileEntry();
   private projectRecording: ProjectRecording = new ProjectRecording();

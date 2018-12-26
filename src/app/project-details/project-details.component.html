@@ -30,8 +30,10 @@
                                  <input matInput placeholder="First name">
                              </mat-form-field> -->
                                    <p> ₹ {{lstSelectedProject[0].projval}}<br />
-                                        {{lstSelectedProject[0].commenceDate.split('T')[0].split('+')[0]}} {{lstSelectedProject[0].commenceDate.split('T')[1].split('+')[0]}}<br /> 
-                                        {{lstSelectedProject[0].completionDate.split('T')[0].split('+')[0]}} {{lstSelectedProject[0].commenceDate.split('T')[1].split('+')[0]}}<br />
+                                        {{lstSelectedProject[0].commenceDate.split('T')[0].split('+')[0]}}
+                                        {{lstSelectedProject[0].commenceDate.split('T')[1].split('+')[0]}}<br />
+                                        {{lstSelectedProject[0].completionDate.split('T')[0].split('+')[0]}}
+                                        {{lstSelectedProject[0].commenceDate.split('T')[1].split('+')[0]}}<br />
                                         {{lstSelectedProject[0].location}} <br />
                                         <!-- <i class="material-icons">access_time</i> updated 5 minutes ago -->
                                    </p>
@@ -59,93 +61,97 @@
                                              <div class="row" id="bom" *ngIf="isSelectedRadioBtnYes">
 
                                                   <div col-sm-4>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Item No." type="number">
+                                                       <mat-form-field>
+                                                            <input matInput [ngModel]="P1Data.desc" required
+                                                                 placeholder="Description" (ngModelChange)="P1Data.desc = $event"
+                                                                 type="text">
                                                        </mat-form-field>
                                                   </div>
                                                   <div col-sm-4>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Description" type="text">
+
+
+                                                       <mat-form-field>
+                                                            <input matInput [ngModel]="P1Data.rate" required
+                                                                 placeholder="Rate" 
+                                                                 (ngModelChange)="P1Data.rate = $event" (blur)="changeRate()" type="number">
                                                        </mat-form-field>
                                                   </div>
                                                   <div col-sm-4>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Quantity" type="number">
+
+
+                                                       <mat-form-field>
+                                                            <input matInput [ngModel]="P1Data.qty" required placeholder="Quantity"
+                                                                 (ngModelChange)="P1Data.qty = $event" (blur)="changeRate()" type="number">
                                                        </mat-form-field>
                                                   </div>
+
+
                                                   <div col-sm-4>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Unit" type="number">
+
+                                                       <mat-form-field>
+                                                            <input matInput [ngModel]="P1Data.amount" disabled
+                                                                 placeholder="₹ Amount" type="number">
                                                        </mat-form-field>
+
                                                   </div>
+                                               
                                                   <div col-sm-4>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Rate" type="number">
-                                                       </mat-form-field>
-                                                  </div>
-                                                  <div col-sm-4>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Amount" type="number">
-                                                       </mat-form-field>
-                                                  </div>
-                                                  <div col-sm-4>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Status" type="text">
-                                                       </mat-form-field>
-                                                  </div>
-                                                  <div col-sm-4>
-                                                       <button mat-button matTooltip="save">
+                                                       <button mat-button matTooltip="save/edit" [disabled]="!P1Data.amount>0"
+                                                            (click)="updatePillingData()">
                                                             <mat-icon>save</mat-icon>
 
                                                        </button>
                                                   </div>
                                                   <div col-sm-4>
-                                                       <button mat-button matTooltip="Add More pilling" (click)="addMorePilling()">
+                                                       <button mat-button matTooltip="Add More pilling" [disabled]="!P1Data.amount>0"
+                                                            (click)="addMorePilling()">
                                                             <mat-icon>add_box</mat-icon>
                                                        </button>
                                                   </div>
 
                                                   <div class="row" *ngIf="isAddMorePilling">
-                                                       <div col-sm-4>
-                                                            <mat-form-field class="example-full-width">
-                                                                 <input matInput placeholder="Item No." type="number">
-                                                            </mat-form-field>
-                                                       </div>
-                                                       <div col-sm-4>
-                                                            <mat-form-field class="example-full-width">
-                                                                 <input matInput placeholder="Description" type="text">
-                                                            </mat-form-field>
-                                                       </div>
-                                                       <div col-sm-4>
-                                                            <mat-form-field class="example-full-width">
-                                                                 <input matInput placeholder="Quantity" type="number">
-                                                            </mat-form-field>
-                                                       </div>
-                                                       <div col-sm-4>
-                                                            <mat-form-field class="example-full-width">
-                                                                 <input matInput placeholder="Unit" type="number">
-                                                            </mat-form-field>
-                                                       </div>
-                                                       <div col-sm-4>
-                                                            <mat-form-field class="example-full-width">
-                                                                 <input matInput placeholder="Rate" type="number">
-                                                            </mat-form-field>
-                                                       </div>
-                                                       <div col-sm-4>
-                                                            <mat-form-field class="example-full-width">
-                                                                 <input matInput placeholder="Amount" type="number">
-                                                            </mat-form-field>
-                                                       </div>
-                                                       <div col-sm-4>
-                                                            <mat-form-field class="example-full-width">
-                                                                 <input matInput placeholder="Status" type="text">
-                                                            </mat-form-field>
-                                                       </div>
-                                                       <div col-sm-4>
-                                                            <button mat-button matTooltip="save">
-                                                                 <mat-icon>save</mat-icon>
-                                                            </button>
-                                                       </div>
+                                                            <div col-sm-4>
+                                                                      <mat-form-field>
+                                                                           <input matInput [ngModel]="P2Data.desc" required
+                                                                                placeholder="Description" (ngModelChange)="P2Data.desc = $event"
+                                                                                type="text">
+                                                                      </mat-form-field>
+                                                                 </div>
+                                                                 <div col-sm-4>
+               
+               
+                                                                      <mat-form-field>
+                                                                           <input matInput [ngModel]="P2Data.rate" required
+                                                                                placeholder="Rate" 
+                                                                                (ngModelChange)="P2Data.rate = $event" (blur)="changeRate2()" type="number">
+                                                                      </mat-form-field>
+                                                                 </div>
+                                                                 <div col-sm-4>
+               
+               
+                                                                      <mat-form-field>
+                                                                           <input matInput [ngModel]="P2Data.qty" required placeholder="Quantity"
+                                                                                (ngModelChange)="P2Data.qty = $event" (blur)="changeRateP2()" type="number">
+                                                                      </mat-form-field>
+                                                                 </div>
+               
+               
+                                                                 <div col-sm-4>
+               
+                                                                      <mat-form-field>
+                                                                           <input matInput [ngModel]="P2Data.amount" disabled
+                                                                                placeholder="₹ Amount" type="number">
+                                                                      </mat-form-field>
+               
+                                                                 </div>
+                                                              
+                                                                 <div col-sm-4>
+                                                                      <button mat-button matTooltip="save/edit" [disabled]="!P2Data.amount>0"
+                                                                           (click)="updatePillingData()">
+                                                                           <mat-icon>save</mat-icon>
+               
+                                                                      </button>
+                                                                 </div>
                                                        <div col-sm-4>
                                                             <button mat-button matTooltip="Remove" (click)="removePilling()">
                                                                  <mat-icon>clear</mat-icon>
@@ -159,47 +165,51 @@
                                                   </div>
                                              </div>
                                              <div class="row" id="others">
-                                                  <div col-sm-2>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Item No." type="number">
-                                                       </mat-form-field>
-                                                  </div>
-                                                  <div col-sm-2>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Description" type="text">
-                                                       </mat-form-field>
-                                                  </div>
-                                                  <div col-sm-2>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Quantity" type="number">
-                                                       </mat-form-field>
-                                                  </div>
-                                                  <div col-sm-2>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Unit" type="number">
-                                                       </mat-form-field>
-                                                  </div>
-                                                  <div col-sm-2>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Rate" type="number">
-                                                       </mat-form-field>
-                                                  </div>
-                                                  <div col-sm-2>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Amount" type="number">
-                                                       </mat-form-field>
-                                                  </div>
-                                                  <div col-sm-2>
-                                                       <mat-form-field class="example-full-width">
-                                                            <input matInput placeholder="Status" type="text">
-                                                       </mat-form-field>
-                                                  </div>
-                                                  <div col-sm-2>
-                                                       <button mat-button matTooltip="save">
-                                                            <mat-icon>save</mat-icon>
-                                                            
-                                                               </button>
-                                                   </div>
+                                               
+                                                       <div col-sm-4>
+                                                                 <mat-form-field>
+                                                                      <input matInput [ngModel]="otherData.desc" required
+                                                                           placeholder="Description" (ngModelChange)="otherData.desc = $event"
+                                                                           type="text">
+                                                                 </mat-form-field>
+                                                            </div>
+                                                            <div col-sm-4>
+          
+          
+                                                                 <mat-form-field>
+                                                                      <input matInput [ngModel]="otherData.rate" required
+                                                                           placeholder="Rate" 
+                                                                           (ngModelChange)="otherData.rate = $event" (blur)="changeRateOther()" type="number">
+                                                                 </mat-form-field>
+                                                            </div>
+                                                            <div col-sm-4>
+          
+          
+                                                                 <mat-form-field>
+                                                                      <input matInput [ngModel]="otherData.qty" required placeholder="Quantity"
+                                                                           (ngModelChange)="otherData.qty = $event" (blur)="changeRateOther()" type="number">
+                                                                 </mat-form-field>
+                                                            </div>
+          
+          
+                                                            <div col-sm-4>
+          
+                                                                 <mat-form-field>
+                                                                      <input matInput [ngModel]="otherData.amount" disabled
+                                                                           placeholder="₹ Amount" type="number">
+                                                                 </mat-form-field>
+          
+                                                            </div>
+                                                         
+                                                            <div col-sm-4>
+                                                                 <button mat-button matTooltip="save/edit" [disabled]="!otherData.amount>0"
+                                                                      (click)="updatePillingData()">
+                                                                      <mat-icon>save</mat-icon>
+          
+                                                                 </button>
+                                                            </div>
+                                             
+                                                 
 
                                              </div>
 
@@ -208,7 +218,7 @@
 
                               </mat-tab>
                               <mat-tab label="STAFF">
-                                   <h1>Some more tab content</h1>
+                                   <h4>Some more tab content</h4>
                                    <p>...</p>
                               </mat-tab>
                          </mat-tab-group>
