@@ -87,7 +87,6 @@ export class AddnewprojectComponent implements OnInit {
   }
 
   addProject(): void {
-    debugger;
     this.project.projName = this.ProjectAddForm.value.projName;
     this.project.projDesc = this.ProjectAddForm.value.projDesc;
 

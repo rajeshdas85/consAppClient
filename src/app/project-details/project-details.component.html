@@ -202,7 +202,7 @@
                                                             </div>
                                                          
                                                             <div col-sm-4>
-                                                                 <button mat-button matTooltip="save/edit" [disabled]="!otherData.amount>0"
+                                                                 <button mat-button matTooltip="save/edit" [disabled]="!(otherData.amount>0)"
                                                                       (click)="updatePillingData()">
                                                                       <mat-icon>save</mat-icon>
           

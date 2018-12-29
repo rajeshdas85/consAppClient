@@ -264,7 +264,8 @@ export class ProjectsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed texted');
-      location.reload();
+      //location.reload();
+      this.router.navigateByUrl('/dashboard');
     });
   }
 

@@ -138,7 +138,6 @@ export class ProjectDetailsComponent implements OnInit {
   }
   updatePillingData() {
     //Pilling 1
-    debugger;
     this.pillingInfoByProjectID1.desc = this.P1Data.desc;
     this.pillingInfoByProjectID1.financialStatus = 0;
     this.pillingInfoByProjectID1.physicalStatus = 0;
