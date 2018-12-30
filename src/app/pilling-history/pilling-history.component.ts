@@ -50,14 +50,11 @@ export class PillingHistoryComponent implements OnInit {
     private projectService: ProjectService) { }
 
   ngOnInit() {
-    debugger;
     this.projectService.getAllProjectHistory().pipe(first()).subscribe(productEntry => {
       console.log("First");
-      debugger;
       this.firstProductEntry = productEntry;
       console.log(this.firstProductEntry);
       this.dataSource = new MatTableDataSource<ProjectHistory>(this.firstProductEntry);
-      debugger;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });

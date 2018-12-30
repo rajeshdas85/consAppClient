@@ -56,12 +56,12 @@ export class AddPillingComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          debugger;
+        
           console.log("Ok");
           this.messageService.show("Pilling Added successfully", MessageType.Success)
           this.projectService.getAllProjectHistory().pipe(first()).subscribe(productEntry => {
             console.log("First");
-            debugger;
+         
             this.firstProductEntry = productEntry;
             console.log(this.firstProductEntry);
           });
