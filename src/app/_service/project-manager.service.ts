@@ -11,7 +11,7 @@ export class ProjectManagerService {
   constructor(private http: HttpClient) { }
 
   addProjectManager(projectManager: ProjectManager) {
-    //return this.http.post(`${environment.apiUrl}/projectmanager/addProjectManager`, projectManager);
+     //return this.http.post(`${environment.apiUrl}/projectmanager/addProjectManager`, projectManager);
     return this.http.post(`/projectmanager/addProjectManager`, projectManager);
   
   

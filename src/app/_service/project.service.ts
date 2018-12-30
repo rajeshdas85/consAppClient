@@ -57,7 +57,7 @@ export class ProjectService {
   }
 
   getProjectRecordingDtlByPilno(pileNo: string) {
-   // return this.http.get<ProjectRecording[]>(`${environment.apiUrl}/projects/pileNo/` + pileNo);
+   //return this.http.get<ProjectRecording[]>(`${environment.apiUrl}/projects/pileNo/` + pileNo);
     return this.http.get<ProjectRecording[]>(`/projects/pileNo/` + pileNo);
   }
 }

@@ -54,6 +54,8 @@ import { CompanydetailsComponent } from 'app/companydetails/companydetails.compo
 import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.component';
 import { ProjectDetailsComponent } from "app/project-details/project-details.component";
 import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
+import { PillingHistoryComponent } from 'app/pilling-history/pilling-history.component';
+import { AddPillingComponent } from 'app/add-pilling/add-pilling.component';
 
 @NgModule({
   imports: [
@@ -99,7 +101,7 @@ import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.compo
   
   RouterModule.forChild(AdminLayoutRoutes),
   ], 
-  entryComponents: [ AddnewprojectComponent,ProjectmanagerComponent],
+  entryComponents: [ AddnewprojectComponent,ProjectmanagerComponent,AddPillingComponent],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
@@ -113,7 +115,9 @@ import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.compo
     ProjectsComponent,
     AddnewprojectComponent,
     ProjectDetailsComponent,
-    ProjectmanagerComponent
+    ProjectmanagerComponent,
+    PillingHistoryComponent,
+    AddPillingComponent
 
   ],
   

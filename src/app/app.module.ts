@@ -28,6 +28,8 @@ import { AddnewprojectComponent } from './addnewproject/addnewproject.component'
 import { HttpClientModule } from "@angular/common/http";
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import {MatSnackBarModule} from "@angular/material";
+import { PillingHistoryComponent } from './pilling-history/pilling-history.component';
+import { AddPillingComponent } from './add-pilling/add-pilling.component';
 
 //import { ProjectmanagerComponent } from './projectmanager/projectmanager.component';
 //import { AddProjectComponent } from './add-project/add-project.component';
@@ -50,6 +52,8 @@ import {MatSnackBarModule} from "@angular/material";
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+   // AddPillingComponent,
+    //PillingHistoryComponent,
   
    // ProjectmanagerComponent,
    // ProjectDetailsComponent,

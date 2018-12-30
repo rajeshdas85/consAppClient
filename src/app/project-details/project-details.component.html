@@ -207,6 +207,12 @@
                                                                       <mat-icon>save</mat-icon>
           
                                                                  </button>
+
+                                                                 <button mat-button matTooltip="Go To Project History" [disabled]="!(otherData.amount>0)"
+                                                                      (click)="goToHistory()">
+                                                                      <mat-icon>arrow_forward</mat-icon>
+          
+                                                                 </button>
                                                             </div>
                                              
                                                  

@@ -12,6 +12,7 @@ import { CompanydetailsComponent } from 'app/companydetails/companydetails.compo
 import { ProjectsComponent } from 'app/projects/projects.component';
 import { ProjectDetailsComponent } from 'app/project-details/project-details.component';
 import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
+import { PillingHistoryComponent } from 'app/pilling-history/pilling-history.component';
 //import { AddProjectComponent } from 'app/add-project/add-project.component';
 
 export const AdminLayoutRoutes: Routes = [
@@ -69,6 +70,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'project',                       component: ProjectsComponent },
     { path: 'projectdetails',                 component: ProjectDetailsComponent },
     { path: 'projectmanager',                 component: ProjectmanagerComponent },
+    { path: 'projecthistory',                 component: PillingHistoryComponent },
     
   //  { path: 'addProjct',                       component: AddProjectComponent },
     

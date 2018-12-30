@@ -6,6 +6,7 @@ import { MessageService } from 'app/_service/message.service';
 import { first } from 'rxjs/operators';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ConfirmValidParentMatcher, errorMessages, CustomValidators, regExps } from 'app/_model/custom-validators';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-project-details',
   templateUrl: './project-details.component.html',
@@ -58,6 +59,7 @@ export class ProjectDetailsComponent implements OnInit {
     private messageService: MessageService,
     private projectService: ProjectService,
     private formBuilder: FormBuilder,
+    public router: Router
 
   ) {
     //this.createForm();
@@ -94,6 +96,10 @@ export class ProjectDetailsComponent implements OnInit {
   removePilling() {
     // this.containers.push(this.containers.length);
     this.isAddMorePilling = false;
+  }
+
+  goToHistory(){
+    this.router.navigateByUrl('/projecthistory');
   }
   radioChange(event: MatRadioChange) {
     // console.log(event);
