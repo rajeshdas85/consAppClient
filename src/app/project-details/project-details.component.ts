@@ -14,9 +14,6 @@ import { Router } from '@angular/router';
 })
 export class ProjectDetailsComponent implements OnInit {
 
-  // constructor(public dialogRef: MatDialogRef<ProjectDetailsComponent>) { 
-
-  // }
   private project: Project = new Project();
   private pillingInfoByProjectID1: PillingInfoByProjectID1 = new PillingInfoByProjectID1();
   private pillingInfoByProjectID2: PillingInfoByProjectID2 = new PillingInfoByProjectID2();

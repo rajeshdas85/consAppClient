@@ -10,6 +10,7 @@ import * as moment from 'moment/moment';
 import { ProjectDetailsComponent } from "app/project-details/project-details.component";
 import { MessageService } from "app/_service/message.service";
 import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
+import { ProjectManagerService } from 'app/_service/project-manager.service';
 
 
 @Component({
@@ -46,15 +47,21 @@ export class ProjectsComponent implements OnInit {
   isAddMorePilling: boolean = false;
   panelOpenState = false;
   lstProduct: any;
+  lstPMName: any;
   constructor(public dialog: MatDialog,
     public router: Router,
     private messageService: MessageService,
+    private projectManagerService: ProjectManagerService,
     private projectService: ProjectService) { }
   ngOnInit() {
   
     this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
       this.lstProduct = product;
     });
+
+   
+
+
 
     this.selectedRadioBtn = this.arrayRadioBtn[1].name;
     this.projectHistory.projId = "5c18cc7043d443319c9c00d9";

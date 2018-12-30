@@ -79,7 +79,7 @@ export class ProjectmanagerComponent implements OnInit {
     register(): void {
       
         this.projectMan.firstName = this.PMRegistrationForm.value.firstName;
-        this.projectMan.LastName = this.PMRegistrationForm.value.LastName;
+        this.projectMan.lastName = this.PMRegistrationForm.value.lastName;
         // this.projectMan.contactNo=this.userRegistrationForm.value.contactNo;
         this.projectMan.email = this.PMRegistrationForm.value.emailGroup.email;
         this.projectMan.password = this.PMRegistrationForm.value.passwordGroup.password;

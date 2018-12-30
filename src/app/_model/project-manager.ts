@@ -2,7 +2,7 @@ export class ProjectManager {
 
 
     firstName: string;
-    LastName: string;
+    lastName: string;
    // contactNo: string;
     email: string;
     password:string;

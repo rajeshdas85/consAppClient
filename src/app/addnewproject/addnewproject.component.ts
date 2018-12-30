@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import * as moment from 'moment/moment';
 import { ConfirmValidParentMatcher, errorMessages, CustomValidators, regExps } from 'app/_model/custom-validators';
+import { ProjectManagerService } from 'app/_service/project-manager.service';
+
 
 @Component({
   selector: 'app-addnewproject',
@@ -27,18 +29,26 @@ export class AddnewprojectComponent implements OnInit {
   arrPillingInfoByProjectID1 = [];
   arrPillingInfoByProjectID2 = [];
   arrOtherInfoByProjectID = [];
-
+  lstPMName:any;
+  selectedValue: string;
   errors = errorMessages;
   constructor(
     public dialogRef: MatDialogRef<AddnewprojectComponent>,
     private messageService: MessageService,
     private projectService: ProjectService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private projectManagerService: ProjectManagerService,
   ) {
     this.createForm();
   }
 
   ngOnInit() {
+    this.projectManagerService.getPMByName().pipe(first()).subscribe(PMName => {
+      this.lstPMName = PMName;
+      this.selectedValue=this.lstPMName[0].id;
+    });
+   
+   
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -56,11 +66,11 @@ export class AddnewprojectComponent implements OnInit {
         Validators.minLength(1),
         Validators.maxLength(128)
       ]],
-      projManagerId: ['', [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(128)
-      ]],
+      // projManagerId: ['', [
+      //   Validators.required,
+      //   Validators.minLength(1),
+      //   Validators.maxLength(128)
+      // ]],
       projval: ['', [
         Validators.required,
         Validators.pattern("^[0-9]*$"),
@@ -90,7 +100,7 @@ export class AddnewprojectComponent implements OnInit {
     this.project.projName = this.ProjectAddForm.value.projName;
     this.project.projDesc = this.ProjectAddForm.value.projDesc;
 
-    this.project.projManagerId = this.ProjectAddForm.value.projDesc;// "5c21446351b1f00d74255334";
+    this.project.projManagerId = this.selectedValue;// "5c21446351b1f00d74255334";
     this.project.projval = this.ProjectAddForm.value.projval;
 
     this.project.commenceDate = new Date(moment(this.ProjectAddForm.value.commenceDate).format("YYYY-MM-DD HH:MM:ss"));//this.project.updateDate;

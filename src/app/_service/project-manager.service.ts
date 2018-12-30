@@ -13,8 +13,11 @@ export class ProjectManagerService {
   addProjectManager(projectManager: ProjectManager) {
      //return this.http.post(`${environment.apiUrl}/projectmanager/addProjectManager`, projectManager);
     return this.http.post(`/projectmanager/addProjectManager`, projectManager);
-  
-  
+  }
+
+  getPMByName() {
+   //return this.http.get<ProjectManager[]>(`${environment.apiUrl}/projectmanager/getPMByName`);
+    return this.http.get<ProjectManager[]>(`/projectmanager/getPMByName`);
   }
   
 }
