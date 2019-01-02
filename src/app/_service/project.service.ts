@@ -46,9 +46,9 @@ export class ProjectService {
     return this.http.get<Project[]>(`/projects`);
   }
 
-  getAllProjectHistory() {
-    //return this.http.get<ProjectHistory[]>(`${environment.apiUrl}/projects/getAllProjectHistory`);
-    return this.http.get<ProjectHistory[]>(`/projects/getAllProjectHistory`);
+  getAllProjectHistory(uniqueId: string) {
+    //return this.http.get<ProjectHistory[]>(`${environment.apiUrl}/projects/getAllProjectHistory/uniqueId/` + uniqueId);
+    return this.http.get<ProjectHistory[]>(`/projects/getAllProjectHistory/uniqueId/` + uniqueId);
   }
 
   getLastAddProjectEntry() {

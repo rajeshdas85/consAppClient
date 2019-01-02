@@ -16,6 +16,7 @@ export class Project {
 
 }
 export class PillingInfoByProjectID1 {
+    id:string;
     desc: string;
     qty: number;
     rate: number;
@@ -24,6 +25,7 @@ export class PillingInfoByProjectID1 {
     financialStatus: number;
 }
 export class PillingInfoByProjectID2 {
+    id:string;
     desc: string;
     qty: number;
     rate: number;
@@ -32,7 +34,7 @@ export class PillingInfoByProjectID2 {
     financialStatus: number;
 }
 export class OtherInfoByProjectID {
-
+    id:string;
     desc: string;
     qty: number;
     rate: number;
@@ -75,6 +77,7 @@ export class PileEntry {
 }
 
 export class ProjectHistory {
+    uniqueId:string;
     projId: string;
     pileNo: string;
     dateOfStarting: Date;

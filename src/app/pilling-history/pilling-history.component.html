@@ -5,14 +5,14 @@
       <div class="col-md-2"> <button mat-raised-button (click)="openDialog()" color="primary">Add New Pilling +</button></div>
       <div class="col-md-2"> <button mat-raised-button  color="primary">Bulk Upload +</button></div>
     </div>
-    <div class="row mat-elevation-z12">
+    <div class="row mat-elevation-z12"  *ngIf = "lstSelectedProject.length>0">
 
       <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z12">
 
         <!-- pileNo Column -->
         <ng-container matColumnDef="pileNo">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Pile No </th>
-          <td mat-cell *matCellDef="let element"> {{element.pileNo}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.pileNo.split('-')[0]}} </td>
         </ng-container>
 
         <!-- dateOfStarting Column -->

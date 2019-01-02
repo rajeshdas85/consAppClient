@@ -17,12 +17,14 @@ export class AddPillingComponent implements OnInit {
   private project: Project = new Project();
   // lstProduct: any;
   PillingAddForm: FormGroup;
-
+  lstSelectedProject = [];
   confirmValidParentMatcher = new ConfirmValidParentMatcher();
 
   private projectHistory: ProjectHistory = new ProjectHistory();
   firstProductEntry: any;
-
+  pillingInfoByProjectID1: any;
+  pillingInfoByProjectID2: any;
+  otherInfoByProjectID: any;
   errors = errorMessages;
   constructor(public dialogRef: MatDialogRef<AddPillingComponent>,
     private messageService: MessageService,
@@ -30,6 +32,21 @@ export class AddPillingComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    if (localStorage.getItem("selectedProject")) {
+      this.lstSelectedProject.push(JSON.parse(localStorage.getItem("selectedProject")));
+      console.log(this.lstSelectedProject);
+    }
+    
+     if (localStorage.getItem("pHistoryView") == "P1") {
+      this.projectHistory.uniqueId = this.lstSelectedProject[0].pillingInfoByProjectID1[0].id;
+    }
+    if (localStorage.getItem("pHistoryView") == "P2") {
+      this.projectHistory.uniqueId = this.lstSelectedProject[0].pillingInfoByProjectID2[0].id;
+    }
+    if (localStorage.getItem("pHistoryView") == "Other") {
+      this.projectHistory.uniqueId = this.lstSelectedProject[0].otherInfoByProjectID[0].id;
+    }
+
     this.createForm();
   }
   onNoClick(): void {
@@ -37,7 +54,7 @@ export class AddPillingComponent implements OnInit {
   }
   createForm() {
     this.PillingAddForm = this.formBuilder.group({
-      projID: ['', [
+      pillingRigDetails: ['', [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(128)
@@ -50,25 +67,26 @@ export class AddPillingComponent implements OnInit {
     });
   }
   addPilling(): void {
-    this.projectHistory.projId = this.PillingAddForm.value.projID;
-    this.projectHistory.pileNo = this.PillingAddForm.value.projPillingNo;
+    this.projectHistory.projId = this.lstSelectedProject[0].id;//this.PillingAddForm.value.projID;
+    this.projectHistory.pileNo = this.PillingAddForm.value.projPillingNo +'-'+this.projectHistory.uniqueId ;
+    this.projectHistory.pillingRigDetails = this.PillingAddForm.value.pillingRigDetails;
     this.projectService.addProjectHistory(this.projectHistory)
       .pipe(first())
       .subscribe(
-        data => {
-        
-          console.log("Ok");
-          this.messageService.show("Pilling Added successfully", MessageType.Success)
-          this.projectService.getAllProjectHistory().pipe(first()).subscribe(productEntry => {
-            console.log("First");
-         
-            this.firstProductEntry = productEntry;
-            console.log(this.firstProductEntry);
-          });
-        },
-        error => {
-          // this.loading = false;
-        });
+      data => {
+
+       // console.log("Ok");
+        this.messageService.show("Pilling Added successfully", MessageType.Success)
+        // this.projectService.getAllProjectHistory(this.projectHistory.uniqueId).pipe(first()).subscribe(productEntry => {
+        //   console.log("First");
+        //   this.firstProductEntry = productEntry;
+        //   console.log(this.firstProductEntry);
+        // });
+      },
+      error => {
+        // this.loading = false;
+          this.messageService.show(error.error.message, MessageType.Error)
+      });
 
 
 

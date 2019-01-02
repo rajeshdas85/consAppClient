@@ -19,6 +19,8 @@ export class PillingHistoryComponent implements OnInit {
   displayedColumns: string[] = ['pileNo', 'dateOfStarting', 'dateOfEnding', 'pillingRigDetails', 'diaOfPile'];
   firstProductEntry: any;
   dataSource: any;
+  lstSelectedProject=[];
+  uniqueId:any;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(public dialog: MatDialog,
@@ -27,7 +29,21 @@ export class PillingHistoryComponent implements OnInit {
     private projectService: ProjectService) { }
 
   ngOnInit() {
-    this.projectService.getAllProjectHistory().pipe(first()).subscribe(productEntry => {
+     if (localStorage.getItem("selectedProject")) {
+      this.lstSelectedProject.push(JSON.parse(localStorage.getItem("selectedProject")));
+      console.log(this.lstSelectedProject);
+    }
+    if (localStorage.getItem("pHistoryView") == "P1") {
+      this.uniqueId = this.lstSelectedProject[0].pillingInfoByProjectID1[0].id;
+    }
+    if (localStorage.getItem("pHistoryView") == "P2") {
+       this.uniqueId = this.lstSelectedProject[0].pillingInfoByProjectID2[0].id;
+    }
+    if (localStorage.getItem("pHistoryView") == "Other") {
+      this.uniqueId = this.lstSelectedProject[0].otherInfoByProjectID[0].id;
+    }
+
+    this.projectService.getAllProjectHistory(this.uniqueId).pipe(first()).subscribe(productEntry => {
       this.firstProductEntry = productEntry;
       this.dataSource = new MatTableDataSource<ProjectHistory>(this.firstProductEntry);
       this.dataSource.sort = this.sort;
