@@ -84,6 +84,13 @@ export class ProjectDetailsComponent implements OnInit {
       this.P1Data.qty = this.lstSelectedProject[0].pillingInfoByProjectID1[0].qty;
       this.P1Data.amount = this.lstSelectedProject[0].pillingInfoByProjectID1[0].amount;
       this.P1Data.id = this.lstSelectedProject[0].pillingInfoByProjectID1[0].id;
+      if(this.P1Data.amount>0){
+        this.selectedRadioBtn = this.arrayRadioBtn[0].name;
+        this.isSelectedRadioBtnYes = true;
+        this.arrayRadioBtn = [
+          { "name": "Yes", ID: "D1", "checked": true }
+        ]
+      }
       if (this.P1Data.id != null) {
         this.isEditP1 = true;
       }
