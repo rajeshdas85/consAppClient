@@ -70,7 +70,7 @@ export class AddPillingComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(6)
       ]],
-      casingToplevel: ['', [
+      pillingCutOfflevel: ['', [
        Validators.required,
         Validators.pattern("^[0-9]*$"),
         Validators.minLength(3),
@@ -83,7 +83,7 @@ export class AddPillingComponent implements OnInit {
     this.projectHistory.pileNo = this.PillingAddForm.value.projPillingNo +'-'+this.projectHistory.uniqueId ;
     this.projectHistory.pillingRigDetails = this.PillingAddForm.value.pillingRigDetails;
     this.projectHistory.diaOfPile = this.PillingAddForm.value.diaOfPile;
-    this.projectHistory.casingToplevel = this.PillingAddForm.value.casingToplevel;
+    this.projectHistory.pillingCutOfflevel = this.PillingAddForm.value.pillingCutOfflevel;
     this.projectService.addProjectHistory(this.projectHistory)
       .pipe(first())
       .subscribe(

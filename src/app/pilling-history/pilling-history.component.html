@@ -38,15 +38,15 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Dia Of Pile </th>
             <td mat-cell *matCellDef="let element"> {{element.diaOfPile}} </td>
           </ng-container>
-          <ng-container matColumnDef="casingToplevel">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> casing Top level </th>
-            <td mat-cell *matCellDef="let element"> {{element.casingToplevel}} </td>
+          <ng-container matColumnDef="pillingCutOfflevel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> cut Top level </th>
+            <td mat-cell *matCellDef="let element"> {{element.pillingCutOfflevel}} </td>
           </ng-container>
          
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20,100,1000]" showFirstLastButtons></mat-paginator>
 
     </div>
   </div>
