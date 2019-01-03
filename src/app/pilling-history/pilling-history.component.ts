@@ -16,7 +16,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./pilling-history.component.scss']
 })
 export class PillingHistoryComponent implements OnInit {
-  displayedColumns: string[] = ['pileNo', 'dateOfStarting', 'dateOfEnding', 'pillingRigDetails', 'diaOfPile'];
+  displayedColumns: string[] = ['pileNo', 'dateOfStarting', 'dateOfEnding', 'pillingRigDetails', 'diaOfPile','casingToplevel'];
   firstProductEntry: any;
   dataSource: any;
   lstSelectedProject=[];

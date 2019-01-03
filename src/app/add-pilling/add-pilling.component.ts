@@ -63,6 +63,18 @@ export class AddPillingComponent implements OnInit {
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(128)
+      ]],
+      diaOfPile: ['', [
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(3),
+        Validators.maxLength(6)
+      ]],
+      casingToplevel: ['', [
+       Validators.required,
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(3),
+        Validators.maxLength(6)
       ]]
     });
   }
@@ -70,6 +82,8 @@ export class AddPillingComponent implements OnInit {
     this.projectHistory.projId = this.lstSelectedProject[0].id;//this.PillingAddForm.value.projID;
     this.projectHistory.pileNo = this.PillingAddForm.value.projPillingNo +'-'+this.projectHistory.uniqueId ;
     this.projectHistory.pillingRigDetails = this.PillingAddForm.value.pillingRigDetails;
+    this.projectHistory.diaOfPile = this.PillingAddForm.value.diaOfPile;
+    this.projectHistory.casingToplevel = this.PillingAddForm.value.casingToplevel;
     this.projectService.addProjectHistory(this.projectHistory)
       .pipe(first())
       .subscribe(

@@ -29,6 +29,27 @@
                 </mat-form-field>
               </div>
             </div>
+
+             <div class="row">
+            
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input matInput placeholder="Piling of Dia in MM" type="number" formControlName="diaOfPile">
+                  <mat-error>
+                    {{errors.diaOfPile}}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+                <div class="col-md-6">
+                <mat-form-field>
+                  <input matInput placeholder="Cut off level" type="number" formControlName="casingToplevel">
+                  <mat-error>
+                    {{errors.casingToplevel}}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
             <div class="row" class="pull-right">
               <mat-dialog-actions align="right">
                 <button mat-stroked-button class="pull-right btn btn-danger" [disabled]="PillingAddForm.invalid" (click)="addPilling()">Add
