@@ -22,24 +22,24 @@
           <td mat-cell *matCellDef="let element"> {{element.dateOfStarting.split('T')[0].split('+')[0]}}:{{element.dateOfStarting.split('T')[1].split('+')[0]}}</td>
         </ng-container>
 
-        <!-- dateOfEnding Column -->
+        <!-- dateOfEnding Column Details -->
         <ng-container matColumnDef="dateOfEnding">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Of Ending </th>
           <td mat-cell *matCellDef="let element"> {{element.dateOfEnding.split('T')[0].split('+')[0]}}:{{element.dateOfEnding.split('T')[1].split('+')[0]}}</td>
         </ng-container>
 
-        <!-- pillingRigDetails Column -->
+        <!-- pillingRigDetails Column  Details-->
         <ng-container matColumnDef="pillingRigDetails">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Pilling Rig Details </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Pilling Rig Details</th>
           <td mat-cell *matCellDef="let element"> {{element.pillingRigDetails}} </td>
         </ng-container>
-         <!-- diaOfPile Column -->
+         <!-- diaOfPile Column  Details-->
          <ng-container matColumnDef="diaOfPile">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Dia Of Pile </th>
             <td mat-cell *matCellDef="let element"> {{element.diaOfPile}} </td>
           </ng-container>
           <ng-container matColumnDef="pillingCutOfflevel">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> cut Top level </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> cut Top level</th>
             <td mat-cell *matCellDef="let element"> {{element.pillingCutOfflevel}} </td>
           </ng-container>
          
