@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatSort, MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { MessageService } from 'app/_service/message.service';
@@ -6,7 +6,7 @@ import { ProjectService } from 'app/_service/project.service';
 import { AddPillingComponent } from 'app/add-pilling/add-pilling.component';
 import { ProjectHistory } from 'app/_model/project';
 import { first } from 'rxjs/operators';
-
+import * as XLSX from 'xlsx';
 /**
  * @title Basic use of `<table mat-table>`
  */
@@ -16,31 +16,29 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./pilling-history.component.scss']
 })
 export class PillingHistoryComponent implements OnInit {
-  displayedColumns: string[] = 
-  ['pileNo', 'dateOfStarting', 'dateOfEnding', 
-  'pillingRigDetails', 'diaOfPile',
-
-  'boringStartTime','boringEndTime','depthOfBore',
-  'totalBoringTime','cageLoweringStartTime','cageLoweringEndTime',
-  'totalTimeForCageLowering','concretePourStartTime','concretePourEndTime',
-  'totalConcretePourTime','noOfTrimePiecesUsed','totalNoOfShiftsWorked',
-  'noOfManpowerPRC','noOfManpowerContractor',
-
-  
-  'pillingCutOfflevel'];
-  firstProductEntry: any;
-  dataSource: any;
-  lstSelectedProject=[];
-  uniqueId:any;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayedColumns: string[] =
+    ['pileNo', 'dateOfStarting', 'dateOfEnding',
+      'pillingRigDetails', 'diaOfPile',
+      'boringStartTime', 'boringEndTime', 'depthOfBore',
+      'totalBoringTime', 'cageLoweringStartTime', 'cageLoweringEndTime',
+      'totalTimeForCageLowering', 'concretePourStartTime', 'concretePourEndTime',
+      'totalConcretePourTime', 'noOfTrimePiecesUsed', 'totalNoOfShiftsWorked',
+      'noOfManpowerPRC', 'noOfManpowerContractor',
+      'pillingCutOfflevel','emptyBoreDepth'];
+      firstProductEntry: any;
+      dataSource: any;
+      lstSelectedProject = [];
+      uniqueId: any;
+      @ViewChild('TABLE') table: ElementRef;
+      @ViewChild(MatSort) sort: MatSort;
+      @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(public dialog: MatDialog,
     public router: Router,
     private messageService: MessageService,
     private projectService: ProjectService) { }
 
   ngOnInit() {
-     if (localStorage.getItem("selectedProject")) {
+    if (localStorage.getItem("selectedProject")) {
       this.lstSelectedProject.push(JSON.parse(localStorage.getItem("selectedProject")));
       console.log(this.lstSelectedProject);
     }
@@ -48,7 +46,7 @@ export class PillingHistoryComponent implements OnInit {
       this.uniqueId = this.lstSelectedProject[0].pillingInfoByProjectID1[0].id;
     }
     if (localStorage.getItem("pHistoryView") == "P2") {
-       this.uniqueId = this.lstSelectedProject[0].pillingInfoByProjectID2[0].id;
+      this.uniqueId = this.lstSelectedProject[0].pillingInfoByProjectID2[0].id;
     }
     if (localStorage.getItem("pHistoryView") == "Other") {
       this.uniqueId = this.lstSelectedProject[0].otherInfoByProjectID[0].id;
@@ -62,6 +60,14 @@ export class PillingHistoryComponent implements OnInit {
     });
 
   }
+  ExportTOExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'PillingSheet');
+    /* save to file */
+    XLSX.writeFile(wb, 'PillingSheet.xlsx');
+
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddPillingComponent, {
       width: '1000px'
@@ -73,7 +79,7 @@ export class PillingHistoryComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed texted');
       this.router.navigateByUrl('/projectdetails');
-     // location.reload();
+      // location.reload();
       // this.router.navigateByUrl('/projectdetails');
     });
   }

@@ -1,13 +1,16 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8"></div>
+      <div class="col-md-6"></div>
       <div class="col-md-2"> <button mat-raised-button (click)="openDialog()" color="primary">Add New Pilling +</button></div>
       <div class="col-md-2"> <button mat-raised-button  color="primary">Bulk Upload +</button></div>
+      <div class="col-md-2" *ngIf = "lstSelectedProject.length>0"> 
+          <button mat-raised-button  color="primary"  (click)="ExportTOExcel()" >Excel To Export</button>
+        </div>
     </div>
-    <div class="row mat-elevation-z12"  *ngIf = "lstSelectedProject.length>0">
-
-      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z12">
+    <div class="row mat-elevation-z8"  *ngIf = "lstSelectedProject.length>0" #TABLE>
+     
+      <table mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
         <!-- pileNo Column -->
         <ng-container matColumnDef="pileNo">
@@ -45,6 +48,11 @@
             <td mat-cell *matCellDef="let element"> {{element.pillingCutOfflevel}} </td>
           </ng-container>
 
+          <ng-container matColumnDef="emptyBoreDepth">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Empty Bore Depth</th>
+              <td mat-cell *matCellDef="let element"> {{element.existingToplevel - element.pillingCutOfflevel}} </td>
+            </ng-container>
+          
           <ng-container matColumnDef="boringStartTime">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Boring Start Time</th>
             <td mat-cell *matCellDef="let element"> {{element.boringStartTime}} </td>
@@ -113,7 +121,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>No Of Man Power Contractor</th>
             <td mat-cell *matCellDef="let element"> {{element.noOfManpowerContractor}} </td>
           </ng-container>
-
+          
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
