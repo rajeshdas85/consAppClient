@@ -8,6 +8,7 @@ import { first } from 'rxjs/operators';
 import * as moment from 'moment/moment';
 import { ConfirmValidParentMatcher, errorMessages, CustomValidators, regExps } from 'app/_model/custom-validators';
 import { ProjectManagerService } from 'app/_service/project-manager.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -37,6 +38,7 @@ export class AddnewprojectComponent implements OnInit {
     private messageService: MessageService,
     private projectService: ProjectService,
     private formBuilder: FormBuilder,
+    public router: Router,
     private projectManagerService: ProjectManagerService,
   ) {
     this.createForm();
@@ -160,6 +162,9 @@ export class AddnewprojectComponent implements OnInit {
       .subscribe(
         data => {
           this.messageService.show("Project added successfully.", MessageType.Success);
+          //location.reload();
+          this.router.navigateByUrl('/project');
+          
           // this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
           //   this.lstProduct = product;
           //   localStorage.setItem("lstProject",JSON.stringify(this.lstProduct));

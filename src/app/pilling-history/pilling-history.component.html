@@ -19,13 +19,15 @@
 
         <ng-container matColumnDef="dateOfStarting">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Of Starting </th>
-          <td mat-cell *matCellDef="let element"> {{element.dateOfStarting.split('T')[0].split('+')[0]}}:{{element.dateOfStarting.split('T')[1].split('+')[0]}}</td>
+          <!-- <td mat-cell *matCellDef="let element"> {{element.dateOfStarting.split('T')[0].split('+')[0]}}:{{element.dateOfStarting.split('T')[1].split('+')[0]}}</td> -->
+          <td mat-cell *matCellDef="let element"> {{element.dateOfStarting}}</td>
         </ng-container>
 
         <!-- dateOfEnding Column Details -->
         <ng-container matColumnDef="dateOfEnding">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Of Ending </th>
-          <td mat-cell *matCellDef="let element"> {{element.dateOfEnding.split('T')[0].split('+')[0]}}:{{element.dateOfEnding.split('T')[1].split('+')[0]}}</td>
+          <!-- <td mat-cell *matCellDef="let element"> {{element.dateOfEnding.split('T')[0].split('+')[0]}}:{{element.dateOfEnding.split('T')[1].split('+')[0]}}</td> -->
+          <td mat-cell *matCellDef="let element"> {{element.dateOfEnding}}</td>
         </ng-container>
 
         <!-- pillingRigDetails Column  Details-->
@@ -42,7 +44,76 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> cut Top level</th>
             <td mat-cell *matCellDef="let element"> {{element.pillingCutOfflevel}} </td>
           </ng-container>
+
+          <ng-container matColumnDef="boringStartTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Boring Start Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.boringStartTime}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="boringEndTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Boring End Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.boringEndTime}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="depthOfBore">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Depth Of Bore</th>
+            <td mat-cell *matCellDef="let element"> {{element.depthOfBore}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalBoringTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Boring Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.totalBoringTime}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="cageLoweringStartTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cage Lowering Start Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.cageLoweringStartTime}} </td>
+          </ng-container>
          
+          <ng-container matColumnDef="cageLoweringEndTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cage Lowering End Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.cageLoweringEndTime}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalTimeForCageLowering">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Time For Cage Lowering</th>
+            <td mat-cell *matCellDef="let element"> {{element.totalTimeForCageLowering}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="concretePourStartTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Concrete Pour Start Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.concretePourStartTime}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="concretePourEndTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Concrete Pour End Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.concretePourEndTime}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalConcretePourTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Concrete Pour Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.totalConcretePourTime}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="noOfTrimePiecesUsed">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>No Of Trime Pieces Used</th>
+            <td mat-cell *matCellDef="let element"> {{element.noOfTrimePiecesUsed}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalNoOfShiftsWorked">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Total No Of Shifts Worked</th>
+            <td mat-cell *matCellDef="let element"> {{element.totalNoOfShiftsWorked}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="noOfManpowerPRC">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>No Of Man Power PRC</th>
+            <td mat-cell *matCellDef="let element"> {{element.noOfManpowerPRC}} </td>
+          </ng-container>
+          <ng-container matColumnDef="noOfManpowerContractor">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>No Of Man Power Contractor</th>
+            <td mat-cell *matCellDef="let element"> {{element.noOfManpowerContractor}} </td>
+          </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
