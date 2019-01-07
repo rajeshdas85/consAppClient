@@ -8,6 +8,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ConfirmValidParentMatcher, errorMessages, CustomValidators, regExps } from 'app/_model/custom-validators';
 import { Router } from '@angular/router';
 import { Guid } from "guid-typescript";
+import * as XLSX from 'ts-xlsx';
 @Component({
   selector: 'app-project-details',
   templateUrl: './project-details.component.html',
@@ -24,6 +25,8 @@ export class ProjectDetailsComponent implements OnInit {
   arrPillingInfoByProjectID1 = [];
   arrPillingInfoByProjectID2 = [];
   arrOtherInfoByProjectID = [];
+  arrayBuffer:any;
+file:File;
   arrayRadioBtn = [
     { "name": "Yes", ID: "D1", "checked": false },
     { "name": "No", ID: "D2", "checked": true }
@@ -130,6 +133,28 @@ export class ProjectDetailsComponent implements OnInit {
     localStorage.setItem("pHistoryView",categoryId);
     this.router.navigateByUrl('/projecthistory');
   }
+
+incomingfile(event) 
+  {
+  this.file= event.target.files[0]; 
+  }
+
+ Upload() {
+      let fileReader = new FileReader();
+        fileReader.onload = (e) => {
+            this.arrayBuffer = fileReader.result;
+            var data = new Uint8Array(this.arrayBuffer);
+            var arr = new Array();
+            for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+            var bstr = arr.join("");
+            var workbook = XLSX.read(bstr, {type:"binary"});
+            var first_sheet_name = workbook.SheetNames[0];
+            var worksheet = workbook.Sheets[first_sheet_name];
+            console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));
+        }
+        fileReader.readAsArrayBuffer(this.file);
+}
+
   radioChange(event: MatRadioChange) {
     // console.log(event);
     // console.log(event.value);

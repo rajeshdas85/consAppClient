@@ -1,16 +1,19 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6"></div>
+      <div class="col-md-4"></div>
       <div class="col-md-2"> <button mat-raised-button (click)="openDialog()" color="primary">Add New Pilling +</button></div>
       <div class="col-md-2"> <button mat-raised-button  color="primary">Bulk Upload +</button></div>
       <div class="col-md-2" *ngIf = "lstSelectedProject.length>0"> 
           <button mat-raised-button  color="primary"  (click)="ExportTOExcel()" >Excel To Export</button>
         </div>
+        <div class="col-md-1" *ngIf = "lstSelectedProject.length>0"> 
+          <button mat-raised-button  color="primary"  (click)="ExportToPDF()" >Export To Pdf</button>
+        </div>
     </div>
     <div class="row mat-elevation-z8"  *ngIf = "lstSelectedProject.length>0" #TABLE>
      
-      <table mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <table id="tblPillingHistory" mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
         <!-- pileNo Column -->
         <ng-container matColumnDef="pileNo">
