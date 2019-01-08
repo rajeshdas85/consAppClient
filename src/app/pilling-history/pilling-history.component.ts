@@ -87,6 +87,9 @@ export class PillingHistoryComponent implements OnInit {
     XLSX.writeFile(wb, 'PillingSheet.xlsx');
 
   }
+   backToProjectDetails():void{
+      this.router.navigateByUrl('/projectdetails');
+    }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddPillingComponent, {
       width: '1000px'
@@ -95,6 +98,7 @@ export class PillingHistoryComponent implements OnInit {
 
     });
 
+   
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed texted');
       this.router.navigateByUrl('/projectdetails');

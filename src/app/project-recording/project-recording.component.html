@@ -1,0 +1,94 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-md-8"> <button mat-raised-button (click)="backToProjectHistory()" color="primary">Back</button></div>
+      <!-- <div class="col-md-2"> <button mat-raised-button (click)="openDialog()" color="primary">Add New Pilling +</button></div> -->
+      <!-- <div class="col-md-2"> <button mat-raised-button color="primary">Bulk Upload +</button></div> -->
+      <div class="col-md-2" >
+        <button mat-raised-button color="primary" (click)="ExportTOExcel()">Excel To Export</button>
+      </div>
+      <div class="col-md-2" >
+        <button mat-raised-button color="primary" (click)="ExportToPDF()">Export To Pdf</button>
+      </div>
+    </div>
+    <div class="row mat-elevation-z12"  #TABLE>
+
+      <table id="tblPillingRecording" mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <!-- pileNo Column -->
+        <!-- <ng-container matColumnDef="pileNo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Pile No </th>
+          <td mat-cell *matCellDef="let element">
+          {{element.pileNo}}
+          </td>
+        </ng-container> -->
+
+        <!-- dateOfStarting Column -->
+
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
+          <!-- <td mat-cell *matCellDef="let element"> {{element.dateOfStarting.split('T')[0].split('+')[0]}}:{{element.dateOfStarting.split('T')[1].split('+')[0]}}</td> -->
+          <td mat-cell *matCellDef="let element"> {{element.startDate}}</td>
+        </ng-container>
+
+        <!-- dateOfEnding Column Details -->
+        <ng-container matColumnDef="fromTimeOfBoring">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>FromTime Of Boring </th>
+          <!-- <td mat-cell *matCellDef="let element"> {{element.dateOfEnding.split('T')[0].split('+')[0]}}:{{element.dateOfEnding.split('T')[1].split('+')[0]}}</td> -->
+          <td mat-cell *matCellDef="let element"> {{element.fromTimeOfBoring}}</td>
+        </ng-container>
+
+        <!-- pillingRigDetails Column  Details-->
+        <ng-container matColumnDef="toTimeOfBoring">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ToTime Of Boring</th>
+          <td mat-cell *matCellDef="let element"> {{element.toTimeOfBoring}} </td>
+        </ng-container>
+        <!-- diaOfPile Column  Details-->
+        <ng-container matColumnDef="depthOfBoreFrom">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Depth Of BoreFrom </th>
+          <td mat-cell *matCellDef="let element"> {{element.depthOfBoreFrom}} </td>
+        </ng-container>
+        <ng-container matColumnDef="depthOfBoreTo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Depth Of BoreTo</th>
+          <td mat-cell *matCellDef="let element"> {{element.depthOfBoreTo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="finalDepthOfBore">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Final Depth Of Bore</th>
+          <td mat-cell *matCellDef="let element"> {{element.finalDepthOfBore}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descriptionOfSoil">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description Of Soil</th>
+          <td mat-cell *matCellDef="let element"> {{element.descriptionOfSoil}} </td>
+        </ng-container>
+
+         <ng-container matColumnDef="RLOfThePileFrom">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> RL Of the PileFrom</th>
+          <td mat-cell *matCellDef="let element"> {{element.RLOfThePileFrom}} </td>
+        </ng-container> 
+
+         <ng-container matColumnDef="RLOfThePileTo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>RL Of The PileTo</th>
+          <td mat-cell *matCellDef="let element"> {{element.RLOfThePileTo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="remarks">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Remarks</th>
+          <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="siteEnggId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>SiteEngg Name/Id</th>
+          <td mat-cell *matCellDef="let element"> {{element.siteEnggId}} </td>
+        </ng-container> 
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20,100,1000]" showFirstLastButtons></mat-paginator>
+
+    </div>
+  </div>
+</div>

@@ -30,6 +30,8 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import {MatSnackBarModule} from "@angular/material";
 import { PillingHistoryComponent } from './pilling-history/pilling-history.component';
 import { AddPillingComponent } from './add-pilling/add-pilling.component';
+import { ProjectRecordingComponent } from './project-recording/project-recording.component';
+import { BomEntryComponent } from './bom-entry/bom-entry.component';
 
 //import { ProjectmanagerComponent } from './projectmanager/projectmanager.component';
 //import { AddProjectComponent } from './add-project/add-project.component';
@@ -52,6 +54,8 @@ import { AddPillingComponent } from './add-pilling/add-pilling.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    //BomEntryComponent,
+   // ProjectRecordingComponent,
    // AddPillingComponent,
     //PillingHistoryComponent,
   

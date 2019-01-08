@@ -8,14 +8,19 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ConfirmValidParentMatcher, errorMessages, CustomValidators, regExps } from 'app/_model/custom-validators';
 import { Router } from '@angular/router';
 import { Guid } from "guid-typescript";
-import * as XLSX from 'ts-xlsx';
+import { ViewChild } from "@angular/core";
+import { ViewContainerRef } from "@angular/core";
+import { ComponentFactoryResolver } from "@angular/core";
+import { BomEntryComponent } from "app/bom-entry/bom-entry.component";
+
 @Component({
   selector: 'app-project-details',
   templateUrl: './project-details.component.html',
   styleUrls: ['./project-details.component.scss']
 })
 export class ProjectDetailsComponent implements OnInit {
-
+  @ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
+  
   private project: Project = new Project();
   private pillingInfoByProjectID1: PillingInfoByProjectID1 = new PillingInfoByProjectID1();
   private pillingInfoByProjectID2: PillingInfoByProjectID2 = new PillingInfoByProjectID2();
@@ -25,8 +30,7 @@ export class ProjectDetailsComponent implements OnInit {
   arrPillingInfoByProjectID1 = [];
   arrPillingInfoByProjectID2 = [];
   arrOtherInfoByProjectID = [];
-  arrayBuffer:any;
-file:File;
+
   arrayRadioBtn = [
     { "name": "Yes", ID: "D1", "checked": false },
     { "name": "No", ID: "D2", "checked": true }
@@ -69,13 +73,16 @@ file:File;
     private messageService: MessageService,
     private projectService: ProjectService,
     private formBuilder: FormBuilder,
-    public router: Router
+    public router: Router,
+    private _cfr: ComponentFactoryResolver
 
   ) {
     //this.createForm();
   }
 
   ngOnInit() {
+     this.addComponent();
+
     this.selectedRadioBtn = this.arrayRadioBtn[1].name;
     if (localStorage.getItem("selectedProject")) {
       this.lstSelectedProject.push(JSON.parse(localStorage.getItem("selectedProject")));
@@ -120,6 +127,11 @@ file:File;
     }
 
   }
+  addComponent(){
+      var comp = this._cfr.resolveComponentFactory(BomEntryComponent);
+      var bomEntryComponent = this.container.createComponent(comp);
+      bomEntryComponent.instance._ref = bomEntryComponent;
+  }
   addMorePilling() {
     // this.containers.push(this.containers.length);
     this.isAddMorePilling = true;
@@ -134,26 +146,9 @@ file:File;
     this.router.navigateByUrl('/projecthistory');
   }
 
-incomingfile(event) 
-  {
-  this.file= event.target.files[0]; 
-  }
 
- Upload() {
-      let fileReader = new FileReader();
-        fileReader.onload = (e) => {
-            this.arrayBuffer = fileReader.result;
-            var data = new Uint8Array(this.arrayBuffer);
-            var arr = new Array();
-            for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-            var bstr = arr.join("");
-            var workbook = XLSX.read(bstr, {type:"binary"});
-            var first_sheet_name = workbook.SheetNames[0];
-            var worksheet = workbook.Sheets[first_sheet_name];
-            console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));
-        }
-        fileReader.readAsArrayBuffer(this.file);
-}
+
+ 
 
   radioChange(event: MatRadioChange) {
     // console.log(event);
@@ -166,27 +161,7 @@ incomingfile(event)
     }
 
   }
-  createForm() {
-    this.PillingAddForm = this.formBuilder.group({
-      desc: ['', [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(128)
-      ]],
-      qty: ['', [
-        Validators.required,
-        Validators.pattern("^[0-9]*$"),
-        Validators.minLength(3),
-        Validators.maxLength(6)
-      ]],
-      rate: ['', [
-        Validators.required,
-        Validators.pattern("^[0-9]*$"),
-        Validators.minLength(3),
-        Validators.maxLength(6)
-      ]]
-    });
-  }
+  
   changeRate() {
     this.P1Data.amount = this.P1Data.rate * this.P1Data.qty;
   }

@@ -56,6 +56,8 @@ import { ProjectDetailsComponent } from "app/project-details/project-details.com
 import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
 import { PillingHistoryComponent } from 'app/pilling-history/pilling-history.component';
 import { AddPillingComponent } from 'app/add-pilling/add-pilling.component';
+import { ProjectRecordingComponent } from "app/project-recording/project-recording.component";
+import { BomEntryComponent } from "app/bom-entry/bom-entry.component";
 
 @NgModule({
   imports: [
@@ -101,7 +103,7 @@ import { AddPillingComponent } from 'app/add-pilling/add-pilling.component';
   
   RouterModule.forChild(AdminLayoutRoutes),
   ], 
-  entryComponents: [ AddnewprojectComponent,ProjectmanagerComponent,AddPillingComponent],
+  entryComponents: [ AddnewprojectComponent,ProjectmanagerComponent,AddPillingComponent,BomEntryComponent],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
@@ -117,7 +119,10 @@ import { AddPillingComponent } from 'app/add-pilling/add-pilling.component';
     ProjectDetailsComponent,
     ProjectmanagerComponent,
     PillingHistoryComponent,
-    AddPillingComponent
+    AddPillingComponent,
+    ProjectRecordingComponent,
+    BomEntryComponent
+    
 
   ],
   

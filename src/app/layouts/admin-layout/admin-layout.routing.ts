@@ -13,6 +13,7 @@ import { ProjectsComponent } from 'app/projects/projects.component';
 import { ProjectDetailsComponent } from 'app/project-details/project-details.component';
 import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
 import { PillingHistoryComponent } from 'app/pilling-history/pilling-history.component';
+import { ProjectRecordingComponent } from "app/project-recording/project-recording.component";
 //import { AddProjectComponent } from 'app/add-project/add-project.component';
 
 export const AdminLayoutRoutes: Routes = [
@@ -71,6 +72,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'projectdetails',                 component: ProjectDetailsComponent },
     { path: 'projectmanager',                 component: ProjectmanagerComponent },
     { path: 'projecthistory',                 component: PillingHistoryComponent },
+    { path: 'projectrecording/:pileNo',       component: ProjectRecordingComponent },
+
+    
     
   //  { path: 'addProjct',                       component: AddProjectComponent },
     

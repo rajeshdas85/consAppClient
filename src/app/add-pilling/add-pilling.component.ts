@@ -72,7 +72,7 @@ export class AddPillingComponent implements OnInit {
       ]],
       pillingCutOfflevel: ['', [
        Validators.required,
-        Validators.pattern("^[0-9]*$"),
+        Validators.pattern("^[0-9][\.\d]*(,\d+)?$"),
         Validators.minLength(3),
         Validators.maxLength(6)
       ]]
