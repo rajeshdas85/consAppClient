@@ -118,6 +118,7 @@ export class BomEntryComponent implements OnInit {
       //  this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
         // And lastly refresh table
       //  this.refreshTable();
+      this. getAllProjectBOMData();
       }
     });
   }
