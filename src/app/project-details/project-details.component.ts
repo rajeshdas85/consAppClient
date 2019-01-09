@@ -145,11 +145,6 @@ export class ProjectDetailsComponent implements OnInit {
     localStorage.setItem("pHistoryView",categoryId);
     this.router.navigateByUrl('/projecthistory');
   }
-
-
-
- 
-
   radioChange(event: MatRadioChange) {
     // console.log(event);
     // console.log(event.value);

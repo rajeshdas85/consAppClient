@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Project, PileEntry, ProjectRecording, ProjectHistory } from "app/_model/project";
+import { Project, PileEntry, ProjectRecording, ProjectHistory, ProjectBOM } from "app/_model/project";
 import { environment } from "environments/environment";
 
 @Injectable({
@@ -60,4 +60,20 @@ export class ProjectService {
    //return this.http.get<ProjectRecording[]>(`${environment.apiUrl}/projects/pileNo/` + pileNo);
     return this.http.get<ProjectRecording[]>(`/projects/pileNo/` + pileNo);
   }
+   // BOM section Start
+  getAllAddedProjectBOM() {
+   // return this.http.get<ProjectBOM[]>(`${environment.apiUrl}/projects/getAllAddedProjectBOM`);
+    return this.http.get<ProjectBOM[]>(`/projects/getAllAddedProjectBOM`);
+  }
+
+   addProjectBOM(projectBOM: ProjectBOM) {
+    //return this.http.post(`${environment.apiUrl}/projects/addProjectBOM`, projectBOM);
+    return this.http.post(`/projects/addProjectBOM`, projectBOM);
+  }
+
+   updateProjectBOM(projectBOM: ProjectBOM) {
+    //return this.http.put(`${environment.apiUrl}/projects/updateProjectBOM`, projectBOM);
+    return this.http.put(`/projects/updateProjectBOM`, projectBOM);
+  }
+//BOM section End
 }

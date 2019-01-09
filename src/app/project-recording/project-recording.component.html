@@ -2,19 +2,27 @@
   <div class="container-fluid">
     <div class="row">
 
-      <div class="col-md-8"> <button mat-raised-button (click)="backToProjectHistory()" color="primary">Back</button></div>
-      <!-- <div class="col-md-2"> <button mat-raised-button (click)="openDialog()" color="primary">Add New Pilling +</button></div> -->
-      <!-- <div class="col-md-2"> <button mat-raised-button color="primary">Bulk Upload +</button></div> -->
+      <div class="col-md-8"> 
+
+         <button mat-button matTooltip="Back" (click)="backToProjectHistory()">
+                                                                           <mat-icon>arrow_back</mat-icon>
+                                                                      </button>
+      </div>
+      
       <div class="col-md-2" >
-        <button mat-raised-button color="primary" (click)="ExportTOExcel()">Excel To Export</button>
+       <button mat-button matTooltip="Export To Excel" (click)="ExportTOExcel()">
+                                                                           <mat-icon>save_alt</mat-icon>
+                                                                      </button>
       </div>
       <div class="col-md-2" >
-        <button mat-raised-button color="primary" (click)="ExportToPDF()">Export To Pdf</button>
+       <button mat-button matTooltip="Export To Pdf" (click)="ExportToPDF()">
+                                                                           <mat-icon>print</mat-icon>
+                                                                      </button>
       </div>
     </div>
     <div class="row mat-elevation-z12"  #TABLE>
 
-      <table id="tblPillingRecording" mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <table id="tblPillingRecording" mat-table #table [dataSource]="dataSource" matSort style="width:100%">
 
         <!-- pileNo Column -->
         <!-- <ng-container matColumnDef="pileNo">

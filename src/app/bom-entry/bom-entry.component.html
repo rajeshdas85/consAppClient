@@ -1,25 +1,4 @@
-<!-- <form novalidate>
-  <div class="row">
-    <div class="horizontal-group">
-      <div class="col-sm-4">
-        <input type="text" name="language" [(ngModel)]="lang" placeholder="Language" class="form-control">
-      </div>
-
-      <div class="col-sm-2">
-        <input type="text" name='exp' placeholder="Years" [(ngModel)]="exp" class="form-control">
-      </div>
-
-      <div class="col-sm-6">
-        <button type="submit" class="btn btn-primary" (click)="save()"> Save</button>
-        <button type="button" class="btn btn-default" (click)="removeObject()"> Remove</button>
-      </div>
-    </div>
-  </div>
-</form> -->
-
-
 <form novalidate>
-
   <div class="row">
     <div class="row" id="others">
       <div col-sm-1>
@@ -48,11 +27,11 @@
         </mat-form-field>
 
       </div>
-      <div col-sm-1>
+      <!-- <div col-sm-1>
         <mat-form-field>
           <input matInput placeholder="Status" disabled type="text" name='status' [(ngModel)]="status">
         </mat-form-field>
-      </div>
+      </div> -->
 
       <div col-sm-1>
         <button mat-button matTooltip="save" [disabled]="!(amount>0)" (click)="saveData()">
@@ -60,7 +39,7 @@
           
                                                                  </button>
 
-        <button mat-button matTooltip="remove" (click)="removeObject()">
+        <button disabled mat-button matTooltip="remove" (click)="removeObject()">
                                                                            <mat-icon>remove_circle_outline</mat-icon>
                                                                       </button>
 
@@ -70,4 +49,89 @@
 
     </div>
   </div>
+
+  <div class="row">
+
+    <div class="col-md-2">
+      <button mat-button matTooltip="Export To Excel" (click)="ExportTOExcel()">
+                                                                           <mat-icon>save_alt</mat-icon>
+                                                                      </button>
+
+    </div>
+    <div class="col-md-2">
+
+      <button mat-button matTooltip="Export To Pdf" (click)="ExportToPDF()">
+                                                                           <mat-icon>print</mat-icon>
+                                                                      </button>
+    </div>
+  </div>
+  <div class="row mat-elevation-z12" #TABLE>
+
+    <table id="tblprojectBOM" mat-table #table [dataSource]="dataSource" matSort style="width:100%">
+      <!-- serialNo Column -->
+      <ng-container matColumnDef="srNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Serial No</th>
+        <td mat-cell *matCellDef="let element"> {{element.srNo}}</td>
+      </ng-container>
+
+
+      <!-- Description Column -->
+
+      <ng-container matColumnDef="desc">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <!-- <td mat-cell *matCellDef="let element"> {{element.dateOfStarting.split('T')[0].split('+')[0]}}:{{element.dateOfStarting.split('T')[1].split('+')[0]}}</td> -->
+        <td mat-cell *matCellDef="let element"> {{element.desc}}</td>
+      </ng-container>
+
+      <!-- Rate Column Details -->
+      <ng-container matColumnDef="rate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate </th>
+        <!-- <td mat-cell *matCellDef="let element"> {{element.dateOfEnding.split('T')[0].split('+')[0]}}:{{element.dateOfEnding.split('T')[1].split('+')[0]}}</td> -->
+        <td mat-cell *matCellDef="let element"> ₹ {{element.rate}}</td>
+      </ng-container>
+
+      <!-- qty Column  Details-->
+      <ng-container matColumnDef="qty">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Qty</th>
+        <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
+      </ng-container>
+      <!-- Amount Column  Details-->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+        <td mat-cell *matCellDef="let element"> ₹ {{element.amount}} </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+      <ng-container matColumnDef="createDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Create Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.createDate}} </td>
+      </ng-container>
+      <ng-container matColumnDef="updateDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Update Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.updateDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button matTooltip="Edit" (click)="updatePillingData()">
+                                                                           <mat-icon>edit</mat-icon>
+               
+                                                                      </button>
+
+        </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+     <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+  </div>
+  
+   
+  
 </form>

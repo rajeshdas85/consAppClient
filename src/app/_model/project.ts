@@ -57,6 +57,18 @@ export class ProjectRecording {
     siteEnggId: string;
     remarks: string;
 }
+
+export class ProjectBOM{
+    srNo:number;
+    projId: string;
+    desc:  string;
+    rate: number;
+    qty: number;
+    amount: number;
+    status: number;
+    createDate:  string;
+    updateDate:  string;
+}
 export class PileEntry {
     projId: string;
     pileNo: string; //projId - pileNo
