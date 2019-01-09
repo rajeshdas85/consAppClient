@@ -32,6 +32,7 @@ import { PillingHistoryComponent } from './pilling-history/pilling-history.compo
 import { AddPillingComponent } from './add-pilling/add-pilling.component';
 import { ProjectRecordingComponent } from './project-recording/project-recording.component';
 import { BomEntryComponent } from './bom-entry/bom-entry.component';
+import { EditBOMComponent } from './dialogs/edit-bom/edit-bom.component';
 
 //import { ProjectmanagerComponent } from './projectmanager/projectmanager.component';
 //import { AddProjectComponent } from './add-project/add-project.component';
@@ -54,6 +55,7 @@ import { BomEntryComponent } from './bom-entry/bom-entry.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    //EditBOMComponent,
     //BomEntryComponent,
    // ProjectRecordingComponent,
    // AddPillingComponent,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatRadioChange, DEC, MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatDialogRef, MatRadioChange, DEC, MatSort, MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
 import { OtherInfoByProjectID, ProjectBOM, MessageType } from "app/_model/project";
 import { Validators } from "@angular/forms";
 import { FormControl } from "@angular/forms";
@@ -12,6 +12,7 @@ import * as XLSX from 'xlsx';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ElementRef } from "@angular/core";
+import { EditBOMComponent } from 'app/dialogs/edit-bom/edit-bom.component';
 @Component({
   selector: 'app-bom-entry',
   templateUrl: './bom-entry.component.html',
@@ -34,7 +35,7 @@ export class BomEntryComponent implements OnInit {
   lstSelectedProject = [];
   displayedColumns: string[] =
   [
-    'srNo', 'desc', 'rate',
+    'id','srNo', 'desc', 'rate',
     'qty', 'amount',
     'status', 'createDate', 'updateDate','actions'
   ];
@@ -46,7 +47,8 @@ export class BomEntryComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private messageService: MessageService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    public dialog: MatDialog,
   ) { }
   ngOnInit() {
 
@@ -100,6 +102,24 @@ export class BomEntryComponent implements OnInit {
     /* save to file */
     XLSX.writeFile(wb, 'BOM.xlsx');
 
+  }
+  startEdit(id,amount,desc,rate,qty) {
+  debugger;
+   //console.log(element);
+    const dialogRef = this.dialog.open(EditBOMComponent, {
+      data: {id: id, amount: amount, desc: desc, rate: rate, qty: qty}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // When using an edit things are little different, firstly we find record inside DataService by id
+      //  const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        // Then you update that record using data from dialogData (values you enetered)
+      //  this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        // And lastly refresh table
+      //  this.refreshTable();
+      }
+    });
   }
   saveData() {
     if (this.amount && this.rate) {
