@@ -69,7 +69,7 @@ export class BomEntryComponent implements OnInit {
     this.amount = 0;
   }
   getAllProjectBOMData() {
-    this.projectService.getAllAddedProjectBOM().pipe(first()).subscribe(productBOM => {
+    this.projectService.getAllAddedProjectBOMByProjectID(this.projectBOM.projId).pipe(first()).subscribe(productBOM => {
       this.lstProjectBOM = productBOM;
       this.dataSource = new MatTableDataSource<ProjectBOM>(this.lstProjectBOM);
       this.dataSource.sort = this.sort;

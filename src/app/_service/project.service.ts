@@ -61,9 +61,9 @@ export class ProjectService {
     return this.http.get<ProjectRecording[]>(`/projects/pileNo/` + pileNo);
   }
    // BOM section Start
-  getAllAddedProjectBOM() {
-   // return this.http.get<ProjectBOM[]>(`${environment.apiUrl}/projects/getAllAddedProjectBOM`);
-    return this.http.get<ProjectBOM[]>(`/projects/getAllAddedProjectBOM`);
+  getAllAddedProjectBOMByProjectID(projId: string) {
+   // return this.http.get<ProjectBOM[]>(`${environment.apiUrl}/projects/getAllAddedProjectBOMByProjectID/`+ projId);
+    return this.http.get<ProjectBOM[]>(`/projects/getAllAddedProjectBOMByProjectID/`+ projId);
   }
 
    addProjectBOM(projectBOM: ProjectBOM) {
