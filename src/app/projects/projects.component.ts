@@ -4,7 +4,7 @@ import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.componen
 
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { Project,  OtherInfoByProjectID, PileEntry, ProjectRecording, ProjectHistory, MessageType } from "app/_model/project";
+import { Project, OtherInfoByProjectID, PileEntry, ProjectRecording, ProjectHistory, MessageType } from "app/_model/project";
 import { ProjectService } from "app/_service/project.service";
 import * as moment from 'moment/moment';
 import { ProjectDetailsComponent } from "app/project-details/project-details.component";
@@ -54,12 +54,12 @@ export class ProjectsComponent implements OnInit {
     private projectManagerService: ProjectManagerService,
     private projectService: ProjectService) { }
   ngOnInit() {
-  
-    this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
-      this.lstProduct = product;
-    });
 
-   
+    // this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
+    //   this.lstProduct = product;
+    // });
+    this.getAllAddProject();
+
 
 
 
@@ -260,6 +260,11 @@ export class ProjectsComponent implements OnInit {
     // this.containers.push(this.containers.length);
     this.isAddMorePilling = false;
   }
+  getAllAddProject(): void {
+    this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
+      this.lstProduct = product;
+    });
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddnewprojectComponent, {
@@ -270,9 +275,10 @@ export class ProjectsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed texted');
+      this.getAllAddProject();
+      //  console.log('The dialog was closed texted');
       //location.reload();
-      this.router.navigateByUrl('/dashboard');
+      // this.router.navigateByUrl('/dashboard');
     });
   }
 

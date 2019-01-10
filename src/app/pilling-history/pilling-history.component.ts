@@ -7,8 +7,8 @@ import { AddPillingComponent } from 'app/add-pilling/add-pilling.component';
 import { ProjectHistory } from 'app/_model/project';
 import { first } from 'rxjs/operators';
 import * as XLSX from 'xlsx';
-import * as jspdf from 'jspdf';  
-import html2canvas from 'html2canvas'; 
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 /**
  * @title Basic use of `<table mat-table>`
  */
@@ -19,21 +19,21 @@ import html2canvas from 'html2canvas';
 })
 export class PillingHistoryComponent implements OnInit {
   displayedColumns: string[] =
-    ['pileNo', 'dateOfStarting', 'dateOfEnding',
-      'pillingRigDetails', 'diaOfPile',
-      'boringStartTime', 'boringEndTime', 'depthOfBore',
-      'totalBoringTime', 'cageLoweringStartTime', 'cageLoweringEndTime',
-      'totalTimeForCageLowering', 'concretePourStartTime', 'concretePourEndTime',
-      'totalConcretePourTime', 'noOfTrimePiecesUsed', 'totalNoOfShiftsWorked',
-      'noOfManpowerPRC', 'noOfManpowerContractor',
-      'pillingCutOfflevel','emptyBoreDepth'];
-      firstProductEntry: any;
-      dataSource: any;
-      lstSelectedProject = [];
-      uniqueId: any;
-      @ViewChild('TABLE') table: ElementRef;
-      @ViewChild(MatSort) sort: MatSort;
-      @ViewChild(MatPaginator) paginator: MatPaginator;
+  ['pileNo', 'dateOfStarting', 'dateOfEnding',
+    'pillingRigDetails', 'diaOfPile',
+    'boringStartTime', 'boringEndTime', 'depthOfBore',
+    'totalBoringTime', 'cageLoweringStartTime', 'cageLoweringEndTime',
+    'totalTimeForCageLowering', 'concretePourStartTime', 'concretePourEndTime',
+    'totalConcretePourTime', 'noOfTrimePiecesUsed', 'totalNoOfShiftsWorked',
+    'noOfManpowerPRC', 'noOfManpowerContractor',
+    'pillingCutOfflevel', 'emptyBoreDepth'];
+  firstProductEntry: any;
+  dataSource: any;
+  lstSelectedProject = [];
+  uniqueId: any;
+  @ViewChild('TABLE') table: ElementRef;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(public dialog: MatDialog,
     public router: Router,
     private messageService: MessageService,
@@ -54,6 +54,10 @@ export class PillingHistoryComponent implements OnInit {
       this.uniqueId = this.lstSelectedProject[0].otherInfoByProjectID[0].id;
     }
 
+    this.getAllProjectHistory();
+
+  }
+  getAllProjectHistory(): void {
     this.projectService.getAllProjectHistory(this.uniqueId).pipe(first()).subscribe(productEntry => {
       this.firstProductEntry = productEntry;
       this.dataSource = new MatTableDataSource<ProjectHistory>(this.firstProductEntry);
@@ -61,23 +65,24 @@ export class PillingHistoryComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
 
+
   }
-  ExportToPDF()  
-  {  
-    var data = document.getElementById('tblPillingHistory');  
-    html2canvas(data).then(canvas => {  
+
+  ExportToPDF() {
+    var data = document.getElementById('tblPillingHistory');
+    html2canvas(data).then(canvas => {
       // Few necessary setting options  
-      var imgWidth = 208;   
-      var pageHeight = 295;    
-      var imgHeight = canvas.height * imgWidth / canvas.width;  
-      var heightLeft = imgHeight;  
-  
-      const contentDataURL = canvas.toDataURL('image/png')  
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+      const contentDataURL = canvas.toDataURL('image/png')
       let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
-      var position = 0;  
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
       pdf.save('PillingSheet.pdf'); // Generated PDF   
-    });  
+    });
   }
   ExportTOExcel() {
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
@@ -87,9 +92,9 @@ export class PillingHistoryComponent implements OnInit {
     XLSX.writeFile(wb, 'PillingSheet.xlsx');
 
   }
-   backToProjectDetails():void{
-      this.router.navigateByUrl('/projectdetails');
-    }
+  backToProjectDetails(): void {
+    this.router.navigateByUrl('/projectdetails');
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddPillingComponent, {
       width: '1000px'
@@ -98,10 +103,11 @@ export class PillingHistoryComponent implements OnInit {
 
     });
 
-   
+
     dialogRef.afterClosed().subscribe(result => {
+       this.getAllProjectHistory();
       console.log('The dialog was closed texted');
-      this.router.navigateByUrl('/projectdetails');
+      //this.router.navigateByUrl('/projectdetails');
       // location.reload();
       // this.router.navigateByUrl('/projectdetails');
     });
