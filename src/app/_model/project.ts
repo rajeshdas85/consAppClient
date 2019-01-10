@@ -59,6 +59,7 @@ export class ProjectRecording {
 }
 
 export class ProjectBOM{
+    id:string;
     srNo:number;
     projId: string;
     desc:  string;

@@ -103,11 +103,11 @@ export class BomEntryComponent implements OnInit {
     XLSX.writeFile(wb, 'BOM.xlsx');
 
   }
+  
   startEdit(id,amount,desc,rate,qty) {
-  debugger;
    //console.log(element);
     const dialogRef = this.dialog.open(EditBOMComponent, {
-      data: {id: id, amount: amount, desc: desc, rate: rate, qty: qty}
+      data: {id: id, amount: amount, desc: desc, rate: rate, qty: qty}, width: '600px', //height: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -124,7 +124,6 @@ export class BomEntryComponent implements OnInit {
   }
   saveData() {
     if (this.amount && this.rate) {
-      debugger;
       this.projectBOM.desc = this.desc;
       this.projectBOM.qty = this.qty;
       this.projectBOM.rate = this.rate;
