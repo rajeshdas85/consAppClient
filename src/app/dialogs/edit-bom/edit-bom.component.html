@@ -1,7 +1,13 @@
 <div class="container">
   <!-- <h3 mat-dialog-title>Project id: {{data.id}}</h3> -->
  <h3 mat-dialog-title>Update BOM</h3>
-  <form class="mat-dialog-content" style="height: 400px!important;" (ngSubmit)="UpdateBOM()" #formControl="ngForm">
+  <form class="mat-dialog-content" style="height: 800px!important;" (ngSubmit)="UpdateBOM()" #formControl="ngForm">
+ <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" type="text"  placeholder="Title" [(ngModel)]="data.title" name="title" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
 
      <div class="form">
       <mat-form-field color="accent">

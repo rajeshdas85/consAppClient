@@ -47,6 +47,7 @@ export class EditBOMComponent implements OnInit {
     this.projectBOM.qty = this.data.qty;
     this.projectBOM.rate = this.data.rate;
     this.projectBOM.amount = this.data.amount;
+    this.projectBOM.title=this.data.title;
     //this.projectBOM.status = 0;
     let date = moment().utcOffset(330).format("DD-MM-YYYY hh:mm:ss");
     this.projectBOM.updateDate = date;

@@ -61,6 +61,7 @@ export class ProjectRecording {
 export class ProjectBOM{
     id:string;
     srNo:number;
+    title:string;
     projId: string;
     desc:  string;
     rate: number;

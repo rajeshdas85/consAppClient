@@ -30,13 +30,14 @@ export class BomEntryComponent implements OnInit {
   qty: number;
   amount: number;
   status: number;
+  title:string;
   private projectBOM: ProjectBOM = new ProjectBOM();
   isEditOther: boolean = false;
   lstSelectedProject = [];
   displayedColumns: string[] =
   [
-    'id','srNo', 'desc', 'rate',
-    'qty', 'amount',
+    'id','srNo', 'title','desc', 'rate',
+    'qty','updatedQty' ,'amount',
     'status', 'createDate', 'updateDate','actions'
   ];
 
@@ -104,10 +105,10 @@ export class BomEntryComponent implements OnInit {
 
   }
   
-  startEdit(id,amount,desc,rate,qty) {
+  startEdit(id,amount,desc,rate,qty,title) {
    //console.log(element);
     const dialogRef = this.dialog.open(EditBOMComponent, {
-      data: {id: id, amount: amount, desc: desc, rate: rate, qty: qty}, width: '600px', //height: '500px'
+      data: {id: id, amount: amount, desc: desc, rate: rate, qty: qty,title:title}, width: '600px', //height: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -125,10 +126,11 @@ export class BomEntryComponent implements OnInit {
   saveData() {
     if (this.amount && this.rate) {
       this.projectBOM.desc = this.desc;
+      this.projectBOM.title=this.title;
       this.projectBOM.qty = this.qty;
       this.projectBOM.rate = this.rate;
       this.projectBOM.amount = this.amount;
-      this.projectBOM.status = 0;
+      //this.projectBOM.status = 0;
       this.projectBOM.srNo = this.lstProjectBOM.length + 1;
       let date = moment().utcOffset(330).format("DD-MM-YYYY hh:mm:ss");
       this.projectBOM.createDate = date;
