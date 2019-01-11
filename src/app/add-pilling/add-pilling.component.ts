@@ -36,8 +36,8 @@ export class AddPillingComponent implements OnInit {
       this.lstSelectedProject.push(JSON.parse(localStorage.getItem("selectedProject")));
       console.log(this.lstSelectedProject);
     }
-    
-     if (localStorage.getItem("pHistoryView") == "P1") {
+
+    if (localStorage.getItem("pHistoryView") == "P1") {
       this.projectHistory.uniqueId = this.lstSelectedProject[0].pillingInfoByProjectID1[0].id;
     }
     if (localStorage.getItem("pHistoryView") == "P2") {
@@ -70,36 +70,38 @@ export class AddPillingComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(6)
       ]],
+
+
+
       pillingCutOfflevel: ['', [
-       Validators.required,
-       Validators.pattern("^[0-9]*$"),
-        Validators.minLength(3),
-        Validators.maxLength(6)
+        Validators.required,
+        // Validators.pattern("^[0-9]*$"),
+        //  Validators.pattern("/^[0-9]+\.?[0-9]*$/"),
+        //  Validators.pattern("^(\d*\.)?\d+$"),
+        Validators.minLength(1),
+        Validators.maxLength(128)
       ]]
     });
   }
   addPilling(): void {
+    debugger;
     this.projectHistory.projId = this.lstSelectedProject[0].id;//this.PillingAddForm.value.projID;
-    this.projectHistory.pileNo = this.PillingAddForm.value.projPillingNo +'-'+this.projectHistory.uniqueId ;
-   // this.projectHistory.pillingRigDetails = this.PillingAddForm.value.pillingRigDetails;
+    this.projectHistory.pileNo = this.PillingAddForm.value.projPillingNo + '-' + this.projectHistory.uniqueId;
+    // this.projectHistory.pillingRigDetails = this.PillingAddForm.value.pillingRigDetails;
     this.projectHistory.diaOfPile = this.PillingAddForm.value.diaOfPile;
-    this.projectHistory.pillingCutOfflevel = this.PillingAddForm.value.pillingCutOfflevel;
+    this.projectHistory.pillingCutOfflevel = parseFloat(this.PillingAddForm.value.pillingCutOfflevel);
+    if (!this.projectHistory.pillingCutOfflevel) {
+      this.messageService.show("Please Enter a valid CutOff Value", MessageType.Warn);
+      return;
+    }
     this.projectService.addProjectHistory(this.projectHistory)
       .pipe(first())
       .subscribe(
       data => {
-
-       // console.log("Ok");
         this.messageService.show("Pilling Added successfully", MessageType.Success)
-        // this.projectService.getAllProjectHistory(this.projectHistory.uniqueId).pipe(first()).subscribe(productEntry => {
-        //   console.log("First");
-        //   this.firstProductEntry = productEntry;
-        //   console.log(this.firstProductEntry);
-        // });
       },
       error => {
-        // this.loading = false;
-          this.messageService.show(error.error.message, MessageType.Error)
+        this.messageService.show(error.error.message, MessageType.Error)
       });
 
 
