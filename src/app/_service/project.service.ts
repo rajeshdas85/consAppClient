@@ -45,7 +45,16 @@ export class ProjectService {
     //return this.http.get<Project[]>(`${environment.apiUrl}/projects`);
     return this.http.get<Project[]>(`/projects`);
   }
+ getAllProjectsSumTotal() {
+    //return this.http.get<any[]>(`${environment.apiUrl}/projects/getAllProjectsSumTotal`);
+    return this.http.get<any[]>(`/projects/getAllProjectsSumTotal`);
+  }
 
+  getAllProjectsCount() {
+    //return this.http.get<any[]>(`${environment.apiUrl}/projects/getAllProjectsCount`);
+     return this.http.get<any[]>(`/projects/getAllProjectsCount`);
+    
+  }
   getAllProjectHistory(uniqueId: string) {
     //return this.http.get<ProjectHistory[]>(`${environment.apiUrl}/projects/getAllProjectHistory/uniqueId/` + uniqueId);
     return this.http.get<ProjectHistory[]>(`/projects/getAllProjectHistory/uniqueId/` + uniqueId);
