@@ -19,14 +19,20 @@ import html2canvas from 'html2canvas';
 })
 export class PillingHistoryComponent implements OnInit {
   displayedColumns: string[] =
-  ['pileNo', 'dateOfStarting', 'dateOfEnding',
-    'pillingRigDetails', 'diaOfPile',
-    'boringStartTime', 'boringEndTime', 'depthOfBore',
-    'totalBoringTime', 'cageLoweringStartTime', 'cageLoweringEndTime',
-    'totalTimeForCageLowering', 'concretePourStartTime', 'concretePourEndTime',
-    'totalConcretePourTime', 'noOfTrimePiecesUsed', 'totalNoOfShiftsWorked',
+  [ 'srNo','pileNo', 'dateOfStarting', 'dateOfEnding','NameofContractor',
+    'pillingRigDetails', 'diaOfPile','casingToplevel','existingToplevel',
+    'pillingCutOfflevel','foundinglevel','emptyBoreDepth','depthOfBore',
+    'BoredepthfromCTL','BoredepthfromEGL','BoredepthfromCOL',
+    'Cagelengthrequired','ConcreteQuantityTherotical',
+    'ConcreteQuantityCUM','boringStartTime', 'boringEndTime',
+    'totalBoringTime', 
+    'cageLoweringStartTime', 'cageLoweringEndTime',
+    'totalTimeForCageLowering', 
+    'NoofTrimePiecesrequired', 'noOfTrimePiecesUsed',
+    'concretePourStartTime', 'concretePourEndTime',
+    'totalConcretePourTime', 'totalNoOfShiftsWorked',
     'noOfManpowerPRC', 'noOfManpowerContractor',
-    'pillingCutOfflevel', 'emptyBoreDepth'];
+   'TotalMnhoursPRC','TotalMnhoursCont'];
   firstProductEntry: any;
   dataSource: any;
   lstSelectedProject = [];
@@ -34,12 +40,14 @@ export class PillingHistoryComponent implements OnInit {
   @ViewChild('TABLE') table: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  
   constructor(public dialog: MatDialog,
     public router: Router,
     private messageService: MessageService,
     private projectService: ProjectService) { }
 
   ngOnInit() {
+    
     if (localStorage.getItem("selectedProject")) {
       this.lstSelectedProject.push(JSON.parse(localStorage.getItem("selectedProject")));
       console.log(this.lstSelectedProject);

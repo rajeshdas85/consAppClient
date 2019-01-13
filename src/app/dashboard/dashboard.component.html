@@ -15,7 +15,7 @@
                   <div class="card-footer">
                       <div class="stats">
                           <i class="material-icons text-danger">warning</i>
-                          <a href="#pablo">Sum Of Total ₹ {{totalSumOfProject[0][0].total}}</a>
+                          <a href="#pablo" *ngIf="totalSumOfProject.length>0">Sum Of Total ₹ {{totalSumOfProject[0][0].total}}</a>
                       </div>
                   </div>
               </div>
