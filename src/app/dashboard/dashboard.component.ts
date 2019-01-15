@@ -11,7 +11,9 @@ import { ProjectService } from "app/_service/project.service";
 })
 export class DashboardComponent implements OnInit {
   totalProjectCtn: any;
-  totalSumOfProject= [];
+  totalSumOfProject = [];
+  text: any;
+  JSONData: any;
   constructor(
     private projectService: ProjectService
   ) { }
@@ -157,13 +159,62 @@ export class DashboardComponent implements OnInit {
   getProjectCtnAndTotalSum(): void {
 
     this.projectService.getAllProjectsSumTotal().pipe(first()).subscribe(sum => {
-        this.totalSumOfProject.push(sum);
-       // console.log(this.totalSumOfProject[0][0].total);
+      this.totalSumOfProject.push(sum);
+      // console.log(this.totalSumOfProject[0][0].total);
     });
     this.projectService.getAllProjectsCount().pipe(first()).subscribe(ctn => {
       this.totalProjectCtn = ctn;
-     // console.log(this.totalProjectCtn);
+      // console.log(this.totalProjectCtn);
     });
+
+  }
+  csvJSON(csvText) {
+    var lines = csvText.split("\n");
+
+    var result = [];
+
+    var headers = lines[0].split(",");
+    //console.log(headers);
+    for (var i = 1; i < lines.length - 1; i++) {
+
+      var obj = {};
+      var currentline = lines[i].split(",");
+
+      for (var j = 0; j < headers.length; j++) {
+        obj[headers[j]] = currentline[j];
+      }
+
+      result.push(obj);
+
+    }
+
+    //return result; //JavaScript object
+    //console.log(JSON.stringify(result)); //JSON
+    this.JSONData = JSON.stringify(result);
+     this.projectService.addProjectRecordingIngInBulk(result)
+        .pipe(first())
+        .subscribe(
+        data => {
+          debugger;
+          console.log("enserted");
+          // this.messageService.show("BOM Added successfully", MessageType.Success);
+          // this.getAllProjectBOMData();
+          // this.clearAllVal();
+        },
+        error => {
+         // this.messageService.show(error.error.message, MessageType.Error);
+        });
+  }
+
+  convertFile(input) {
+    const reader = new FileReader();
+    reader.readAsText(input.files[0]);
+    reader.onload = () => {
+      let text = reader.result;
+      this.text = text;
+      console.log(text);
+      this.csvJSON(text);
+    };
 
   }
 

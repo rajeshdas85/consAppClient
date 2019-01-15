@@ -74,7 +74,10 @@ export class ProjectService {
    // return this.http.get<ProjectBOM[]>(`${environment.apiUrl}/projects/getAllAddedProjectBOMByProjectID/`+ projId);
     return this.http.get<ProjectBOM[]>(`/projects/getAllAddedProjectBOMByProjectID/`+ projId);
   }
-
+  addProjectRecordingIngInBulk(any: Object) {
+      //return this.http.post(`${environment.apiUrl}/projects/addProjectRecordingIngInBulk`, any);
+     return this.http.post(`/projects/addProjectRecordingIngInBulk`, any);
+    }
    addProjectBOM(projectBOM: ProjectBOM) {
     //return this.http.post(`${environment.apiUrl}/projects/addProjectBOM`, projectBOM);
     return this.http.post(`/projects/addProjectBOM`, projectBOM);
