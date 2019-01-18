@@ -49,6 +49,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { CompanydetailsComponent } from 'app/companydetails/companydetails.component';
  import { ProjectsComponent } from 'app/projects/projects.component';
 import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.component';
@@ -101,7 +102,7 @@ import { EditBOMComponent } from 'app/dialogs/edit-bom/edit-bom.component';
   MatTreeModule,
   FormsModule,
   ReactiveFormsModule,
-  
+  NgxMatSelectSearchModule,
   RouterModule.forChild(AdminLayoutRoutes),
   ], 
   entryComponents: [ AddnewprojectComponent,ProjectmanagerComponent,AddPillingComponent,BomEntryComponent,EditBOMComponent],

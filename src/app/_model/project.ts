@@ -3,20 +3,20 @@ export class Project {
     projName: string;
     projDesc: string;
     projManagerId: string;
-    projval:number;
-    commenceDate:Date;
-    completionDate:Date;
-    client:string;
-    location:string;
+    projval: number;
+    commenceDate: Date;
+    completionDate: Date;
+    client: string;
+    location: string;
     pillingInfoByProjectID1: PillingInfoByProjectID1[];
     pillingInfoByProjectID2: PillingInfoByProjectID2[];
     otherInfoByProjectID: OtherInfoByProjectID[];
     updateDate: string;
-  //  DateTest: Date;
+    //  DateTest: Date;
 
 }
 export class PillingInfoByProjectID1 {
-    id:string;
+    id: string;
     desc: string;
     qty: number;
     rate: number;
@@ -25,7 +25,7 @@ export class PillingInfoByProjectID1 {
     financialStatus: number;
 }
 export class PillingInfoByProjectID2 {
-    id:string;
+    id: string;
     desc: string;
     qty: number;
     rate: number;
@@ -34,7 +34,7 @@ export class PillingInfoByProjectID2 {
     financialStatus: number;
 }
 export class OtherInfoByProjectID {
-    id:string;
+    id: string;
     desc: string;
     qty: number;
     rate: number;
@@ -58,18 +58,18 @@ export class ProjectRecording {
     remarks: string;
 }
 
-export class ProjectBOM{
-    id:string;
-    srNo:number;
-    title:string;
+export class ProjectBOM {
+    id: string;
+    srNo: number;
+    title: string;
     projId: string;
-    desc:  string;
+    desc: string;
     rate: number;
     qty: number;
     amount: number;
     status: number;
-    createDate:  string;
-    updateDate:  string;
+    createDate: string;
+    updateDate: string;
 }
 export class PileEntry {
     projId: string;
@@ -89,9 +89,18 @@ export class PileEntry {
     siteEnggId: string;
     concretePouring: Date;
 }
+export class EMPData {
+    id: string;
+    firstName: string;
+}
+
+/** list of banks */
+export const EMPS: EMPData[] = [
+    { id: 'A', firstName: 'Bank A (Switzerland)' }
+];
 
 export class ProjectHistory {
-    uniqueId:string;
+    uniqueId: string;
     projId: string;
     pileNo: string;
     dateOfStarting: Date;

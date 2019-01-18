@@ -9,6 +9,66 @@
           <div class="row">
             <h4><b>Add Project</b></h4>
           </div>
+          <!-- <div class="row">
+              <h3>Single emp selection</h3>
+              <p>
+              <mat-form-field>
+                <mat-select [formControl]="empCtrl" placeholder="Emp" #singleSelectEmp>
+                  <mat-option>
+                    <ngx-mat-select-search [formControl]="empFilterCtrl"></ngx-mat-select-search>
+                  </mat-option>
+
+                  <mat-option *ngFor="let emp of filteredEmps | async" [value]="emp">
+                    {{emp.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              Selected emp: {{empCtrl.value?.name}}
+            </p>
+          </div> -->
+          <div class="row">
+            <h3>Single selection</h3>
+            <p>
+              <mat-form-field>
+                <mat-select [formControl]="bankCtrl" placeholder="Bank" #singleSelect>
+                  <mat-option>
+                    <ngx-mat-select-search [formControl]="bankFilterCtrl"></ngx-mat-select-search>
+                  </mat-option>
+
+                  <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
+                    {{bank.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              Selected Bank: {{bankCtrl.value?.name}}
+            </p>
+
+          </div>
+          <div class="row">
+
+            <h3>Multiple selection</h3>
+            <p>
+              <mat-form-field>
+                <mat-select [formControl]="bankMultiCtrl" placeholder="Banks" [multiple]="true" #multiSelect>
+                  <ngx-mat-select-search [formControl]="bankMultiFilterCtrl"></ngx-mat-select-search>
+                  <mat-option *ngFor="let bank of filteredBanksMulti | async" [value]="bank">
+                    {{bank.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              Selected Banks:
+            </p>
+            <!-- <ul *ngFor="let bank of bankMultiCtrl?.value">
+              <li>{{bank.name}}</li>
+            </ul> -->
+
+          </div>
           <div class="row">
             <div class="col-md-6">
               <mat-form-field>
@@ -29,18 +89,16 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
-              <!-- <mat-form-field>
-                <input matInput placeholder="Enter Managerid as  5c21446351b1f00d74255334" type="text" formControlName="projManagerId">
-                <mat-error>
-                  {{errors.projManagerId}}
-                </mat-error>
-              </mat-form-field> -->
 
+
+
+           
+
+            <div class="col-md-6">
               <mat-form-field>
                 <mat-select placeholder="select Project Manager" [(value)]="selectedValue" name="PMName">
                   <mat-option *ngFor="let PMName of lstPMName" [value]="PMName.id">
-                    {{PMName.firstName}}  {{PMName.lastName}}
+                    {{PMName.firstName}} {{PMName.lastName}}
                   </mat-option>
                 </mat-select>
                 <mat-error>
@@ -48,6 +106,8 @@
                 </mat-error>
               </mat-form-field>
             </div>
+
+
             <div class="col-md-6">
               <mat-form-field>
                 <input matInput placeholder="project Value in Rs" type="number" formControlName="projval">
@@ -104,6 +164,7 @@
               <button mat-stroked-button mat-dialog-close>Cancel</button>
             </mat-dialog-actions>
           </div>
+
         </form>
       </div>
     </div>
