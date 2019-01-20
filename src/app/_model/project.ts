@@ -89,15 +89,25 @@ export class PileEntry {
     siteEnggId: string;
     concretePouring: Date;
 }
-export class EMPData {
+export interface EMPData {
     id: string;
     firstName: string;
 }
 
-/** list of banks */
-export const EMPS: EMPData[] = [
-    { id: 'A', firstName: 'Bank A (Switzerland)' }
-];
+export interface ProjectData {
+    id: string;
+    projName: string;
+}
+
+export class ProjectMapping{
+    id:string;
+    projectId:string;
+    projectName:string;
+    empId:string;
+    empName:string;
+    PM:string;
+    SiteEngg:string;
+}
 
 export class ProjectHistory {
     uniqueId: string;

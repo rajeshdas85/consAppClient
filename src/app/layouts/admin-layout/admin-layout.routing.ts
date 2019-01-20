@@ -14,68 +14,73 @@ import { ProjectDetailsComponent } from 'app/project-details/project-details.com
 import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
 import { PillingHistoryComponent } from 'app/pilling-history/pilling-history.component';
 import { ProjectRecordingComponent } from "app/project-recording/project-recording.component";
+import { LoginComponent } from 'app/login/login.component';
+import { AuthGuard } from 'app/_guards';
 //import { AddProjectComponent } from 'app/add-project/add-project.component';
 
 export const AdminLayoutRoutes: Routes = [
-    // {
-    //   path: '',
-    //   children: [ {
-    //     path: 'dashboard',
-    //     component: DashboardComponent
-    // }]}, {
-    // path: '',
-    // children: [ {
-    //   path: 'userprofile',
-    //   component: UserProfileComponent
-    // }]
-    // }, {
-    //   path: '',
-    //   children: [ {
-    //     path: 'icons',
-    //     component: IconsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'notifications',
-    //         component: NotificationsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'maps',
-    //         component: MapsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'typography',
-    //         component: TypographyComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'upgrade',
-    //         component: UpgradeComponent
-    //     }]
-    // }
-    { path: 'dashboard',                      component: DashboardComponent },
-    { path: 'user-profile',                   component: UserProfileComponent },
-    { path: 'table-list',                     component: TableListComponent },
-    { path: 'typography',                     component: TypographyComponent },
-    { path: 'icons',                          component: IconsComponent },
-    { path: 'maps',                           component: MapsComponent },
-    { path: 'notifications',                  component: NotificationsComponent },
-    { path: 'upgrade',                        component: UpgradeComponent },
-    { path: 'Companydetails',                 component: CompanydetailsComponent },
-    { path: 'project',                       component: ProjectsComponent },
-    { path: 'projectdetails',                 component: ProjectDetailsComponent },
-    { path: 'projectmanager',                 component: ProjectmanagerComponent },
-    { path: 'projecthistory',                 component: PillingHistoryComponent },
-    { path: 'projectrecording/:pileNo',       component: ProjectRecordingComponent },
+  // {
+  //   path: '',
+  //   children: [ {
+  //     path: 'dashboard',
+  //     component: DashboardComponent
+  // }]}, {
+  // path: '',
+  // children: [ {
+  //   path: 'userprofile',
+  //   component: UserProfileComponent
+  // }]
+  // }, {
+  //   path: '',
+  //   children: [ {
+  //     path: 'icons',
+  //     component: IconsComponent
+  //     }]
+  // }, {
+  //     path: '',
+  //     children: [ {
+  //         path: 'notifications',
+  //         component: NotificationsComponent
+  //     }]
+  // }, {
+  //     path: '',
+  //     children: [ {
+  //         path: 'maps',
+  //         component: MapsComponent
+  //     }]
+  // }, {
+  //     path: '',
+  //     children: [ {
+  //         path: 'typography',
+  //         component: TypographyComponent
+  //     }]
+  // }, {
+  //     path: '',
+  //     children: [ {
+  //         path: 'upgrade',
+  //         component: UpgradeComponent
+  //     }]
+  // }
 
-    
-    
+
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard] },
+  { path: 'user-profile', component: UserProfileComponent },
+  { path: 'table-list', component: TableListComponent },
+  { path: 'typography', component: TypographyComponent },
+  { path: 'icons', component: IconsComponent },
+  { path: 'maps', component: MapsComponent },
+  { path: 'notifications', component: NotificationsComponent },
+  { path: 'upgrade', component: UpgradeComponent },
+  { path: 'Companydetails', component: CompanydetailsComponent },
+  { path: 'project', component: ProjectsComponent },
+  { path: 'projectdetails', component: ProjectDetailsComponent },
+  { path: 'projectmanager', component: ProjectmanagerComponent },
+  { path: 'projecthistory', component: PillingHistoryComponent },
+  { path: 'projectrecording/:pileNo', component: ProjectRecordingComponent },
+
+
+
   //  { path: 'addProjct',                       component: AddProjectComponent },
-    
+
 ];

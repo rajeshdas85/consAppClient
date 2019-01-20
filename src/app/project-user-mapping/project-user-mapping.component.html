@@ -1,0 +1,133 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title">Project Mapping</h4>
+      </div>
+
+      <div class="card-body">
+          <div class="container-fluid">
+              <div class="row">
+              </div>
+              <div class="row mat-elevation-z12"  #TABLE>
+          
+                <table id="tblProjectMapping" mat-table #table [dataSource]="dataSource" matSort style="width:100%">
+        
+
+           
+                  <ng-container matColumnDef="projectName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Project Name</th>
+                    <!-- <td mat-cell *matCellDef="let element"> {{element.dateOfEnding.split('T')[0].split('+')[0]}}:{{element.dateOfEnding.split('T')[1].split('+')[0]}}</td> -->
+                    <td mat-cell *matCellDef="let element"> {{element.projectName}}</td>
+                  </ng-container>
+          
+              
+                  <ng-container matColumnDef="empName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+                    <td mat-cell *matCellDef="let element"> {{element.empName}} </td>
+                  </ng-container>
+           
+                  <ng-container matColumnDef="PM">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Is A Project manager </th>
+                    <td mat-cell *matCellDef="let element"> {{element.PM}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="SiteEngg">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Is A Site Engg</th>
+                    <td mat-cell *matCellDef="let element"> {{element.SiteEngg}} </td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="actions">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+                      <td mat-cell *matCellDef="let element">
+                        <button mat-button matTooltip="delete" color="accent"
+                        (click)="startDelete(element.id)"
+                        >
+                                                                                         <mat-icon>delete</mat-icon>
+                                                                                    </button>
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell  [style.display]="'none'"  *matHeaderCellDef mat-sort-header> ID </th>
+                        <!-- <td mat-cell *matCellDef="let element"> {{element.dateOfStarting.split('T')[0].split('+')[0]}}:{{element.dateOfStarting.split('T')[1].split('+')[0]}}</td> -->
+                        <td mat-cell [style.display]="'none'"  *matCellDef="let element"> {{element.id}}</td>
+                      </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[3,5, 10, 20,100,1000]" showFirstLastButtons></mat-paginator>
+          
+              </div>
+            </div>
+
+        <form [formGroup]="ProjectAddForm" novalidate>
+          <div class="row">
+            <h3><b>Add Project User Mapping</b></h3>
+          </div>
+          <div class="row">
+            <h5>Select Name</h5>
+            <p>
+              <mat-form-field>
+                <mat-select [formControl]="empCtrl" placeholder="Emp Name" #singleSelectemp>
+                  <mat-option>
+                    <ngx-mat-select-search [formControl]="empFilterCtrl"></ngx-mat-select-search>
+                  </mat-option>
+
+                  <mat-option *ngFor="let emp of filteredEmps | async" [value]="emp">
+                    {{emp.firstName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              Selected Name: {{empCtrl.value?.firstName}}
+            </p>
+
+          </div>
+          <div class="row">
+            <h5>Select Project</h5>
+            <p>
+              <mat-form-field>
+                <mat-select [formControl]="projectMultiCtrl" placeholder="Projects" [multiple]="true" #multiSelectEmp>
+                  <ngx-mat-select-search [formControl]="projectMultiFilterCtrl"></ngx-mat-select-search>
+                  <mat-option *ngFor="let proj of filteredProjectsMulti | async" [value]="proj">
+                    {{proj.projName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              Selected projects:
+            </p>
+            <ul *ngFor="let proj of projectMultiCtrl.value">
+              <li>{{proj.projName}}</li>
+            </ul>
+          </div>
+          <div class="row">
+              <div class="col-md-4">
+                  <h4><b>Select User Type </b></h4>
+              </div>
+              <div class="col-md-4">
+                  <mat-radio-group [(ngModel)]="selectedRadioBtnEmp">
+                      <mat-radio-button *ngFor="let a of arrayRadioBtn" [value]="a.name" (change)="radioChange($event)">
+                          {{a.name}}
+                      </mat-radio-button>
+                  </mat-radio-group>
+              </div>
+          </div>
+
+
+          <div class="row" class="pull-right">
+            <mat-dialog-actions align="right">
+              <button mat-stroked-button class="pull-right btn btn-danger" [disabled]="ProjectAddForm.invalid" (click)="addProjectMapping()">
+                Save</button>
+              <button mat-stroked-button mat-dialog-close>Cancel</button>
+            </mat-dialog-actions>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

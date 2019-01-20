@@ -8,8 +8,12 @@
             <div class="col-md-10"></div>
             <div class="col-md-2"> <button mat-raised-button (click)="showPMDialog()" color="primary">Add New Project Manager+</button></div>
         </div>
+        <div class="row">
+            <div class="col-md-10"></div>
+            <div class="col-md-2"> <button mat-raised-button (click)="showUserMappingDialog()" color="primary">Add  Project User Mapping+</button></div>
+        </div>
         <div class="row" >
-            <div class="col-md-4" *ngFor="let item of lstProduct; let i = index">
+            <div class="col-md-4" *ngFor="let item of lstProject; let i = index">
                 <div class="card card-chart" >
                     <div class="card-header card-header-success">
                         <h4 class="card-title">{{item.projName}}</h4>

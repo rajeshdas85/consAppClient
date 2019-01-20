@@ -33,6 +33,9 @@ import { AddPillingComponent } from './add-pilling/add-pilling.component';
 import { ProjectRecordingComponent } from './project-recording/project-recording.component';
 import { BomEntryComponent } from './bom-entry/bom-entry.component';
 import { EditBOMComponent } from './dialogs/edit-bom/edit-bom.component';
+import { ProjectUserMappingComponent } from './project-user-mapping/project-user-mapping.component';
+import { LoginComponent } from './login/login.component';
+import { LoginPopUpComponent } from './login-pop-up/login-pop-up.component';
 
 //import { ProjectmanagerComponent } from './projectmanager/projectmanager.component';
 //import { AddProjectComponent } from './add-project/add-project.component';
@@ -55,6 +58,9 @@ import { EditBOMComponent } from './dialogs/edit-bom/edit-bom.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+   // LoginPopUpComponent,
+   //  LoginComponent,
+    //ProjectUserMappingComponent,
     //EditBOMComponent,
     //BomEntryComponent,
    // ProjectRecordingComponent,

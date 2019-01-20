@@ -60,6 +60,9 @@ import { AddPillingComponent } from 'app/add-pilling/add-pilling.component';
 import { ProjectRecordingComponent } from "app/project-recording/project-recording.component";
 import { BomEntryComponent } from "app/bom-entry/bom-entry.component";
 import { EditBOMComponent } from 'app/dialogs/edit-bom/edit-bom.component';
+import { ProjectUserMappingComponent } from 'app/project-user-mapping/project-user-mapping.component';
+import { LoginComponent } from 'app/login/login.component';
+import { LoginPopUpComponent } from 'app/login-pop-up/login-pop-up.component';
 
 @NgModule({
   imports: [
@@ -105,8 +108,9 @@ import { EditBOMComponent } from 'app/dialogs/edit-bom/edit-bom.component';
   NgxMatSelectSearchModule,
   RouterModule.forChild(AdminLayoutRoutes),
   ], 
-  entryComponents: [ AddnewprojectComponent,ProjectmanagerComponent,AddPillingComponent,BomEntryComponent,EditBOMComponent],
+  entryComponents: [ AddnewprojectComponent,ProjectmanagerComponent,AddPillingComponent,BomEntryComponent,EditBOMComponent,ProjectUserMappingComponent,LoginPopUpComponent],
   declarations: [
+    LoginComponent,
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,
@@ -124,9 +128,9 @@ import { EditBOMComponent } from 'app/dialogs/edit-bom/edit-bom.component';
     AddPillingComponent,
     ProjectRecordingComponent,
     BomEntryComponent,
-    EditBOMComponent
-    
-
+    EditBOMComponent,
+    ProjectUserMappingComponent,
+    LoginPopUpComponent
   ],
   
 })

@@ -25,11 +25,11 @@ export class ProjectDetailsComponent implements OnInit {
   private pillingInfoByProjectID1: PillingInfoByProjectID1 = new PillingInfoByProjectID1();
   private pillingInfoByProjectID2: PillingInfoByProjectID2 = new PillingInfoByProjectID2();
 
-  private otherInfoByProjectID: OtherInfoByProjectID = new OtherInfoByProjectID();
+  
   lstSelectedProject = [];
   arrPillingInfoByProjectID1 = [];
   arrPillingInfoByProjectID2 = [];
-  arrOtherInfoByProjectID = [];
+  //arrOtherInfoByProjectID = [];
 
   arrayRadioBtn = [
     { "name": "Yes", ID: "D1", "checked": false },
@@ -50,13 +50,7 @@ export class ProjectDetailsComponent implements OnInit {
     rate: 0,
     amount: 0
   };
-  otherData = {
-    id: '',
-    desc: '',
-    qty: 0,
-    rate: 0,
-    amount: 0
-  };
+
   chkUpdate: any;
   selectedRadioBtn: string;
   isSelectedRadioBtnYes: boolean = false;
@@ -82,8 +76,8 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit() {
      this.addComponent();
-
-    this.selectedRadioBtn = this.arrayRadioBtn[1].name;
+debugger;
+    this.selectedRadioBtn = this.arrayRadioBtn[0].name;
     if (localStorage.getItem("selectedProject")) {
       this.lstSelectedProject.push(JSON.parse(localStorage.getItem("selectedProject")));
       //  console.log(this.lstSelectedProject);
@@ -115,15 +109,6 @@ export class ProjectDetailsComponent implements OnInit {
         this.isEditP2 = true;
       }
 
-      this.otherData.desc = this.lstSelectedProject[0].otherInfoByProjectID[0].desc;
-      this.otherData.rate = this.lstSelectedProject[0].otherInfoByProjectID[0].rate;
-      this.otherData.qty = this.lstSelectedProject[0].otherInfoByProjectID[0].qty;
-      this.otherData.amount = this.lstSelectedProject[0].otherInfoByProjectID[0].amount;
-      this.otherData.id = this.lstSelectedProject[0].otherInfoByProjectID[0].id;
-
-      if (this.otherData.id != null) {
-        this.isEditOther = true;
-      }
     }
 
   }
@@ -163,9 +148,9 @@ export class ProjectDetailsComponent implements OnInit {
   changeRateP2() {
     this.P2Data.amount = this.P2Data.rate * this.P2Data.qty;
   }
-  changeRateOther() {
-    this.otherData.amount = this.otherData.rate * this.otherData.qty;
-  }
+  // changeRateOther() {
+  //   this.otherData.amount = this.otherData.rate * this.otherData.qty;
+  // }
   updatePillingDataWithUniqueID() {
     //Pilling 1
 
@@ -192,22 +177,12 @@ export class ProjectDetailsComponent implements OnInit {
     this.pillingInfoByProjectID2.amount = this.pillingInfoByProjectID2.rate * this.pillingInfoByProjectID2.qty;
     this.arrPillingInfoByProjectID2.push(this.pillingInfoByProjectID2);
 
-    //Others
-    //this.otherId = Guid.create();
-    this.otherInfoByProjectID.id = this.otherData.id;
 
-    this.otherInfoByProjectID.desc = this.otherData.desc;
-    this.otherInfoByProjectID.financialStatus = 0;
-    this.otherInfoByProjectID.physicalStatus = 0;
-    this.otherInfoByProjectID.rate = this.otherData.rate;
-    this.otherInfoByProjectID.qty = this.otherData.qty;
-    this.otherInfoByProjectID.amount = this.otherInfoByProjectID.rate * this.otherInfoByProjectID.qty;
-    this.arrOtherInfoByProjectID.push(this.otherInfoByProjectID);
 
     //Assigning P1,P2 and others
     this.project.pillingInfoByProjectID1 = this.arrPillingInfoByProjectID1;
     this.project.pillingInfoByProjectID2 = this.arrPillingInfoByProjectID2;
-    this.project.otherInfoByProjectID = this.arrOtherInfoByProjectID;
+   // this.project.otherInfoByProjectID = this.arrOtherInfoByProjectID;
 
     this.projectService.updateProject(this.project).pipe(first()).subscribe(projct => {
       this.chkUpdate = projct;
@@ -254,26 +229,12 @@ export class ProjectDetailsComponent implements OnInit {
     this.pillingInfoByProjectID2.amount = this.pillingInfoByProjectID2.rate * this.pillingInfoByProjectID2.qty;
     this.arrPillingInfoByProjectID2.push(this.pillingInfoByProjectID2);
 
-    //Others
-    //checking other amount is greater then 0 then creating GUID
-    if (this.otherData.amount > 0) {
-      this.otherId = Guid.create();
-      this.otherInfoByProjectID.id = this.otherId.value;
-
-      this.otherInfoByProjectID.desc = this.otherData.desc;
-      this.otherInfoByProjectID.financialStatus = 0;
-      this.otherInfoByProjectID.physicalStatus = 0;
-      this.otherInfoByProjectID.rate = this.otherData.rate;
-      this.otherInfoByProjectID.qty = this.otherData.qty;
-      this.otherInfoByProjectID.amount = this.otherInfoByProjectID.rate * this.otherInfoByProjectID.qty;
-      this.arrOtherInfoByProjectID.push(this.otherInfoByProjectID);
-    }
-
+  
 
     //Assigning P1,P2 and others
     this.project.pillingInfoByProjectID1 = this.arrPillingInfoByProjectID1;
     this.project.pillingInfoByProjectID2 = this.arrPillingInfoByProjectID2;
-    this.project.otherInfoByProjectID = this.arrOtherInfoByProjectID;
+    //this.project.otherInfoByProjectID = this.arrOtherInfoByProjectID;
 
     this.projectService.updateProject(this.project).pipe(first()).subscribe(projct => {
       this.chkUpdate = projct;

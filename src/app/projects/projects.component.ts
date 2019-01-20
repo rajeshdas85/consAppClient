@@ -4,13 +4,15 @@ import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.componen
 
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { Project, OtherInfoByProjectID, PileEntry, ProjectRecording, ProjectHistory, MessageType } from "app/_model/project";
+import { Project, OtherInfoByProjectID, PileEntry, ProjectRecording, ProjectHistory, MessageType, EMPData } from "app/_model/project";
 import { ProjectService } from "app/_service/project.service";
 import * as moment from 'moment/moment';
 import { ProjectDetailsComponent } from "app/project-details/project-details.component";
 import { MessageService } from "app/_service/message.service";
 import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
 import { ProjectManagerService } from 'app/_service/project-manager.service';
+import { ProjectUserMappingComponent } from 'app/project-user-mapping/project-user-mapping.component';
+import { UserService } from 'app/_service/user.service';
 
 
 @Component({
@@ -46,22 +48,30 @@ export class ProjectsComponent implements OnInit {
   isSelectedRadioBtnYes: boolean = false;
   isAddMorePilling: boolean = false;
   panelOpenState = false;
-  lstProduct: any;
+  lstProject: any;
   lstPMName: any;
+  lstProjectByName:any;
+  lstUser:any;
+  public empData: Array<EMPData> = [];
   constructor(public dialog: MatDialog,
     public router: Router,
     private messageService: MessageService,
     private projectManagerService: ProjectManagerService,
+    private userService: UserService,
     private projectService: ProjectService) { }
   ngOnInit() {
-
     // this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
-    //   this.lstProduct = product;
+    //   this.lstProject = product;
     // });
+    //this. showUserMappingDialog();
+
     this.getAllAddProject();
 
+    //this.getAllPMDetails();
 
+    this.getAllPgetAllUserByName();
 
+    this.getAllProjects();
 
     this.selectedRadioBtn = this.arrayRadioBtn[1].name;
     this.projectHistory.projId = "5c18cc7043d443319c9c00d9";
@@ -261,11 +271,34 @@ export class ProjectsComponent implements OnInit {
     this.isAddMorePilling = false;
   }
   getAllAddProject(): void {
-    this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
-      this.lstProduct = product;
+    this.projectService.getLastAddProject().pipe(first()).subscribe(project => {
+      this.lstProject = project;
     });
   }
+getAllPMDetails():void{
+  this.projectManagerService.getPMByName().pipe(first()).subscribe(PMName => {
+    this.lstPMName = PMName;
+    localStorage.setItem("PMData",JSON.stringify(this.lstPMName));
+  });
+}
 
+getAllProjects():void{
+  this.projectService.getAllProjects().pipe(first()).subscribe(PName => {
+    this.lstProjectByName = PName;
+    localStorage.setItem("ProjectData",JSON.stringify(this.lstProjectByName));
+  });
+}
+
+
+
+getAllPgetAllUserByName():void{
+
+  this.userService.getAllUserByName().pipe(first()).subscribe(user => {
+   
+    this.lstUser = user;
+    localStorage.setItem("UserData",JSON.stringify(this.lstUser));
+  });
+}
   openDialog(): void {
     const dialogRef = this.dialog.open(AddnewprojectComponent, {
       width: '1000px'
@@ -284,6 +317,19 @@ export class ProjectsComponent implements OnInit {
 
   showPMDialog(): void {
     const dialogRef = this.dialog.open(ProjectmanagerComponent, {
+      width: '1000px'
+      // ,
+      // height: '450px'
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  showUserMappingDialog(): void {
+    const dialogRef = this.dialog.open(ProjectUserMappingComponent, {
       width: '1000px'
       // ,
       // height: '450px'
