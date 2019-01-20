@@ -15,7 +15,8 @@ import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.compo
 import { PillingHistoryComponent } from 'app/pilling-history/pilling-history.component';
 import { ProjectRecordingComponent } from "app/project-recording/project-recording.component";
 import { LoginComponent } from 'app/login/login.component';
-import { AuthGuard } from 'app/_guards';
+import { AuthGuard } from 'app/_guards/auth.guard';
+
 //import { AddProjectComponent } from 'app/add-project/add-project.component';
 
 export const AdminLayoutRoutes: Routes = [
