@@ -2,12 +2,12 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-danger">
-                <h4 class="card-title">Add new Project Manager</h4>
+                <h4 class="card-title">Add New User</h4>
             </div>
             <div class="card-body">
-                <form [formGroup]="PMRegistrationForm" novalidate>
+                <form [formGroup]="UserRegistrationForm" novalidate>
                     <div class="row">
-                        <h4><b>Project Manager Entry</b></h4>
+                        <h4><b>User Entry</b></h4>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -39,8 +39,7 @@
                         </div>
                         <div class="col-md-6">
                             <mat-form-field>
-                                <input matInput placeholder="Confirm email address" type="email" formControlName="confirmEmail"
-                                    [errorStateMatcher]="confirmValidParentMatcher">
+                                <input matInput placeholder="Confirm email address" type="email" formControlName="confirmEmail" [errorStateMatcher]="confirmValidParentMatcher">
                                 <mat-error>
                                     {{errors.confirmEmail}}
                                 </mat-error>
@@ -59,8 +58,7 @@
                         </div>
                         <div class="col-md-6">
                             <mat-form-field>
-                                <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword"
-                                    [errorStateMatcher]="confirmValidParentMatcher">
+                                <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword" [errorStateMatcher]="confirmValidParentMatcher">
                                 <mat-error>
                                     {{errors.confirmPassword}}
                                 </mat-error>
@@ -85,12 +83,25 @@
                             </mat-form-field>
                         </div>
                     </div>
-
+                    <div class="row" style="padding: 4px;">
+                         <div class="col-md-6">
+                        <mat-checkbox formControlName="isAdmin">is Admin</mat-checkbox>
+                         </div>
+                          <div class="col-md-6">
+                            <label style="padding: 4px;">Employee Type: </label>
+                            <!-- If 1:Admin 2:Project manager,3: SiteEngg  -->
+                            <mat-radio-group formControlName="empTypeId">
+                                <!-- <mat-radio-button checked value="1">Admin</mat-radio-button> -->
+                                <mat-radio-button value="2">Project Manager</mat-radio-button>
+                                <mat-radio-button value="3">Site Engg</mat-radio-button>
+                            </mat-radio-group>
+                            </div> 
+                    </div>
+                
                     <div class="row" class="pull-right">
                         <mat-dialog-actions align="right">
-                            <button mat-stroked-button  class="pull-right btn btn-danger" [disabled]="PMRegistrationForm.invalid"
-                                (click)="register()">Register</button>
-                            <button mat-stroked-button  mat-dialog-close>Cancel</button>
+                            <button mat-stroked-button class="pull-right btn btn-danger" [disabled]="UserRegistrationForm.invalid" (click)="register()">Register</button>
+                            <button mat-stroked-button mat-dialog-close>Cancel</button>
                         </mat-dialog-actions>
                     </div>
 

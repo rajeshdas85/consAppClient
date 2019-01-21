@@ -195,7 +195,6 @@ export class DashboardComponent implements OnInit {
         .pipe(first())
         .subscribe(
         data => {
-          debugger;
           console.log("enserted");
           // this.messageService.show("BOM Added successfully", MessageType.Success);
           // this.getAllProjectBOMData();

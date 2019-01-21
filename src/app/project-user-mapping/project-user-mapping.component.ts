@@ -268,7 +268,6 @@ startDelete(id){
   addProjectMapping(): void {
     this.projectmapping = [];
     for (let index = 0; index < this.projectMultiCtrl.value.length; index++) {
-      debugger;
       this.objProjectMapping = new ProjectMapping();
       const element = this.projectMultiCtrl.value[index];
       this.objProjectMapping.projectId = element.id;

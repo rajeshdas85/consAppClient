@@ -8,5 +8,6 @@ export class ProjectManager {
     password:string;
     photo:string;
     idProof:string;
+    isAdmin:boolean;
    
 }

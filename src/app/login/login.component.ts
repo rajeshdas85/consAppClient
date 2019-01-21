@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { LoginPopUpComponent } from 'app/login-pop-up/login-pop-up.component';
+import { FormBuilder } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
+import { AuthenticationService } from "app/_service/authentication.service";
+import { MessageService } from "app/_service/message.service";
+import { FormControl } from "@angular/forms";
+import { Validators } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
+import { first } from "rxjs/internal/operators/first";
+import { MessageType } from "app/_model/project";
 
 @Component({
   selector: 'app-login',
@@ -8,25 +17,67 @@ import { LoginPopUpComponent } from 'app/login-pop-up/login-pop-up.component';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(public dialog: MatDialog) { }
+  dialogRef: any;
+  returnUrl: string;
+  loginForm: FormGroup;
+  submitted = false;
+  constructor(
+    // private dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private messageService: MessageService,
+    private authenticationService: AuthenticationService,
+  ) { }
 
   ngOnInit() {
-    this.showLoginPopUpDialog();
+     this.submitted = true;
+    this.loginForm = this.formBuilder.group({
+
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+    // reset login status
+    this.authenticationService.logout();
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+  }
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
-  showLoginPopUpDialog(): void {
-   
-    const dialogRef = this.dialog.open(LoginPopUpComponent, {
-      width: '1000px', disableClose: true
-      // ,
-      // height: '450px'
+  onSubmit() {
+    if (this.loginForm.invalid) {
+      return;
+    }
 
-    });
+    this.authenticationService.login(this.f.email.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+      data => {
+         this.router.navigateByUrl("/admin");
+        //  localStorage.setItem('currentUser', JSON.stringify(user));
+        // if (localStorage.getItem("currentUser")) {
+        //   this.router.navigateByUrl("/adminLayout");
+        // }
+        // else {
+        //   this.router.navigate([this.returnUrl]);
+        // }
+      },
+      error => {
+        this.messageService.show(error.error.message, MessageType.Error);
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    let email = this.loginForm.value.email;
+    let password = this.loginForm.value.password;
+    // let x= this.data.email;
+    //  let Y= this.data.password;
+
+    //this.dialog.closeAll();
   }
-
 }

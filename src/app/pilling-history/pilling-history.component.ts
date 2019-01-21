@@ -101,7 +101,7 @@ export class PillingHistoryComponent implements OnInit {
 
   }
   backToProjectDetails(): void {
-    this.router.navigateByUrl('/projectdetails');
+    this.router.navigateByUrl('/admin/projectdetails');
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddPillingComponent, {

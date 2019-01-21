@@ -50,10 +50,10 @@ export class AdminLayoutComponent implements OnInit {
            elemMainPanel.scrollTop = 0;
            elemSidebar.scrollTop = 0;
       });
-      if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
-          let ps = new PerfectScrollbar(elemMainPanel);
-          ps = new PerfectScrollbar(elemSidebar);
-      }
+    //   if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+    //       let ps = new PerfectScrollbar(elemMainPanel);
+    //       ps = new PerfectScrollbar(elemSidebar);
+    //   }
   }
   ngAfterViewInit() {
       this.runOnRouteChange();

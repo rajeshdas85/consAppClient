@@ -45,7 +45,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Pile No </th>
           <td mat-cell *matCellDef="let element">
             <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-              <a routerLink="/projectrecording/{{element.pileNo}}" routerLinkActive="active-link">{{element.pileNo.split('-')[0]}}</a>
+              <a routerLink="/admin/projectrecording/{{element.pileNo}}" routerLinkActive="active-link">{{element.pileNo.split('-')[0]}}</a>
             </div>
           </td>
         </ng-container>

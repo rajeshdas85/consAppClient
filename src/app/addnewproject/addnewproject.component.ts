@@ -53,7 +53,6 @@ export class AddnewprojectComponent implements OnInit {
 
   ngOnInit() {
     this.projectManagerService.getPMByName().pipe(first()).subscribe(PMName => {
-      debugger;
       this.lstPMName = PMName;
 
       this.selectedValue = this.lstPMName[0].id;
@@ -170,7 +169,7 @@ export class AddnewprojectComponent implements OnInit {
         data => {
           this.messageService.show("Project added successfully.", MessageType.Success);
           //location.reload();
-          this.router.navigateByUrl('/project');
+          this.router.navigateByUrl('/admin/project');
 
           // this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
           //   this.lstProduct = product;

@@ -1,35 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatRadioChange } from '@angular/material';
 import { MessageService } from 'app/_service/message.service';
 import { MessageType } from 'app/_model/project';
 import { ProjectManagerService } from 'app/_service/project-manager.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators, regExps, ConfirmValidParentMatcher, errorMessages } from 'app/_model/custom-validators';
-import { ProjectManager } from 'app/_model/project-manager';
 import { first } from 'rxjs/operators';
+import { User } from "app/_model/user";
+import { UserService } from "app/_service/user.service";
 
 @Component({
-    selector: 'app-projectmanager',
-    templateUrl: './projectmanager.component.html',
-    styleUrls: ['./projectmanager.component.scss']
+    selector: 'app-UserEntry',
+    templateUrl: './UserEntry.component.html',
+    styleUrls: ['./UserEntry.component.scss']
 })
-export class ProjectmanagerComponent implements OnInit {
-    PMRegistrationForm: FormGroup;
+export class UserEntryComponent implements OnInit {
+    UserRegistrationForm: FormGroup;
 
     confirmValidParentMatcher = new ConfirmValidParentMatcher();
 
     errors = errorMessages;
-    projectMan = new ProjectManager();
+    userInfo = new User();
+
+  
     constructor(
-        public dialogRef: MatDialogRef<ProjectmanagerComponent>,
+        public dialogRef: MatDialogRef<UserEntryComponent>,
         private messageService: MessageService,
         private projectManagerService: ProjectManagerService,
+        private userService:UserService,
         private formBuilder: FormBuilder
     ) {
         this.createForm();
     }
 
     ngOnInit() {
+      
     }
     onNoClick(): void {
         this.dialogRef.close();
@@ -37,8 +42,9 @@ export class ProjectmanagerComponent implements OnInit {
     displaySaveMeg(): void {
         this.messageService.show("Project Added  BOM Below", MessageType.Success);
     }
+
     createForm() {
-        this.PMRegistrationForm = this.formBuilder.group({
+        this.UserRegistrationForm = this.formBuilder.group({
             firstName: ['', [
                 Validators.required,
                 Validators.minLength(1),
@@ -53,6 +59,12 @@ export class ProjectmanagerComponent implements OnInit {
                 Validators.required,
                 Validators.minLength(1),
                 Validators.maxLength(128)
+            ]],
+            isAdmin:['', [
+               // Validators.required
+            ]],
+            empTypeId:['', [
+               Validators.required
             ]],
             idProof: ['', [
                 Validators.required,
@@ -77,24 +89,28 @@ export class ProjectmanagerComponent implements OnInit {
     }
 
     register(): void {
-      
-        this.projectMan.firstName = this.PMRegistrationForm.value.firstName;
-        this.projectMan.lastName = this.PMRegistrationForm.value.lastName;
-        // this.projectMan.contactNo=this.userRegistrationForm.value.contactNo;
-        this.projectMan.email = this.PMRegistrationForm.value.emailGroup.email;
-        this.projectMan.password = this.PMRegistrationForm.value.passwordGroup.password;
-        this.projectMan.idProof = this.PMRegistrationForm.value.idProof;
-        this.projectMan.photo = this.PMRegistrationForm.value.photo;
-        //console.log(this.projectMan);
+        this.userInfo.firstName = this.UserRegistrationForm.value.firstName;
+        this.userInfo.lastName = this.UserRegistrationForm.value.lastName;
+        this.userInfo.fullName = this.userInfo.firstName +" "+this.userInfo.lastName;
+        // this.userInfo.contactNo=this.UserRegistrationForm.value.contactNo;
+        this.userInfo.email = this.UserRegistrationForm.value.emailGroup.email;
+        this.userInfo.password = this.UserRegistrationForm.value.passwordGroup.password;
+        this.userInfo.idProof = this.UserRegistrationForm.value.idProof;
+        this.userInfo.photo = this.UserRegistrationForm.value.photo;
 
-        this.projectManagerService.addProjectManager(this.projectMan)
+        this.userInfo.isAdmin = this.UserRegistrationForm.value.isAdmin?true:false;
+        this.userInfo.empTypeId  = this.UserRegistrationForm.value.empTypeId;
+
+        //console.log(this.userInfo);
+
+        this.userService.register(this.userInfo)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.messageService.show("Project manager added successfully.", MessageType.Success);
+                    this.messageService.show("User added successfully.", MessageType.Success);
                 },
                 error => {
-                    this.messageService.show("Error in adding Project manager.", MessageType.Error);
+                    this.messageService.show("Error in adding User.", MessageType.Error);
                 });
 
     }

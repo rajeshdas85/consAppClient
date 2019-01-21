@@ -9,10 +9,10 @@ import { ProjectService } from "app/_service/project.service";
 import * as moment from 'moment/moment';
 import { ProjectDetailsComponent } from "app/project-details/project-details.component";
 import { MessageService } from "app/_service/message.service";
-import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
 import { ProjectManagerService } from 'app/_service/project-manager.service';
 import { ProjectUserMappingComponent } from 'app/project-user-mapping/project-user-mapping.component';
 import { UserService } from 'app/_service/user.service';
+import { UserEntryComponent } from "app/UserEntry/UserEntry.component";
 
 
 @Component({
@@ -24,7 +24,6 @@ export class ProjectsComponent implements OnInit {
   isDisplayBOM: boolean = false;
   loading: boolean;
   private project: Project = new Project();
-  //private pillingInfoByProjectID: PillingInfoByProjectID = new PillingInfoByProjectID();
   private otherInfoByProjectID: OtherInfoByProjectID = new OtherInfoByProjectID();
   private pileEntry: PileEntry = new PileEntry();
   private projectRecording: ProjectRecording = new ProjectRecording();
@@ -49,9 +48,12 @@ export class ProjectsComponent implements OnInit {
   isAddMorePilling: boolean = false;
   panelOpenState = false;
   lstProject: any;
+  lstAllowedProject= [];
   lstPMName: any;
   lstProjectByName:any;
   lstUser:any;
+  isAdmin:boolean=false;
+  empID:any;
   public empData: Array<EMPData> = [];
   constructor(public dialog: MatDialog,
     public router: Router,
@@ -60,16 +62,21 @@ export class ProjectsComponent implements OnInit {
     private userService: UserService,
     private projectService: ProjectService) { }
   ngOnInit() {
+    if (localStorage.getItem("currentUser")) {
+          this.empID = JSON.parse(localStorage.getItem("currentUser"))._id;
+          this.isAdmin = JSON.parse(localStorage.getItem("currentUser")).isAdmin;
+          this.getMappingProjectByempId();
+        }
     // this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
     //   this.lstProject = product;
     // });
     //this. showUserMappingDialog();
 
-    this.getAllAddProject();
+    //this.getAllAddProject();
 
     //this.getAllPMDetails();
 
-    this.getAllPgetAllUserByName();
+    this.getAllPagetAllUserByName();
 
     this.getAllProjects();
 
@@ -270,11 +277,30 @@ export class ProjectsComponent implements OnInit {
     // this.containers.push(this.containers.length);
     this.isAddMorePilling = false;
   }
-  getAllAddProject(): void {
-    this.projectService.getLastAddProject().pipe(first()).subscribe(project => {
-      this.lstProject = project;
+  getMappingProjectByempId():void{
+    this.lstAllowedProject=[];
+     this.projectService.getMappingProjectByempId(this.empID).pipe(first()).subscribe(project => {
+      for (var index = 0; index < project.length; index++) {
+        var element = project[index].projectId;
+        this.lstAllowedProject.push(element);
+      }
+      if(this.lstAllowedProject.length>0){
+      this.getAllAddProject();
+      }
     });
   }
+
+  getAllAddProject():void{
+      this.projectService.getProjectDtlByLoginId(this.lstAllowedProject.join()).pipe(first()).subscribe(project => {
+            this.lstProject = project;
+          });
+  }
+
+  // getAllAddProject(): void {
+  //   this.projectService.getLastAddProject().pipe(first()).subscribe(project => {
+  //     this.lstProject = project;
+  //   });
+  // }
 getAllPMDetails():void{
   this.projectManagerService.getPMByName().pipe(first()).subscribe(PMName => {
     this.lstPMName = PMName;
@@ -291,7 +317,7 @@ getAllProjects():void{
 
 
 
-getAllPgetAllUserByName():void{
+getAllPagetAllUserByName():void{
 
   this.userService.getAllUserByName().pipe(first()).subscribe(user => {
    
@@ -308,15 +334,15 @@ getAllPgetAllUserByName():void{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAllAddProject();
+      this.getMappingProjectByempId();
       //  console.log('The dialog was closed texted');
       //location.reload();
       // this.router.navigateByUrl('/dashboard');
     });
   }
 
-  showPMDialog(): void {
-    const dialogRef = this.dialog.open(ProjectmanagerComponent, {
+  showUserDialog(): void {
+    const dialogRef = this.dialog.open(UserEntryComponent, {
       width: '1000px'
       // ,
       // height: '450px'
@@ -324,6 +350,7 @@ getAllPgetAllUserByName():void{
     });
 
     dialogRef.afterClosed().subscribe(result => {
+        this.getMappingProjectByempId();
       console.log('The dialog was closed');
     });
   }
@@ -337,6 +364,7 @@ getAllPgetAllUserByName():void{
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.getMappingProjectByempId();
       console.log('The dialog was closed');
     });
   }
@@ -345,7 +373,7 @@ getAllPgetAllUserByName():void{
     localStorage.setItem("selectedProject", JSON.stringify(arrSelectedProject));
     // this.messageService.show("Add BOM Below",MessageType.Info);
     // this.isDisplayBOM = true;
-    this.router.navigateByUrl('/projectdetails');
+    this.router.navigateByUrl('/admin/projectdetails');
   }
 
   radioChange(event: MatRadioChange) {

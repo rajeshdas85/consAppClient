@@ -76,7 +76,6 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit() {
      this.addComponent();
-debugger;
     this.selectedRadioBtn = this.arrayRadioBtn[0].name;
     if (localStorage.getItem("selectedProject")) {
       this.lstSelectedProject.push(JSON.parse(localStorage.getItem("selectedProject")));
@@ -128,7 +127,7 @@ debugger;
 
   goToHistory(categoryId) {
     localStorage.setItem("pHistoryView",categoryId);
-    this.router.navigateByUrl('/projecthistory');
+    this.router.navigateByUrl('/admin/projecthistory');
   }
   radioChange(event: MatRadioChange) {
     // console.log(event);
@@ -187,7 +186,7 @@ debugger;
     this.projectService.updateProject(this.project).pipe(first()).subscribe(projct => {
       this.chkUpdate = projct;
       this.messageService.show("Pilling Updated successfully", MessageType.Success)
-      this.router.navigateByUrl('/project');
+      this.router.navigateByUrl('/admin/project');
     });
   }
 
@@ -240,7 +239,7 @@ debugger;
       this.chkUpdate = projct;
       this.messageService.show("Pilling Updated successfully", MessageType.Success)
       // console.log(this.chkUpdate);
-      this.router.navigateByUrl('/project');
+      this.router.navigateByUrl('/admin/project');
     });
   }
   // onNoClick(): void {

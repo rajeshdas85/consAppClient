@@ -14,11 +14,11 @@ export interface ChildrenItems {
     icon?: string;
   }
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
-    { path: '/table-list', title: 'Administration',  icon:'content_paste', class: '' },
-    { path: '/project', title: 'Projects',  icon:'Projects', class: '' },
-    { path: '/typography', title: 'Projects Manager',  icon:'library_books', class: '',
+    { path: '/admin/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
+    { path: '/admin/user-profile', title: 'User Profile',  icon:'person', class: '' },
+    { path: '/admin/table-list', title: 'Administration',  icon:'content_paste', class: '' },
+    { path: '/admin/project', title: 'Projects',  icon:'Projects', class: '' },
+    { path: '/admin/typography', title: 'Projects Manager',  icon:'library_books', class: '',
      children: [
             {
                 path: 'station_management',
@@ -26,10 +26,10 @@ export const ROUTES: RouteInfo[] = [
                 icon: 'parent'
             }
         ] },
-    { path: '/Companydetails', title: 'Company',  icon:'description', class: '' },
-    { path: '/icons', title: 'Task Manager',  icon:'bubble_chart', class: '' },
-    { path: '/maps', title: 'Hierarchy Controller',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' }
+    { path: '/admin/Companydetails', title: 'Company',  icon:'description', class: '' },
+    { path: '/admin/icons', title: 'Task Manager',  icon:'bubble_chart', class: '' },
+    { path: '/admin/maps', title: 'Hierarchy Controller',  icon:'location_on', class: '' },
+    { path: '/admin/notifications', title: 'Notifications',  icon:'notifications', class: '' }
 
 ];
 

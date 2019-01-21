@@ -10,8 +10,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
   getAllUserByName() {
-    return this.http.get<any[]>(`${environment.apiUrl}/users/getAllUserByName`);
-   // return this.http.get<any[]>(`/users/getAllUserByName`);
+    //return this.http.get<any[]>(`${environment.apiUrl}/users/getAllUserByName`);
+    return this.http.get<any[]>(`/users/getAllUserByName`);
    }
    getAll() {
     //return this.http.get<User[]>(`${environment.apiUrl}/users`);

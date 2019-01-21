@@ -54,20 +54,19 @@ import { CompanydetailsComponent } from 'app/companydetails/companydetails.compo
  import { ProjectsComponent } from 'app/projects/projects.component';
 import { AddnewprojectComponent } from 'app/addnewproject/addnewproject.component';
 import { ProjectDetailsComponent } from "app/project-details/project-details.component";
-import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
+import { UserEntryComponent } from 'app/UserEntry/UserEntry.component';
 import { PillingHistoryComponent } from 'app/pilling-history/pilling-history.component';
 import { AddPillingComponent } from 'app/add-pilling/add-pilling.component';
 import { ProjectRecordingComponent } from "app/project-recording/project-recording.component";
 import { BomEntryComponent } from "app/bom-entry/bom-entry.component";
 import { EditBOMComponent } from 'app/dialogs/edit-bom/edit-bom.component';
 import { ProjectUserMappingComponent } from 'app/project-user-mapping/project-user-mapping.component';
-import { LoginComponent } from 'app/login/login.component';
-import { LoginPopUpComponent } from 'app/login-pop-up/login-pop-up.component';
+//import { LoginComponent } from 'app/login/login.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
-   
     MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
@@ -108,9 +107,9 @@ import { LoginPopUpComponent } from 'app/login-pop-up/login-pop-up.component';
   NgxMatSelectSearchModule,
   RouterModule.forChild(AdminLayoutRoutes),
   ], 
-  entryComponents: [ AddnewprojectComponent,ProjectmanagerComponent,AddPillingComponent,BomEntryComponent,EditBOMComponent,ProjectUserMappingComponent,LoginPopUpComponent],
+  entryComponents: [ AddnewprojectComponent,UserEntryComponent,AddPillingComponent,BomEntryComponent,EditBOMComponent,ProjectUserMappingComponent],
   declarations: [
-    LoginComponent,
+  //  LoginComponent,
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,
@@ -123,14 +122,13 @@ import { LoginPopUpComponent } from 'app/login-pop-up/login-pop-up.component';
     ProjectsComponent,
     AddnewprojectComponent,
     ProjectDetailsComponent,
-    ProjectmanagerComponent,
+    UserEntryComponent,
     PillingHistoryComponent,
     AddPillingComponent,
     ProjectRecordingComponent,
     BomEntryComponent,
     EditBOMComponent,
     ProjectUserMappingComponent,
-    LoginPopUpComponent
   ],
   
 })

@@ -11,11 +11,11 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { CompanydetailsComponent } from 'app/companydetails/companydetails.component';
 import { ProjectsComponent } from 'app/projects/projects.component';
 import { ProjectDetailsComponent } from 'app/project-details/project-details.component';
-import { ProjectmanagerComponent } from 'app/projectmanager/projectmanager.component';
 import { PillingHistoryComponent } from 'app/pilling-history/pilling-history.component';
 import { ProjectRecordingComponent } from "app/project-recording/project-recording.component";
-import { LoginComponent } from 'app/login/login.component';
+//import { LoginComponent } from 'app/login/login.component';
 import { AuthGuard } from 'app/_guards/auth.guard';
+import { UserEntryComponent } from "app/UserEntry/UserEntry.component";
 
 //import { AddProjectComponent } from 'app/add-project/add-project.component';
 
@@ -64,21 +64,26 @@ export const AdminLayoutRoutes: Routes = [
   // }
 
 
-  { path: 'login', component: LoginComponent },
+  // { path: 'login', component: LoginComponent },
+   {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
   { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard] },
-  { path: 'user-profile', component: UserProfileComponent },
-  { path: 'table-list', component: TableListComponent },
-  { path: 'typography', component: TypographyComponent },
-  { path: 'icons', component: IconsComponent },
-  { path: 'maps', component: MapsComponent },
-  { path: 'notifications', component: NotificationsComponent },
-  { path: 'upgrade', component: UpgradeComponent },
-  { path: 'Companydetails', component: CompanydetailsComponent },
-  { path: 'project', component: ProjectsComponent },
-  { path: 'projectdetails', component: ProjectDetailsComponent },
-  { path: 'projectmanager', component: ProjectmanagerComponent },
-  { path: 'projecthistory', component: PillingHistoryComponent },
-  { path: 'projectrecording/:pileNo', component: ProjectRecordingComponent },
+  { path: 'user-profile', component: UserProfileComponent,canActivate:[AuthGuard] },
+  { path: 'table-list', component: TableListComponent ,canActivate:[AuthGuard]},
+  { path: 'typography', component: TypographyComponent ,canActivate:[AuthGuard]},
+  { path: 'icons', component: IconsComponent ,canActivate:[AuthGuard]},
+  { path: 'maps', component: MapsComponent,canActivate:[AuthGuard] },
+  { path: 'notifications', component: NotificationsComponent ,canActivate:[AuthGuard]},
+  { path: 'upgrade', component: UpgradeComponent,canActivate:[AuthGuard] },
+  { path: 'Companydetails', component: CompanydetailsComponent,canActivate:[AuthGuard] },
+  { path: 'project', component: ProjectsComponent ,canActivate:[AuthGuard]},
+  { path: 'projectdetails', component: ProjectDetailsComponent,canActivate:[AuthGuard] },
+  { path: 'userentry', component: UserEntryComponent,canActivate:[AuthGuard] },
+  { path: 'projecthistory', component: PillingHistoryComponent,canActivate:[AuthGuard] },
+  { path: 'projectrecording/:pileNo', component: ProjectRecordingComponent,canActivate:[AuthGuard] },
 
 
 

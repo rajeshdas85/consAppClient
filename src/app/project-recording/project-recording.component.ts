@@ -60,7 +60,7 @@ export class ProjectRecordingComponent implements OnInit {
       });
   }
   backToProjectHistory(): void {
-    this.router.navigateByUrl('/projecthistory');
+    this.router.navigateByUrl('/admin/projecthistory');
   }
 
   ExportToPDF() {

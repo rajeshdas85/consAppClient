@@ -84,7 +84,6 @@ export class AddPillingComponent implements OnInit {
     });
   }
   addPilling(): void {
-    debugger;
     this.projectHistory.projId = this.lstSelectedProject[0].id;//this.PillingAddForm.value.projID;
     this.projectHistory.pileNo = this.PillingAddForm.value.projPillingNo + '-' + this.projectHistory.uniqueId;
     // this.projectHistory.pillingRigDetails = this.PillingAddForm.value.pillingRigDetails;
