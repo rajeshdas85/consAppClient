@@ -76,7 +76,7 @@ export class ProjectsComponent implements OnInit {
 
     //this.getAllPMDetails();
 
-    this.getAllPagetAllUserByName();
+    this.getAllPageAllUserByName();
 
     this.getAllProjects();
 
@@ -317,7 +317,7 @@ getAllProjects():void{
 
 
 
-getAllPagetAllUserByName():void{
+getAllPageAllUserByName():void{
 
   this.userService.getAllUserByName().pipe(first()).subscribe(user => {
    
@@ -350,7 +350,7 @@ getAllPagetAllUserByName():void{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        this.getMappingProjectByempId();
+        this.getAllPageAllUserByName();
       console.log('The dialog was closed');
     });
   }
