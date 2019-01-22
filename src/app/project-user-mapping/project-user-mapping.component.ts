@@ -33,20 +33,20 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
   @ViewChild(MatPaginator) paginator: MatPaginator;
   lstProjectRecording: any;
   arrProductNappping: any;
+  isEnableSubmit:boolean=true;
   displayedColumns: string[] =
-    [
-       'projectName',
-      'empName', 'PM', 
-      'SiteEngg','actions','id',
-    ];
+  [
+    'projectName',
+    'empName', 'PM',
+    'SiteEngg', 'actions', 'id',
+  ];
 
   PMdata: any;
   UserData: any;
   ProjectData: any;
   ProjectAddForm: FormGroup;
   JSONData: any;
-  isSelectedRadioBtn: boolean = false;
-  selectedRadioBtnEmp: string;
+ 
 
   protected _onDestroy = new Subject<void>();
 
@@ -109,6 +109,7 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
         this.arrUserData.push(element);
       }
     }
+    
     if (localStorage.getItem("ProjectData")) {
       this.ProjectData = JSON.parse(localStorage.getItem("ProjectData"));
       for (let index = 0; index < this.ProjectData.length; index++) {
@@ -122,7 +123,7 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
 
   ngOnInit() {
     this.getAllMappingProject();
-    this.selectedRadioBtnEmp = this.arrayRadioBtn[0].name;
+    
 
     // set initial selection
     this.empCtrl.setValue(this.arrUserData[0]);
@@ -161,17 +162,7 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
 
   }
 
-  radioChange(event: MatRadioChange) {
-    // console.log(event);
-    // console.log(event.value);
-    if (event.value == "ProjectManager") {
-      this.isSelectedRadioBtn = true;
-    }
-    else {
-      this.isSelectedRadioBtn = false;
-    }
-
-  }
+ 
 
 
   ngAfterViewInit() {
@@ -193,7 +184,9 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
         // the form control (i.e. _initializeSelection())
         // this needs to be done after the filteredBanks are loaded initially
         // and after the mat-option elements are available
+        if(this.multiSelectEmp){
         this.multiSelectEmp.compareWith = (a: ProjectData, b: ProjectData) => a && b && a.id === b.id;
+        }
       });
   }
   protected filterProjectsMulti() {
@@ -223,7 +216,9 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
         // the form control (i.e. _initializeSelection())
         // this needs to be done after the filteredBanks are loaded initially
         // and after the mat-option elements are available
+        if(this.singleSelectemp){
         this.singleSelectemp.compareWith = (a: EMPData, b: EMPData) => a && b && a.id === b.id;
+        }
       });
   }
   protected filterEmps() {
@@ -243,29 +238,37 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
       this.arrUserData.filter(user => user.firstName.toLowerCase().indexOf(search) > -1)
     );
   }
-startDelete(id){
- // alert("Are You sure to delete?"+id);
-  this.projectService.deleteProjectMapping(id).pipe(first())
-  .subscribe(
-    data => {
-      this.messageService.show("Project mapping  deleted successfully.", MessageType.Success);
-      this.getAllMappingProject();
-    },
-    error => {
-      this.messageService.show("Error in adding Project Mapping.", MessageType.Error);
-    });
+  startDelete(id) {
+    // alert("Are You sure to delete?"+id);
+    this.projectService.deleteProjectMapping(id).pipe(first())
+      .subscribe(
+      data => {
+        this.messageService.show("Project mapping  deleted successfully.", MessageType.Success);
+        this.getAllMappingProject();
+      },
+      error => {
+        this.messageService.show("Error in adding Project Mapping.", MessageType.Error);
+      });
 
-}
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   createForm() {
     this.ProjectAddForm = this.formBuilder.group({
+      empTypeId: ['', [
+        Validators.required
+      ]]
     });
   }
 
   addProjectMapping(): void {
+    
+    if(!this.projectMultiCtrl.value){
+       this.messageService.show("Please select a project to procced", MessageType.Error);
+       return;
+    }
     this.projectmapping = [];
     for (let index = 0; index < this.projectMultiCtrl.value.length; index++) {
       this.objProjectMapping = new ProjectMapping();
@@ -275,7 +278,7 @@ startDelete(id){
       this.objProjectMapping.empId = this.empCtrl.value.id;
       this.objProjectMapping.empName = this.empCtrl.value.firstName;
 
-      if (this.isSelectedRadioBtn) {
+      if (this.ProjectAddForm.value.empTypeId == "2") {
         this.objProjectMapping.PM = "Yes";
         this.objProjectMapping.SiteEngg = "No";
       }
@@ -290,14 +293,14 @@ startDelete(id){
     this.projectService.mapProjectUser(this.projectmapping)
       .pipe(first())
       .subscribe(
-        data => {
-          this.getAllMappingProject();
-          this.messageService.show("Project mapping  added successfully.", MessageType.Success);
-          
-        },
-        error => {
-          this.messageService.show("Error in adding Project Mapping.", MessageType.Error);
-        });
+      data => {
+        this.getAllMappingProject();
+        this.messageService.show("Project mapping  added successfully.", MessageType.Success);
+
+      },
+      error => {
+        this.messageService.show("Error in adding Project Mapping.", MessageType.Error);
+      });
 
   }
 }
