@@ -11,9 +11,11 @@ import { ProjectService } from "app/_service/project.service";
 })
 export class DashboardComponent implements OnInit {
   totalProjectCtn: any;
-  totalSumOfProject = [];
+  totalSumOfProject: number;
   text: any;
   JSONData: any;
+  empID: any;
+  lstProject: any;
   constructor(
     private projectService: ProjectService
   ) { }
@@ -75,7 +77,14 @@ export class DashboardComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.getProjectCtnAndTotalSum();
+
+    if (localStorage.getItem("currentUser")) {
+      this.empID = JSON.parse(localStorage.getItem("currentUser"))._id;
+      //  this.isAdmin = JSON.parse(localStorage.getItem("currentUser")).isAdmin;
+      this.getMappingProjectByempId();
+    }
+
+    // this.getProjectCtnAndTotalSum();
     /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
     const dataDailySalesChart: any = {
@@ -156,17 +165,27 @@ export class DashboardComponent implements OnInit {
     //start animation for the Emails Subscription Chart
     this.startAnimationForBarChart(websiteViewsChart);
   }
+  getMappingProjectByempId(): void {
+    this.totalSumOfProject = 0;
+    this.projectService.getMappingProjectByempId(this.empID).pipe(first()).subscribe(project => {
+      this.lstProject = project;
+      this.totalProjectCtn = this.lstProject.length;
+      for (var index = 0; index < this.lstProject.length; index++) {
+        let element = this.lstProject[index].projval;
+        this.totalSumOfProject = this.totalSumOfProject + parseInt(this.lstProject[index].projval);
+      }
+      localStorage.setItem("AllProjectData", JSON.stringify(this.lstProject));
+    });
+  }
   getProjectCtnAndTotalSum(): void {
-
-    this.projectService.getAllProjectsSumTotal().pipe(first()).subscribe(sum => {
-      this.totalSumOfProject.push(sum);
-      // console.log(this.totalSumOfProject[0][0].total);
-    });
-    this.projectService.getAllProjectsCount().pipe(first()).subscribe(ctn => {
-      this.totalProjectCtn = ctn;
-      // console.log(this.totalProjectCtn);
-    });
-
+    // this.projectService.getAllProjectsSumTotal().pipe(first()).subscribe(sum => {
+    //   this.totalSumOfProject.push(sum);
+    //   // console.log(this.totalSumOfProject[0][0].total);
+    // });
+    // this.projectService.getAllProjectsCount().pipe(first()).subscribe(ctn => {
+    //   this.totalProjectCtn = ctn;
+    //   // console.log(this.totalProjectCtn);
+    // });
   }
   csvJSON(csvText) {
     var lines = csvText.split("\n");
@@ -191,18 +210,18 @@ export class DashboardComponent implements OnInit {
     //return result; //JavaScript object
     //console.log(JSON.stringify(result)); //JSON
     this.JSONData = JSON.stringify(result);
-     this.projectService.addProjectRecordingIngInBulk(result)
-        .pipe(first())
-        .subscribe(
-        data => {
-          console.log("enserted");
-          // this.messageService.show("BOM Added successfully", MessageType.Success);
-          // this.getAllProjectBOMData();
-          // this.clearAllVal();
-        },
-        error => {
-         // this.messageService.show(error.error.message, MessageType.Error);
-        });
+    this.projectService.addProjectRecordingIngInBulk(result)
+      .pipe(first())
+      .subscribe(
+      data => {
+        //    console.log("enserted");
+        // this.messageService.show("BOM Added successfully", MessageType.Success);
+        // this.getAllProjectBOMData();
+        // this.clearAllVal();
+      },
+      error => {
+        // this.messageService.show(error.error.message, MessageType.Error);
+      });
   }
 
   convertFile(input) {
