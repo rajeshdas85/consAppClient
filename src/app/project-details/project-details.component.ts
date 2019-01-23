@@ -239,7 +239,7 @@ export class ProjectDetailsComponent implements OnInit {
       this.chkUpdate = projct;
       this.messageService.show("Pilling Updated successfully", MessageType.Success)
       // console.log(this.chkUpdate);
-      this.router.navigateByUrl('/admin/project');
+      this.router.navigateByUrl('/admin/dashboard');
     });
   }
   // onNoClick(): void {
