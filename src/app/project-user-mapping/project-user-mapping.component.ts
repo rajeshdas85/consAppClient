@@ -276,7 +276,7 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
       this.objProjectMapping.projectId = element.id;
       this.objProjectMapping.projectName = element.projName;
       this.objProjectMapping.empId = this.empCtrl.value.id;
-      this.objProjectMapping.empName = this.empCtrl.value.firstName;
+      this.objProjectMapping.empName = this.empCtrl.value.fullName;
 
       if (this.ProjectAddForm.value.empTypeId == "2") {
         this.objProjectMapping.PM = "Yes";

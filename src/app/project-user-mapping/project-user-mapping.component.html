@@ -75,13 +75,13 @@
                   </mat-option>
 
                   <mat-option *ngFor="let emp of filteredEmps | async" [value]="emp">
-                    {{emp.firstName}}
+                    {{emp.fullName}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
             </p>
             <p>
-              Selected Name: {{empCtrl.value?.firstName}}
+              Selected Name: {{empCtrl.value?.fullName}}
             </p>
 
           </div>
