@@ -91,7 +91,7 @@ export class PileEntry {
 }
 export interface EMPData {
     id: string;
-    firstName: string;
+    fullName: string;
 }
 
 export interface ProjectData {

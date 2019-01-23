@@ -235,7 +235,7 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
     }
     // filter the banks
     this.filteredEmps.next(
-      this.arrUserData.filter(user => user.firstName.toLowerCase().indexOf(search) > -1)
+      this.arrUserData.filter(user => user.fullName.toLowerCase().indexOf(search) > -1)
     );
   }
   startDelete(id) {
