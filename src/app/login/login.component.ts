@@ -10,6 +10,7 @@ import { Validators } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
 import { first } from "rxjs/internal/operators/first";
 import { MessageType } from "app/_model/project";
+import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private messageService: MessageService,
+    private spinnerService: Ng4LoadingSpinnerService,
     private authenticationService: AuthenticationService,
   ) { }
 
@@ -52,15 +54,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+   
     if (this.loginForm.invalid) {
       return;
     }
-
+     this.spinnerService.show();
     this.authenticationService.login(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe(
       data => {
+         setTimeout(()=>this.spinnerService.hide(),10000);
          this.router.navigateByUrl("/admin");
+         //this.spinnerService.hide();
+         
         //  localStorage.setItem('currentUser', JSON.stringify(user));
         // if (localStorage.getItem("currentUser")) {
         //   this.router.navigateByUrl("/adminLayout");
@@ -73,11 +79,5 @@ export class LoginComponent implements OnInit {
         this.messageService.show(error.error.message, MessageType.Error);
       });
 
-    let email = this.loginForm.value.email;
-    let password = this.loginForm.value.password;
-    // let x= this.data.email;
-    //  let Y= this.data.password;
-
-    //this.dialog.closeAll();
   }
 }

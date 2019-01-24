@@ -27,7 +27,6 @@ import { ProjectsComponent } from './projects/projects.component';
 import { AddnewprojectComponent } from './addnewproject/addnewproject.component';
 import { HttpClientModule } from "@angular/common/http";
 import { ProjectDetailsComponent } from './project-details/project-details.component';
-import {MatSnackBarModule} from "@angular/material";
 import { PillingHistoryComponent } from './pilling-history/pilling-history.component';
 import { AddPillingComponent } from './add-pilling/add-pilling.component';
 import { ProjectRecordingComponent } from './project-recording/project-recording.component';
@@ -35,7 +34,8 @@ import { BomEntryComponent } from './bom-entry/bom-entry.component';
 import { EditBOMComponent } from './dialogs/edit-bom/edit-bom.component';
 import { ProjectUserMappingComponent } from './project-user-mapping/project-user-mapping.component';
 import { LoginComponent } from './login/login.component';
-
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 //import { ProjectmanagerComponent } from './projectmanager/projectmanager.component';
 //import { AddProjectComponent } from './add-project/add-project.component';
@@ -51,6 +51,8 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     HttpClientModule,
     MatSnackBarModule,
+    Ng4LoadingSpinnerModule,
+    Ng4LoadingSpinnerModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })

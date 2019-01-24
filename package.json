@@ -47,6 +47,7 @@
     "jspdf": "^1.5.3",
     "moment": "^2.23.0",
     "ng-material-multilevel-menu": "^4.9.1",
+    "ng4-loading-spinner": "^1.2.3",
     "ngx-mat-select-search": "^1.5.1",
     "perfect-scrollbar": "1.1.0",
     "popper.js": "1.14.3",

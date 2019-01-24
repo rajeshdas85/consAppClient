@@ -17,3 +17,14 @@ padding:200px;background: navajowhite;
 .container{
     background: sandybrown;
 }
+.loader-overlay {
+    position: absolute;
+    width: 100%; 
+    top: 50%;
+    left: 43%;
+    opacity: 1;
+    z-index: 500000;
+}
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #ff5722;
+}
