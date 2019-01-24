@@ -90,17 +90,17 @@ export class AddPillingComponent implements OnInit {
     this.projectHistory.diaOfPile = this.PillingAddForm.value.diaOfPile;
     this.projectHistory.pillingCutOfflevel = parseFloat(this.PillingAddForm.value.pillingCutOfflevel);
     if (!this.projectHistory.pillingCutOfflevel) {
-      this.messageService.show("Please Enter a valid CutOff Value", MessageType.Warn);
+      this.messageService.showNotification("","","Please Enter a valid CutOff Value", MessageType.Warn);
       return;
     }
     this.projectService.addProjectHistory(this.projectHistory)
       .pipe(first())
       .subscribe(
       data => {
-        this.messageService.show("Pilling Added successfully", MessageType.Success)
+        this.messageService.showNotification("","","Pilling Added successfully", MessageType.Success)
       },
       error => {
-        this.messageService.show(error.error.message, MessageType.Error)
+        this.messageService.showNotification("","",error.error.message, MessageType.Error)
       });
 
 

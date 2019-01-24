@@ -33,7 +33,7 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
   @ViewChild(MatPaginator) paginator: MatPaginator;
   lstProjectRecording: any;
   arrProductNappping: any;
-  isEnableSubmit:boolean=true;
+  isEnableSubmit: boolean = true;
   displayedColumns: string[] =
   [
     'projectName',
@@ -46,7 +46,7 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
   ProjectData: any;
   ProjectAddForm: FormGroup;
   JSONData: any;
- 
+
 
   protected _onDestroy = new Subject<void>();
 
@@ -109,7 +109,7 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
         this.arrUserData.push(element);
       }
     }
-    
+
     if (localStorage.getItem("ProjectData")) {
       this.ProjectData = JSON.parse(localStorage.getItem("ProjectData"));
       for (let index = 0; index < this.ProjectData.length; index++) {
@@ -123,7 +123,7 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
 
   ngOnInit() {
     this.getAllMappingProject();
-    
+
 
     // set initial selection
     this.empCtrl.setValue(this.arrUserData[0]);
@@ -162,7 +162,7 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
 
   }
 
- 
+
 
 
   ngAfterViewInit() {
@@ -184,8 +184,8 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
         // the form control (i.e. _initializeSelection())
         // this needs to be done after the filteredBanks are loaded initially
         // and after the mat-option elements are available
-        if(this.multiSelectEmp){
-        this.multiSelectEmp.compareWith = (a: ProjectData, b: ProjectData) => a && b && a.id === b.id;
+        if (this.multiSelectEmp) {
+          this.multiSelectEmp.compareWith = (a: ProjectData, b: ProjectData) => a && b && a.id === b.id;
         }
       });
   }
@@ -216,8 +216,8 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
         // the form control (i.e. _initializeSelection())
         // this needs to be done after the filteredBanks are loaded initially
         // and after the mat-option elements are available
-        if(this.singleSelectemp){
-        this.singleSelectemp.compareWith = (a: EMPData, b: EMPData) => a && b && a.id === b.id;
+        if (this.singleSelectemp) {
+          this.singleSelectemp.compareWith = (a: EMPData, b: EMPData) => a && b && a.id === b.id;
         }
       });
   }
@@ -243,11 +243,11 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
     this.projectService.deleteProjectMapping(id).pipe(first())
       .subscribe(
       data => {
-        this.messageService.show("Project mapping  deleted successfully.", MessageType.Success);
+        this.messageService.showNotification("", "", "Project mapping  deleted successfully.", MessageType.Success);
         this.getAllMappingProject();
       },
       error => {
-        this.messageService.show("Error in adding Project Mapping.", MessageType.Error);
+        this.messageService.showNotification("", "", "Error in adding Project Mapping.", MessageType.Error);
       });
 
   }
@@ -264,11 +264,11 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
   }
 
   addProjectMapping(): void {
-    
-    if(!this.projectMultiCtrl.value){
-       this.messageService.show("Please select a project to procced", MessageType.Error);
-       return;
+    if (!this.projectMultiCtrl.value || this.projectMultiCtrl.value.length == 0) {
+      this.messageService.showNotification("", "", "Please select a project to procced", MessageType.Error);
+      return;
     }
+  
     this.projectmapping = [];
     for (let index = 0; index < this.projectMultiCtrl.value.length; index++) {
       this.objProjectMapping = new ProjectMapping();
@@ -295,11 +295,11 @@ export class ProjectUserMappingComponent implements OnInit, AfterViewInit, OnDes
       .subscribe(
       data => {
         this.getAllMappingProject();
-        this.messageService.show("Project mapping  added successfully.", MessageType.Success);
+        this.messageService.showNotification("", "", "Project mapping  added successfully.", MessageType.Success);
 
       },
       error => {
-        this.messageService.show("Error in adding Project Mapping.", MessageType.Error);
+        this.messageService.showNotification("", "", "Error in adding Project Mapping.", MessageType.Error);
       });
 
   }

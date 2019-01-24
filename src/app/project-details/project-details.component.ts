@@ -201,7 +201,7 @@ export class ProjectDetailsComponent implements OnInit {
 
     this.projectService.updateProject(this.project).pipe(first()).subscribe(projct => {
       this.chkUpdate = projct;
-      this.messageService.show("Pilling Updated successfully", MessageType.Success)
+      this.messageService.showNotification("","","Pilling Updated successfully", MessageType.Success)
       this.router.navigateByUrl('/admin/project');
     });
   }
@@ -265,7 +265,7 @@ export class ProjectDetailsComponent implements OnInit {
 
     this.projectService.updateProject(this.project).pipe(first()).subscribe(projct => {
       this.chkUpdate = projct;
-      this.messageService.show("Pilling Updated successfully", MessageType.Success)
+      this.messageService.showNotification("","","Pilling Updated successfully", MessageType.Success)
       // console.log(this.chkUpdate);
       this.router.navigateByUrl('/admin/dashboard');
     });

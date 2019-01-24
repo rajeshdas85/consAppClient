@@ -56,10 +56,10 @@ export class EditBOMComponent implements OnInit {
       .pipe(first())
       .subscribe(
       data => {
-        this.messageService.show("BOM Updated successfully", MessageType.Success);
+        this.messageService.showNotification("","","BOM Updated successfully", MessageType.Success);
       },
       error => {
-        this.messageService.show(error.error.message, MessageType.Error);
+        this.messageService.showNotification("","",error.error.message, MessageType.Error);
       });
   }
 }

@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
         // }
       },
       error => {
-        this.messageService.show(error.error.message, MessageType.Error);
+        this.messageService.showNotification("","",error.error.message, MessageType.Error);
       });
 
   }

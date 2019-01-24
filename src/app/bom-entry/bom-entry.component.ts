@@ -139,16 +139,16 @@ export class BomEntryComponent implements OnInit {
         .pipe(first())
         .subscribe(
         data => {
-          this.messageService.show("BOM Added successfully", MessageType.Success);
+          this.messageService.showNotification("","","BOM Added successfully", MessageType.Success);
           this.getAllProjectBOMData();
           this.clearAllVal();
         },
         error => {
-          this.messageService.show(error.error.message, MessageType.Error);
+          this.messageService.showNotification("","",error.error.message, MessageType.Error);
         });
     }
     else {
-      this.messageService.show('Please enter value to save', MessageType.Error);
+      this.messageService.showNotification("","",'Please enter value to save', MessageType.Error);
     }
 
   }

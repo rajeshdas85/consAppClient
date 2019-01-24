@@ -167,7 +167,7 @@ export class AddnewprojectComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.messageService.show("Project added successfully.", MessageType.Success);
+          this.messageService.showNotification("","","Project added successfully.", MessageType.Success);
           //location.reload();
           this.router.navigateByUrl('/admin/project');
 
@@ -180,7 +180,7 @@ export class AddnewprojectComponent implements OnInit {
           //  this.router.navigate(['/Paypal']);
         },
         error => {
-          this.messageService.show("Error in adding Project.", MessageType.Error);
+          this.messageService.showNotification("","","Error in adding Project.", MessageType.Error);
         });
   }
 }

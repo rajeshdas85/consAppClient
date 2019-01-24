@@ -40,7 +40,7 @@ export class UserEntryComponent implements OnInit {
         this.dialogRef.close();
     }
     displaySaveMeg(): void {
-        this.messageService.show("Project Added  BOM Below", MessageType.Success);
+        this.messageService.showNotification("","","Project Added  BOM Below", MessageType.Success);
     }
 
     createForm() {
@@ -107,10 +107,10 @@ export class UserEntryComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.messageService.show("User added successfully.", MessageType.Success);
+                    this.messageService.showNotification("","","User added successfully.", MessageType.Success);
                 },
                 error => {
-                    this.messageService.show("Error in adding User.", MessageType.Error);
+                    this.messageService.showNotification("","","Error in adding User.", MessageType.Error);
                 });
 
     }
