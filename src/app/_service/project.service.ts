@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Project, PileEntry, ProjectRecording, ProjectHistory,ProjectBOM, ProjectMapping } from "app/_model/project";
 import { environment } from "environments/environment";
+import { User } from "app/_model/user";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,10 @@ import { environment } from "environments/environment";
 export class ProjectService {
   constructor(private http: HttpClient) { }
 
+     getMappingStaffDtlsByProject(projectId: string) {
+    // return this.http.get<User[]>(`${environment.apiUrl}/projects/getMappingStaffDtlsByProject/` + projectId);
+     return this.http.get<User[]>(`/projects/getMappingStaffDtlsByProject/` + projectId);
+  }
   addProject(project: Project) {
   
     //return this.http.post(`${environment.apiUrl}/projects/addProject`, project);
