@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { MessageService } from "app/_service/message.service";
-import { MessageType, Project, OtherInfoByProjectID, PillingInfoByProjectID1, PillingInfoByProjectID2 } from "app/_model/project";
+import { MessageType, Project, OtherInfoByProjectID, PillingInfoByProjectID1, PillingInfoByProjectID2, ProjectMapping } from "app/_model/project";
 import { ProjectService } from 'app/_service/project.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -25,8 +25,9 @@ export class AddnewprojectComponent implements OnInit {
   confirmValidParentMatcher = new ConfirmValidParentMatcher();
   private pillingInfoByProjectID1: PillingInfoByProjectID1 = new PillingInfoByProjectID1();
   private pillingInfoByProjectID2: PillingInfoByProjectID2 = new PillingInfoByProjectID2();
-
-  private otherInfoByProjectID: OtherInfoByProjectID = new OtherInfoByProjectID();
+  objProjectMapping: ProjectMapping;
+  public projectmapping: Array<ProjectMapping> = [];
+  //private otherInfoByProjectID: OtherInfoByProjectID = new OtherInfoByProjectID();
 
 
   arrPillingInfoByProjectID1 = [];
@@ -52,11 +53,11 @@ export class AddnewprojectComponent implements OnInit {
 
 
   ngOnInit() {
-    this.projectManagerService.getPMByName().pipe(first()).subscribe(PMName => {
-      this.lstPMName = PMName;
+    // this.projectManagerService.getPMByName().pipe(first()).subscribe(PMName => {
+    //   this.lstPMName = PMName;
 
-      this.selectedValue = this.lstPMName[0].id;
-    });
+    //   this.selectedValue = this.lstPMName[0].id;
+    // });
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -145,18 +146,18 @@ export class AddnewprojectComponent implements OnInit {
 
     //Others
 
-    this.otherInfoByProjectID.desc = "";
-    this.otherInfoByProjectID.financialStatus = 0;
-    this.otherInfoByProjectID.physicalStatus = 0;
-    this.otherInfoByProjectID.rate = 0;
-    this.otherInfoByProjectID.qty = 0;
-    this.otherInfoByProjectID.amount = 0;
-    this.arrOtherInfoByProjectID.push(this.otherInfoByProjectID);
+    // this.otherInfoByProjectID.desc = "";
+    // this.otherInfoByProjectID.financialStatus = 0;
+    // this.otherInfoByProjectID.physicalStatus = 0;
+    // this.otherInfoByProjectID.rate = 0;
+    // this.otherInfoByProjectID.qty = 0;
+    // this.otherInfoByProjectID.amount = 0;
+    // this.arrOtherInfoByProjectID.push(this.otherInfoByProjectID);
 
     //Assigning P1,P2 and others
     this.project.pillingInfoByProjectID1 = this.arrPillingInfoByProjectID1;
     this.project.pillingInfoByProjectID2 = this.arrPillingInfoByProjectID2;
-    this.project.otherInfoByProjectID = this.arrOtherInfoByProjectID;
+    //this.project.otherInfoByProjectID = this.arrOtherInfoByProjectID;
 
     // this.project.updateDate.split('T')[1].split('+')[0]   --- "09:47:36"
     // this.project.updateDate.split('T')[1]  ---   "09:47:36+05:30"
@@ -166,21 +167,51 @@ export class AddnewprojectComponent implements OnInit {
     this.projectService.addProject(this.project)
       .pipe(first())
       .subscribe(
-        data => {
-          this.messageService.showNotification("","","Project added successfully.", MessageType.Success);
-          //location.reload();
-          this.router.navigateByUrl('/admin/project');
+      data => {
+      
+        if (localStorage.getItem("currentUser")) {
+          
+          let userData = JSON.parse(localStorage.getItem("currentUser"));
+          // userData._id
+          //Getting the Last Added Project with ID
+          this.projectService.getLastAddProject().pipe().subscribe(project => {
+            let projeId = project[0].id;
+            
+            this.objProjectMapping = new ProjectMapping();
 
-          // this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
-          //   this.lstProduct = product;
-          //   localStorage.setItem("lstProject",JSON.stringify(this.lstProduct));
-          //   console.log(this.lstProduct);
-          // });
-          //this.alertService.success('Added Address successful');
-          //  this.router.navigate(['/Paypal']);
-        },
-        error => {
-          this.messageService.showNotification("","","Error in adding Project.", MessageType.Error);
-        });
+            this.objProjectMapping.projectId = projeId;
+
+            this.objProjectMapping.empId = userData._id;
+            this.projectmapping.push(this.objProjectMapping);
+            //mapping that project Id with Current User ID in project mapping table mapping table 
+            this.projectService.mapProjectUser(this.projectmapping)
+              .pipe(first())
+              .subscribe(
+              data => {
+                 this.messageService.showNotification("", "", "Project added successfully.", MessageType.Success);
+              },
+              error => {
+                this.messageService.showNotification("", "", "Error in adding Project adding.", MessageType.Error);
+              });
+          });
+
+        }
+
+
+      //  this.messageService.showNotification("", "", "Project added successfully.", MessageType.Success);
+        //location.reload();
+        this.router.navigateByUrl('/admin/project');
+
+        // this.projectService.getLastAddProject().pipe(first()).subscribe(product => {
+        //   this.lstProduct = product;
+        //   localStorage.setItem("lstProject",JSON.stringify(this.lstProduct));
+        //   console.log(this.lstProduct);
+        // });
+        //this.alertService.success('Added Address successful');
+        //  this.router.navigate(['/Paypal']);
+      },
+      error => {
+        this.messageService.showNotification("", "", "Error in adding Project.", MessageType.Error);
+      });
   }
 }

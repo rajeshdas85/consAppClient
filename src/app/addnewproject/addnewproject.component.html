@@ -2,112 +2,123 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-danger">
-        <h4 class="card-title">Add new Project</h4>
+        <h4 class="card-title">Projects</h4>
       </div>
-      <div class="card-body">
-        <form [formGroup]="ProjectAddForm" novalidate>
-          <div class="row">
-            <h4><b>Add Project</b></h4>
-          </div>
-         
-          <div class="row">
-            <div class="col-md-6">
-              <mat-form-field>
-                <input matInput placeholder="project Name" type="text" formControlName="projName">
-                <mat-error>
-                  {{errors.projName}}
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-md-6">
-              <mat-form-field>
-                <input matInput placeholder="project Desc" type="text" formControlName="projDesc">
-                <mat-error>
-                  {{errors.projDesc}}
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
 
 
+      <mat-tab-group class="card" animationDuration="5000" (selectedTabChange)="changeTab($event)">
+        <mat-tab label="Add Project">
+           <div style="height: auto;padding: 10px 0px 0px 30px;overflow: hidden;"> 
+            <form [formGroup]="ProjectAddForm" novalidate>
+              <!-- <div class="row">
+                <h4><b>Add Project</b></h4>
+              </div> -->
+
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input matInput placeholder="project Name" type="text" formControlName="projName">
+                    <mat-error>
+                      {{errors.projName}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input matInput placeholder="project Desc" type="text" formControlName="projDesc">
+                    <mat-error>
+                      {{errors.projDesc}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
 
            
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input matInput placeholder=" Enter Commencement Date" type="date" formControlName="commenceDate">
+                    <mat-error>
+                      {{errors.commenceDate}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input matInput placeholder=" Enter completion Date" type="date" formControlName="completionDate">
+                    <mat-error>
+                      {{errors.completionDate}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
 
-            <div class="col-md-6">
-              <mat-form-field>
-                <mat-select placeholder="select Project Manager" [(value)]="selectedValue" name="PMName">
-                  <mat-option *ngFor="let PMName of lstPMName" [value]="PMName.id">
-                    {{PMName.firstName}} {{PMName.lastName}}
-                  </mat-option>
-                </mat-select>
-                <mat-error>
-                  {{errors.projManagerId}}
-                </mat-error>
-              </mat-form-field>
-            </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input matInput placeholder="client Name" type="text" formControlName="client">
+                    <mat-error>
+                      {{errors.client}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input matInput placeholder="location Name" type="text" formControlName="location">
+                    <mat-error>
+                      {{errors.location}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
 
-
-            <div class="col-md-6">
-              <mat-form-field>
-                <input matInput placeholder="project Value in Rs" type="number" formControlName="projval">
-                <mat-error>
-                  {{errors.projval}}
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <mat-form-field>
-                <input matInput placeholder=" Enter Commencement Date" type="date" formControlName="commenceDate">
-                <mat-error>
-                  {{errors.commenceDate}}
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-md-6">
-              <mat-form-field>
-                <input matInput placeholder=" Enter completion Date" type="date" formControlName="completionDate">
-                <mat-error>
-                  {{errors.completionDate}}
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <mat-form-field>
-                <input matInput placeholder="client Name" type="text" formControlName="client">
-                <mat-error>
-                  {{errors.client}}
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-md-6">
-              <mat-form-field>
-                <input matInput placeholder="location Name" type="text" formControlName="location">
-                <mat-error>
-                  {{errors.location}}
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
+                 <div class="row">
 
 
-          <div class="row" class="pull-right">
-            <mat-dialog-actions align="right">
-              <button mat-stroked-button class="pull-right btn btn-danger" [disabled]="ProjectAddForm.invalid" (click)="addProject()">Add
+                   <div class="col-md-6">
+                  <mat-form-field>
+                    <input matInput placeholder="project Value in Rs" type="number" formControlName="projval">
+                    <mat-error>
+                      {{errors.projval}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+
+                <div class="col-md-6">
+                  <!-- <mat-form-field>
+                    <mat-select placeholder="select Project Manager" [(value)]="selectedValue" name="PMName">
+                      <mat-option *ngFor="let PMName of lstPMName" [value]="PMName.id">
+                        {{PMName.firstName}} {{PMName.lastName}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error>
+                      {{errors.projManagerId}}
+                    </mat-error>
+                  </mat-form-field> -->
+                   <mat-dialog-actions align="right">
+                  <button mat-stroked-button class="pull-right btn btn-danger" [disabled]="ProjectAddForm.invalid" (click)="addProject()">Add
                 Project</button>
-              <button mat-stroked-button mat-dialog-close>Cancel</button>
-            </mat-dialog-actions>
-          </div>
+                  <button mat-stroked-button mat-dialog-close>Cancel</button>
+                </mat-dialog-actions>
+                </div>
+              </div>
 
-        </form>
-      </div>
+              <!-- <div class="row" class="pull-right">
+                <mat-dialog-actions align="right">
+                  <button mat-stroked-button class="pull-right btn btn-danger" [disabled]="ProjectAddForm.invalid" (click)="addProject()">Add
+                Project</button>
+                  <button mat-stroked-button mat-dialog-close>Cancel</button>
+                </mat-dialog-actions>
+              </div> -->
+
+            </form>
+           </div> 
+        </mat-tab>
+        <mat-tab label="Project Details">
+
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 
