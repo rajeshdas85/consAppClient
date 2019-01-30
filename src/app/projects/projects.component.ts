@@ -137,8 +137,6 @@ getAllProjects():void{
   });
 }
 
-
-
 getAllPageAllUserByName():void{
 
   this.userService.getAllUserByName().pipe(first()).subscribe(user => {

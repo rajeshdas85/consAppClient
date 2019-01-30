@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSort, MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
 import { MessageService } from "app/_service/message.service";
 import { MessageType, Project, OtherInfoByProjectID, PillingInfoByProjectID1, PillingInfoByProjectID2, ProjectMapping } from "app/_model/project";
 import { ProjectService } from 'app/_service/project.service';
@@ -9,6 +9,10 @@ import * as moment from 'moment/moment';
 import { ConfirmValidParentMatcher, errorMessages, CustomValidators, regExps } from 'app/_model/custom-validators';
 import { ProjectManagerService } from 'app/_service/project-manager.service';
 import { Router } from '@angular/router';
+import { ViewChild } from "@angular/core";
+import { ElementRef } from "@angular/core";
+import { User } from "app/_model/user";
+import { EditProjectComponent } from "app/edit-project/edit-project.component";
 
 
 // https://www.npmjs.com/package/ngx-mat-select-search
@@ -36,14 +40,28 @@ export class AddnewprojectComponent implements OnInit {
   lstPMName: any;
   selectedValue: string;
   errors = errorMessages;
+  //lstSelectedProject = [];
+  lstProject = [];
 
+  dataSource: any;
+  @ViewChild('TABLE') table: ElementRef;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  displayedColumns: string[] =
+  [
+    'srNo', 'id', 'projName', 'projDesc',
+    'projval', 'commenceDate', 'completionDate',
+    'client', 'location', 'actions'
+
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<AddnewprojectComponent>,
     private messageService: MessageService,
     private projectService: ProjectService,
     private formBuilder: FormBuilder,
+    private dialog: MatDialog,
     public router: Router,
     private projectManagerService: ProjectManagerService,
   ) {
@@ -58,11 +76,34 @@ export class AddnewprojectComponent implements OnInit {
 
     //   this.selectedValue = this.lstPMName[0].id;
     // });
+    // if (localStorage.getItem("selectedProject")) {
+    //   this.lstSelectedProject.push(JSON.parse(localStorage.getItem("selectedProject")));
+    //   console.log(this.lstSelectedProject);
+    // }
   }
+
+
   onNoClick(): void {
     this.dialogRef.close();
   }
+  startEdit(id, projName, projDesc, projval, commenceDate, completionDate, client, location) {
+    //console.log(element);
+    const dialogRef = this.dialog.open(EditProjectComponent, {
+      data: { id: id, projName: projName, projDesc: projDesc, projval: projval, commenceDate: commenceDate, completionDate: completionDate, client: client, location: location }, width: '600px', //height: '500px'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // When using an edit things are little different, firstly we find record inside DataService by id
+        //  const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        // Then you update that record using data from dialogData (values you enetered)
+        //  this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        // And lastly refresh table
+        //  this.refreshTable();
+        this.getAllProjects();
+      }
+    });
+  }
   createForm() {
     this.ProjectAddForm = this.formBuilder.group({
       projName: ['', [
@@ -168,15 +209,15 @@ export class AddnewprojectComponent implements OnInit {
       .pipe(first())
       .subscribe(
       data => {
-      
+
         if (localStorage.getItem("currentUser")) {
-          
+
           let userData = JSON.parse(localStorage.getItem("currentUser"));
           // userData._id
           //Getting the Last Added Project with ID
           this.projectService.getLastAddProject().pipe().subscribe(project => {
             let projeId = project[0].id;
-            
+
             this.objProjectMapping = new ProjectMapping();
 
             this.objProjectMapping.projectId = projeId;
@@ -188,7 +229,7 @@ export class AddnewprojectComponent implements OnInit {
               .pipe(first())
               .subscribe(
               data => {
-                 this.messageService.showNotification("", "", "Project added successfully.", MessageType.Success);
+                this.messageService.showNotification("", "", "Project added successfully.", MessageType.Success);
               },
               error => {
                 this.messageService.showNotification("", "", "Error in adding Project adding.", MessageType.Error);
@@ -198,7 +239,7 @@ export class AddnewprojectComponent implements OnInit {
         }
 
 
-      //  this.messageService.showNotification("", "", "Project added successfully.", MessageType.Success);
+        //  this.messageService.showNotification("", "", "Project added successfully.", MessageType.Success);
         //location.reload();
         this.router.navigateByUrl('/admin/project');
 
@@ -213,5 +254,20 @@ export class AddnewprojectComponent implements OnInit {
       error => {
         this.messageService.showNotification("", "", "Error in adding Project.", MessageType.Error);
       });
+  }
+  getAllProjects(): void {
+    this.projectService.getAllProjects().pipe(first()).subscribe(lstProject => {
+      this.lstProject = lstProject;
+      this.dataSource = new MatTableDataSource<Project>(this.lstProject);
+      // console.log(this.dataSource);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+  changeTab(_tab) {
+    if (_tab.index == 1) {
+      this.getAllProjects();
+
+    }
   }
 }

@@ -63,6 +63,12 @@ export class ProjectService {
     return this.http.put(`/projects/updateProject`,project);
   }
 
+   updateProjectwithInitialVal(project: Project) {
+    //return this.http.put(`${environment.apiUrl}/projects/updateProjectwithInitialVal`, project);
+    return this.http.put(`/projects/updateProjectwithInitialVal`,project);
+  }
+  
+
   updateProjectHistory(projectHistory: ProjectHistory) {
     //return this.http.put(`${environment.apiUrl}/projects/updateProjectHistory`, projectHistory);
     return this.http.put(`/projects/updateProjectHistory`, projectHistory);

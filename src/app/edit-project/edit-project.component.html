@@ -1,0 +1,60 @@
+<div class="container">
+  <!-- <h3 mat-dialog-title>Project id: {{data.id}}</h3> -->
+ <h3 mat-dialog-title>Update BOM</h3>
+  <form class="mat-dialog-content" style="height: 800px!important;" (ngSubmit)="UpdateProject()" #formControl="ngForm">
+ <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" type="text"  placeholder="project  Name" [(ngModel)]="data.projName" name="projName" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+     <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" type="text"  placeholder="project Desc" [(ngModel)]="data.projDesc" name="projDesc" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  <div class="form">
+     <mat-form-field color="accent">
+        <input matInput #input class="form-control" type="text"  placeholder="location" [(ngModel)]="data.location" name="location" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+     <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" type="text"  placeholder="client" [(ngModel)]="data.client" name="client" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput  class="form-control" placeholder="project value in ₹" type="number" [(ngModel)]="data.projval" name="projval"  required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput  class="form-control" placeholder="completion Date" type="text" [(ngModel)]="data.commenceDate" name="commenceDate">
+          <input matInput  class="form-control" placeholder="completion Date" type="date" [(ngModel)]="data.commenceDate" name="commenceDate" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+   <div class="form">
+      <mat-form-field color="accent">
+        <input matInput  class="form-control" placeholder="completion Date" type="text" [(ngModel)]="data.completionDate" name="completionDate">
+        <input matInput  class="form-control" placeholder="completion Date" type="date" [(ngModel)]="data.completionDate" name="completionDate" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+    <button mat-button type="submit" class="pull-right btn btn-danger"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="UpdateProject()">Update</button>
+    <button mat-stroked-button mat-dialog-close>Cancel</button>
+
+    </div>
+  </form>
+</div>
