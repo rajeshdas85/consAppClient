@@ -11,5 +11,6 @@ export class User {
     empTypeId:number;
     photo:string;
     idProof:string;
+    phoneNo:number;
 }
 

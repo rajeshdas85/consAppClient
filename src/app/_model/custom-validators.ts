@@ -38,7 +38,7 @@ export const errorMessages: { [key: string]: string } = {
 	firstName: 'First name must be between 1 and 128 characters',
 	desc:'Desc  must be between 1 and 128 characters',
 	lastName: 'Last name must be between 1 and 128 characters',
-	photo: 'Enter photo details',
+	phoneNo: 'Enter Phone No with 10 digits',
 	idProof: 'Enter Any Id proof like adarar no/passport/pan number',
 	email: 'Email must be a valid email address (username@domain)',
 	confirmEmail: 'Email addresses must match',

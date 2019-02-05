@@ -2,112 +2,122 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-danger">
-                <h4 class="card-title">Add User </h4>
+                <h4 class="card-title">Add User</h4>
             </div>
-            <div class="card-body">
-                <form [formGroup]="UserRegistrationForm" novalidate>
-                    <div class="row">
-                        <h4><b>User Entry</b></h4>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <mat-form-field>
-                                <input matInput placeholder="First Name" type="text" formControlName="firstName">
-                                <mat-error>
-                                    {{errors.firstName}}
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field>
-                                <input matInput placeholder="Last Name" type="text" formControlName="lastName">
-                                <mat-error>
-                                    {{errors.lastName}}
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row" formGroupName="emailGroup">
+            <mat-tab-group class="card" animationDuration="5000" (selectedTabChange)="changeTab($event)">
+                <mat-tab label="Add User">
+                    <div style="height: auto;padding: 10px 0px 0px 30px;overflow: hidden;">
+                        <form [formGroup]="UserRegistrationForm" novalidate>
+                            <div class="row">
+                                <h4><b>User Entry</b></h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="First Name" type="text" formControlName="firstName">
+                                        <mat-error>
+                                            {{errors.firstName}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Last Name" type="text" formControlName="lastName">
+                                        <mat-error>
+                                            {{errors.lastName}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row" formGroupName="emailGroup">
 
-                        <div class="col-md-6">
-                            <mat-form-field>
-                                <input matInput placeholder="Email address" type="email" formControlName="email">
-                                <mat-error>
-                                    {{errors.email}}
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field>
-                                <input matInput placeholder="Confirm email address" type="email" formControlName="confirmEmail" [errorStateMatcher]="confirmValidParentMatcher">
-                                <mat-error>
-                                    {{errors.confirmEmail}}
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Email address" type="email" formControlName="email">
+                                        <mat-error>
+                                            {{errors.email}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Confirm email address" type="email" formControlName="confirmEmail" [errorStateMatcher]="confirmValidParentMatcher">
+                                        <mat-error>
+                                            {{errors.confirmEmail}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
 
-                    </div>
-                    <div class="row" formGroupName="passwordGroup">
-                        <div class="col-md-6">
-                            <mat-form-field>
-                                <input matInput placeholder="Password" type="password" formControlName="password">
-                                <mat-error>
-                                    {{errors.password}}
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field>
-                                <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword" [errorStateMatcher]="confirmValidParentMatcher">
-                                <mat-error>
-                                    {{errors.confirmPassword}}
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <mat-form-field>
-                                <input matInput placeholder="photo" type="text" formControlName="photo">
-                                <mat-error>
-                                    {{errors.photo}}
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field>
-                                <input matInput placeholder="ID Proof" type="text" formControlName="idProof">
-                                <mat-error>
-                                    {{errors.idProof}}
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row" style="padding: 4px;">
-                         <div class="col-md-6">
-                        <mat-checkbox formControlName="isAdmin">is Admin</mat-checkbox>
-                         </div>
-                          <div class="col-md-6">
-                            <label style="padding: 4px;">Employee Type: </label>
-                            <!-- If 1:Admin 2:Project manager,3: SiteEngg  -->
-                            <mat-radio-group formControlName="empTypeId">
-                                <!-- <mat-radio-button checked value="1">Admin</mat-radio-button> -->
-                                <mat-radio-button value="2">Project Manager</mat-radio-button>
-                                <mat-radio-button value="3">Site Engg</mat-radio-button>
-                            </mat-radio-group>
-                            </div> 
-                    </div>
-                
-                    <div class="row" class="pull-right">
-                        <mat-dialog-actions align="right">
-                            <button mat-stroked-button class="pull-right btn btn-danger" [disabled]="UserRegistrationForm.invalid" (click)="register()">Register</button>
-                            <button mat-stroked-button mat-dialog-close>Cancel</button>
-                        </mat-dialog-actions>
-                    </div>
+                            </div>
+                            <div class="row" formGroupName="passwordGroup">
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Password" type="password" formControlName="password">
+                                        <mat-error>
+                                            {{errors.password}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword" [errorStateMatcher]="confirmValidParentMatcher">
+                                        <mat-error>
+                                            {{errors.confirmPassword}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="PhoneNo Start With +91-" type="number" formControlName="PhoneNo">
+                                        <mat-error>
+                                            {{errors.PhoneNo}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6" style="margin-top: 3%;">
+                                    <label style="padding: 4px;color: black">Employee Type: </label>
+                                    <!-- If 1:Admin 2:Project manager,3: SiteEngg  -->
+                                    <mat-radio-group formControlName="empTypeId">
+                                        <!-- <mat-radio-button checked value="1">Admin</mat-radio-button> -->
+                                        <mat-radio-button value="2">Project Manager</mat-radio-button>
+                                        <mat-radio-button value="3">Site Engg</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 4px;">
+                                 <div class="col-md-6">
+                                   
+                                    <mat-checkbox formControlName="isAdmin">is Admin</mat-checkbox>
+                                </div>
+                                <div class="col-md-6" style="margin-left: 83%;margin-bottom: 5%;">
+                                    <mat-dialog-actions align="right">
+                                    <button mat-stroked-button class="pull-right btn btn-danger" [disabled]="UserRegistrationForm.invalid" (click)="register()">Register</button>
+                                    <!-- <button mat-stroked-button mat-dialog-close>Cancel</button> -->
+                                </mat-dialog-actions>
+                                </div>
+                            </div>
 
-                </form>
-            </div>
-        </div>
+                            <!-- <div class="row" class="pull-right">
+                                <mat-dialog-actions align="right">
+                                    <button mat-stroked-button class="pull-right btn btn-danger" [disabled]="UserRegistrationForm.invalid" (click)="register()">Register</button>
+                                </mat-dialog-actions>
+                            </div> -->
+
+                        </form>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Edit User Details" style="overflow: hidden;">
+                </mat-tab>
+      </mat-tab-group>
+      
     </div>
+     <div class="row" style="margin-left: 90%">
+          <mat-dialog-actions align="right">
+            <button mat-stroked-button mat-dialog-close>Close</button>
+          </mat-dialog-actions>
+        </div>
+  </div>
 
 </div>

@@ -22,25 +22,25 @@ export class UserEntryComponent implements OnInit {
     errors = errorMessages;
     userInfo = new User();
 
-  
+
     constructor(
         public dialogRef: MatDialogRef<UserEntryComponent>,
         private messageService: MessageService,
         private projectManagerService: ProjectManagerService,
-        private userService:UserService,
+        private userService: UserService,
         private formBuilder: FormBuilder
     ) {
         this.createForm();
     }
 
     ngOnInit() {
-      
+
     }
     onNoClick(): void {
         this.dialogRef.close();
     }
     displaySaveMeg(): void {
-        this.messageService.showNotification("","","Project Added  BOM Below", MessageType.Success);
+        this.messageService.showNotification("", "", "Project Added  BOM Below", MessageType.Success);
     }
 
     createForm() {
@@ -55,22 +55,24 @@ export class UserEntryComponent implements OnInit {
                 Validators.minLength(1),
                 Validators.maxLength(128)
             ]],
-            photo: ['', [
+            PhoneNo: ['', [
                 Validators.required,
-                Validators.minLength(1),
-                Validators.maxLength(128)
+               Validators.pattern("^[0-9]*$"),
+               Validators.minLength(10),
+                Validators.maxLength(10)
+                // Validators.maxLength(128)
             ]],
-            isAdmin:['', [
-               // Validators.required
+            isAdmin: ['', [
+                // Validators.required
             ]],
-            empTypeId:['', [
-               Validators.required
+            empTypeId: ['', [
+                Validators.required
             ]],
-            idProof: ['', [
-                Validators.required,
-                Validators.minLength(1),
-                Validators.maxLength(128)
-            ]],
+            // idProof: ['', [
+            //     Validators.required,
+            //     Validators.minLength(1),
+            //     Validators.maxLength(128)
+            // ]],
             emailGroup: this.formBuilder.group({
                 email: ['', [
                     Validators.required,
@@ -91,28 +93,33 @@ export class UserEntryComponent implements OnInit {
     register(): void {
         this.userInfo.firstName = this.UserRegistrationForm.value.firstName;
         this.userInfo.lastName = this.UserRegistrationForm.value.lastName;
-        this.userInfo.fullName = this.userInfo.firstName +" "+this.userInfo.lastName;
+        this.userInfo.fullName = this.userInfo.firstName + " " + this.userInfo.lastName;
         // this.userInfo.contactNo=this.UserRegistrationForm.value.contactNo;
         this.userInfo.email = this.UserRegistrationForm.value.emailGroup.email;
         this.userInfo.password = this.UserRegistrationForm.value.passwordGroup.password;
-        this.userInfo.idProof = this.UserRegistrationForm.value.idProof;
-        this.userInfo.photo = this.UserRegistrationForm.value.photo;
+        this.userInfo.phoneNo = this.UserRegistrationForm.value.phoneNo;
+       // this.userInfo.photo = this.UserRegistrationForm.value.photo;
 
-        this.userInfo.isAdmin = this.UserRegistrationForm.value.isAdmin?true:false;
-        this.userInfo.empTypeId  = this.UserRegistrationForm.value.empTypeId;
+        this.userInfo.isAdmin = this.UserRegistrationForm.value.isAdmin ? true : false;
+        this.userInfo.empTypeId = this.UserRegistrationForm.value.empTypeId;
 
         //console.log(this.userInfo);
 
         this.userService.register(this.userInfo)
             .pipe(first())
             .subscribe(
-                data => {
-                    this.messageService.showNotification("","","User added successfully.", MessageType.Success);
-                },
-                error => {
-                    this.messageService.showNotification("","","Error in adding User.", MessageType.Error);
-                });
+            data => {
+                this.messageService.showNotification("", "", "User added successfully.", MessageType.Success);
+            },
+            error => {
+                this.messageService.showNotification("", "", "Error in adding User.", MessageType.Error);
+            });
 
+    }
+    changeTab(_tab) {
+        if (_tab.index == 1) {
+            // this.getAllProjects();
+        }
     }
 }
 

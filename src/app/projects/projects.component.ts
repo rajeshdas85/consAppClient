@@ -138,9 +138,7 @@ getAllProjects():void{
 }
 
 getAllPageAllUserByName():void{
-
   this.userService.getAllUserByName().pipe(first()).subscribe(user => {
-   
     this.lstUser = user;
     localStorage.setItem("UserData",JSON.stringify(this.lstUser));
   });
