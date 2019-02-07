@@ -1,0 +1,53 @@
+<div class="container">
+  <h3 mat-dialog-title>Project id: {{data.id}}</h3>
+
+  <h3 mat-dialog-title>Update User</h3>
+  <form class="mat-dialog-content" style="height: 800px!important;" (ngSubmit)="UpdateUser()" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" type="text" placeholder="firstName" [(ngModel)]="data.firstName" name="firstName"
+          required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" type="text" placeholder="lastName" [(ngModel)]="data.lastName" name="lastName"
+          required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="phoneNo" type="number" [(ngModel)]="data.phoneNo" name="phoneNo" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="password" type="password" [(ngModel)]="data.password" name="password">
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" disabled placeholder="isAdmin" type="text" [(ngModel)]="data.isAdmin" name="isAdmin">
+        <mat-checkbox class="form-control" [(ngModel)]="data.isAdmin" [checked]="data.isAdmin" (change)="onChange($event)" [ngModelOptions]="{standalone: true}"></mat-checkbox>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <ng-container *ngFor="let item of items">
+        <input type="checkbox" [checked]="selected === item.id " [value]="item.id"  (change)="selected = item.id" [attr.id]="item.id"
+        />
+        <label class="lbl" [attr.for]="item.id"> {{ item.label }}</label>
+      </ng-container>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button type="submit" class="pull-right btn btn-danger" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+        (click)="UpdateUser()">Update</button>
+      <button mat-stroked-button mat-dialog-close>Cancel</button>
+
+    </div>
+  </form>
+</div>

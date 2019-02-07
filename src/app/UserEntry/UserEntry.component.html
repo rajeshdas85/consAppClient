@@ -70,9 +70,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field>
-                                        <input matInput placeholder="PhoneNo Start With +91-" type="number" formControlName="PhoneNo">
+                                        <input matInput placeholder="PhoneNo Start With +91-" type="number" formControlName="phoneNo">
                                         <mat-error>
-                                            {{errors.PhoneNo}}
+                                            {{errors.phoneNo}}
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
@@ -87,15 +87,15 @@
                                 </div>
                             </div>
                             <div class="row" style="padding: 4px;">
-                                 <div class="col-md-6">
-                                   
+                                <div class="col-md-6">
+
                                     <mat-checkbox formControlName="isAdmin">is Admin</mat-checkbox>
                                 </div>
                                 <div class="col-md-6" style="margin-left: 83%;margin-bottom: 5%;">
                                     <mat-dialog-actions align="right">
-                                    <button mat-stroked-button class="pull-right btn btn-danger" [disabled]="UserRegistrationForm.invalid" (click)="register()">Register</button>
-                                    <!-- <button mat-stroked-button mat-dialog-close>Cancel</button> -->
-                                </mat-dialog-actions>
+                                        <button mat-stroked-button class="pull-right btn btn-danger" [disabled]="UserRegistrationForm.invalid" (click)="register()">Register</button>
+                                        <!-- <button mat-stroked-button mat-dialog-close>Cancel</button> -->
+                                    </mat-dialog-actions>
                                 </div>
                             </div>
 
@@ -109,15 +109,75 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="Edit User Details" style="overflow: hidden;">
+
+                    <div class="row mat-elevation-z12" style="padding: 2%;height: 100%" #TABLE>
+                        <table id="tblUserDetail" mat-table #table [dataSource]="dataSource" matSort style="width:100%">
+                            <ng-container matColumnDef="srNo">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Sl.No </th>
+                                <td mat-cell *matCellDef="let element;let i = index;">{{i+1}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell [style.display]="'none'" *matHeaderCellDef mat-sort-header> id </th>
+                                <td mat-cell [style.display]="'none'" *matCellDef="let element"> {{element.id}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="empTypeId">
+                                <th mat-header-cell [style.display]="'none'" *matHeaderCellDef mat-sort-header> empTypeId </th>
+                                <td mat-cell [style.display]="'none'" *matCellDef="let element"> {{element.empTypeId}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="firstName">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name</th>
+                                <td mat-cell *matCellDef="let element"> {{element.firstName}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="lastName">
+                                <th style="width: 20%" mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+                                <td mat-cell *matCellDef="let element"> {{element.lastName}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="email">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                                <td mat-cell *matCellDef="let element">  {{element.email}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="phoneNo">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone No</th>
+                                <td mat-cell *matCellDef="let element"> {{element.phoneNo}} </td>
+                            </ng-container>
+
+                            
+
+                            <ng-container matColumnDef="isAdmin">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Admin</th>
+                                <td mat-cell *matCellDef="let element"> {{element.isAdmin}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="actions">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button mat-button matTooltip="Edit" color="accent" (click)="startEdit(element.id,element.empTypeId,element.firstName,element.lastName,element.phoneNo,element.isAdmin)">
+                                                                           <mat-icon>edit</mat-icon>
+                                                                      </button>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20,100,1000]" showFirstLastButtons></mat-paginator>
+
+                    </div>
                 </mat-tab>
-      </mat-tab-group>
-      
-    </div>
-     <div class="row" style="margin-left: 90%">
-          <mat-dialog-actions align="right">
-            <button mat-stroked-button mat-dialog-close>Close</button>
-          </mat-dialog-actions>
+            </mat-tab-group>
+
         </div>
-  </div>
+        <div class="row" style="margin-left: 90%">
+            <mat-dialog-actions align="right">
+                <button mat-stroked-button mat-dialog-close>Close</button>
+            </mat-dialog-actions>
+        </div>
+    </div>
 
 </div>

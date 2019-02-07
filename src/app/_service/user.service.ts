@@ -32,7 +32,10 @@ update(user: User) {
     //return this.http.put(`${environment.apiUrl}/users/` + user.id, user);
    return this.http.put(`/users/` + user.id, user);
 }
-
+updateUser(user: User) {
+    //return this.http.put(`${environment.apiUrl}/users/updateUser`, user);
+   return this.http.put(`/users/updateUser`, user);
+}
 delete(id: number) {
     //return this.http.delete(`${environment.apiUrl}/users/` + id);
     return this.http.delete(`/users/` + id);

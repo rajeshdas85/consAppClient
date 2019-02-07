@@ -62,6 +62,7 @@ import { BomEntryComponent } from "app/bom-entry/bom-entry.component";
 import { EditBOMComponent } from 'app/dialogs/edit-bom/edit-bom.component';
 import { ProjectUserMappingComponent } from 'app/project-user-mapping/project-user-mapping.component';
 import { EditProjectComponent } from "app/edit-project/edit-project.component";
+import { EditUserComponent } from "app/dialogs/edit-user/edit-user.component";
 //import { LoginComponent } from 'app/login/login.component';
 
 
@@ -108,7 +109,7 @@ import { EditProjectComponent } from "app/edit-project/edit-project.component";
   NgxMatSelectSearchModule,
   RouterModule.forChild(AdminLayoutRoutes),
   ], 
-  entryComponents: [ AddnewprojectComponent,UserEntryComponent,AddPillingComponent,BomEntryComponent,EditBOMComponent,ProjectUserMappingComponent,EditProjectComponent],
+  entryComponents: [ AddnewprojectComponent,UserEntryComponent,AddPillingComponent,BomEntryComponent,EditBOMComponent,ProjectUserMappingComponent,EditProjectComponent,EditUserComponent],
   declarations: [
   //  LoginComponent,
     DashboardComponent,
@@ -131,6 +132,7 @@ import { EditProjectComponent } from "app/edit-project/edit-project.component";
     EditBOMComponent,
     ProjectUserMappingComponent,
     EditProjectComponent,
+    EditUserComponent,
   ],
   
 })

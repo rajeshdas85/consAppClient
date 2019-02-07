@@ -37,6 +37,7 @@ import { LoginComponent } from './login/login.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { EditUserComponent } from './dialogs/edit-user/edit-user.component';
 
 //import { ProjectmanagerComponent } from './projectmanager/projectmanager.component';
 //import { AddProjectComponent } from './add-project/add-project.component';
@@ -62,6 +63,7 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
     LoginComponent,
     AppComponent,
     AdminLayoutComponent,
+    //EditUserComponent,
   //  EditProjectComponent,
    // LoginPopUpComponent,
  
