@@ -7,15 +7,23 @@
   cursor: pointer;
   width: 20%;
 }
-.formBorder{
+/*.formBorder{
         border: 3px solid darkgray;
-}
+}*/
     .divOuterForm{
-padding:200px;background: navajowhite;
+
+    margin: 0px auto;
+    padding-top: 30px;
+    padding-bottom: 10px;
     }
 
 .container{
-    background: sandybrown;
+    background: #ddd;
+    margin-top: 106px;
+    width: 400px;
+    padding: 23px;
+    border-radius: 10px;
+
 }
 .loader-overlay {
     position: absolute;

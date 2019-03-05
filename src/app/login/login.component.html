@@ -1,19 +1,18 @@
 <div class="container container">
     <!-- <h3 mat-dialog-title>Project id: {{data.id}}</h3> -->
-    <h2 mat-dialog-title>RKEC Log In</h2>
+   
+    <div style="text-align:center;"><img src="../../assets/img/Picture2.png"></div>
     <div class="divOuterForm">
         <form [formGroup]="loginForm" class="formBorder" (ngSubmit)="onSubmit()" >
             <div class="form-group">
-                <input type="email" formControlName="email" placeholder="Email ID" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-                />
+             <input type="email" formControlName="email" placeholder="Email ID" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                     <div *ngIf="f.email.errors.required">Email is required</div>
                     <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                 </div>
             </div>
             <div class="form-group">
-                <input type="password" formControlName="password" placeholder="Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-                />
+                <input type="password" formControlName="password" placeholder="Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password is required</div>
                     <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
